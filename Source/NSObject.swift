@@ -23,5 +23,4 @@ extension NSObject {
             return UIWindow.topWindow()
         }
     }
-    
 }

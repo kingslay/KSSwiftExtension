@@ -6,16 +6,6 @@
 //  Copyright (c) 2015年 king. All rights reserved.
 //
 import UIKit
-
-func constraint(item1: UIView, attribute1: NSLayoutAttribute, relation: NSLayoutRelation, item2: UIView, attribute2: NSLayoutAttribute, constant: CGFloat = 0.0, multiplier: CGFloat = 1.0) -> NSLayoutConstraint
-{
-    return NSLayoutConstraint(item: item1, attribute: attribute1, relatedBy: relation, toItem: item2, attribute: attribute2, multiplier: multiplier, constant: constant)
-}
-
-func constraint(item1: UIView, attribute1: NSLayoutAttribute, relation: NSLayoutRelation, constant: CGFloat = 0.0, multiplier : CGFloat = 1.0) -> NSLayoutConstraint
-{
-    return NSLayoutConstraint(item: item1, attribute: attribute1, relatedBy: relation, toItem: nil, attribute: .NotAnAttribute, multiplier: multiplier, constant: constant)
-}
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get {
@@ -55,79 +45,6 @@ extension UIView {
             }
         }
     }
-    /**
-    - returns: true if v is in this view's super view chain
-    */
-    public func isSuper(v : UIView) -> Bool
-    {
-        for var s : UIView? = self; s != nil; s = s?.superview {
-            if(v == s) {
-                return true;
-            }
-        }
-        return false
-    }
-    
-    public func ksconstrain(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, _ otherView: UIView, _ otherAttribute: NSLayoutAttribute, constant: CGFloat = 0.0, multiplier : CGFloat = 1.0) -> UIView
-    {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let c = constraint(self, attribute1: attribute, relation: relation, item2: otherView, attribute2: otherAttribute, constant: constant, multiplier: multiplier)
-        if isSuper(otherView) {
-            otherView.addConstraint(c)
-            return self
-        }
-        else if(otherView.isSuper(self) || otherView == self)
-        {
-            self.addConstraint(c)
-            return self
-        }else if(otherView.superview == self.superview){
-            self.superview?.addConstraint(c)
-            return self
-        }
-        assert(false)
-        return self
-    }
-    
-    public func ksconstrain(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, constant: CGFloat, multiplier : CGFloat = 1.0) -> UIView
-    {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let c = constraint(self, attribute1: attribute, relation: relation, constant: constant, multiplier: multiplier)
-        self.addConstraint(c)
-        return self
-    }
-    
-    public func constrainWidthWithSuper(constant: CGFloat) -> UIView{
-        return ksconstrain(.Width, .Equal, self.superview!, .Width,constant: constant)
-    }
-
-    public func constrainWidth(constant: CGFloat) -> UIView{
-        return ksconstrain(.Width,.Equal,constant: constant)
-    }
-
-    public func constrainHeight(constant: CGFloat) -> UIView{
-        return ksconstrain(.Height,.Equal,constant: constant)
-    }
-
-    public func constrainTop(constant: CGFloat) -> UIView{
-        return ksconstrain(.Top,.Equal,self.superview!,.Top,constant: constant)
-    }
-    public func constrainBottom(constant: CGFloat) -> UIView{
-        return ksconstrain(.Bottom,.Equal,self.superview!,.Bottom,constant: constant)
-    }
-    public func constrainLeading(constant: CGFloat) -> UIView{
-        return ksconstrain(.Leading,.Equal,self.superview!,.Leading,constant: constant)
-    }
-    public func constrainTrailing(constant: CGFloat) -> UIView{
-        return ksconstrain(.Trailing,.Equal,self.superview!,.Trailing,constant: constant)
-    }
-    
-    public func constrainCenterX(constant: CGFloat = 0.0) -> UIView{
-        return ksconstrain(.CenterX,.Equal,self.superview!,.CenterX,constant: constant)
-    }
-    
-    public func constrainCenterY(constant: CGFloat = 0.0) -> UIView{
-        return ksconstrain(.CenterY,.Equal,self.superview!,.CenterY,constant: constant)
-    }
     public func viewController() -> UIViewController?{
         if let window = self as? UIWindow {
             return window.rootViewController
@@ -145,5 +62,138 @@ extension UIView {
     }
     class public func loadXib(name: String) -> UIView?{
         return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIView
-    }    
+    }
+}
+
+extension UIView {
+    var ks_left: CGFloat {
+        get {
+            return self.frame.origin.x
+        }
+        set {
+            var frame = self.frame
+            if frame.origin.x != newValue {
+                frame.origin.x = newValue
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_top: CGFloat {
+        get {
+            return self.frame.origin.y
+        }
+        set {
+            var frame = self.frame
+            if frame.origin.y != newValue {
+                frame.origin.y = newValue
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_right: CGFloat {
+        get {
+            return self.frame.origin.x + self.frame.width
+        }
+        set {
+            var frame = self.frame
+            let newRight = newValue - self.frame.width
+            if frame.origin.x != newRight {
+                frame.origin.x = newRight
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_bottom: CGFloat {
+        get {
+            return self.frame.origin.y + self.frame.height
+        }
+        set {
+            var frame = self.frame
+            let newBottom = newValue - self.frame.height
+            if frame.origin.y != newBottom {
+                frame.origin.y = newBottom
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_centerX: CGFloat {
+        get {
+            return self.center.x
+        }
+        set {
+            var center = self.center
+            if center.x != newValue {
+                center.x = newValue
+                self.center = center
+            }
+        }
+    }
+    
+    var ks_centerY: CGFloat {
+        get {
+            return self.center.y
+        }
+        set {
+            var center = self.center
+            if center.y != newValue {
+                center.y = newValue
+                self.center = center
+            }
+        }
+    }
+    
+    var ks_width: CGFloat {
+        get {
+            return self.frame.width
+        }
+        set {
+            var frame = self.frame
+            if frame.width != newValue {
+                frame.size.width = newValue
+                self.frame = frame
+            }
+        }
+    }
+    var ks_height: CGFloat {
+        get {
+            return self.frame.height
+        }
+        set {
+            var frame = self.frame
+            if frame.height != newValue {
+                frame.size.height = newValue
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_origin: CGPoint {
+        get {
+            return self.frame.origin
+        }
+        set {
+            var frame = self.frame
+            if frame.origin != newValue {
+                frame.origin = newValue
+                self.frame = frame
+            }
+        }
+    }
+    
+    var ks_size: CGSize {
+        get {
+            return self.frame.size
+        }
+        set {
+            var frame = self.frame
+            if frame.size != newValue {
+                frame.size = newValue
+                self.frame = frame
+            }
+        }
+    }
 }
