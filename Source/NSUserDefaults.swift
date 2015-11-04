@@ -8,7 +8,7 @@
 
 import Foundation
 extension NSUserDefaults {
-    subscript (key: String) -> AnyObject? {
+    public subscript (key: String) -> AnyObject? {
         get{
             return objectForKey(key)
         }

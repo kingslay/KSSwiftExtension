@@ -7,7 +7,7 @@
 //
 import UIKit
 extension UIView {
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -17,7 +17,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable public var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -26,7 +26,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var borderColor: UIColor {
+    @IBInspectable public var borderColor: UIColor {
         get {
             return UIColor(CGColor: layer.borderColor!)
         }
@@ -35,7 +35,7 @@ extension UIView {
         }
     }
     
-    @IBInspectable var onePx: Bool {
+    @IBInspectable public var onePx: Bool {
         get {
             return self.onePx
         }
@@ -66,7 +66,7 @@ extension UIView {
 }
 
 extension UIView {
-    var ks_left: CGFloat {
+    public var ks_left: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -79,7 +79,7 @@ extension UIView {
         }
     }
     
-    var ks_top: CGFloat {
+    public var ks_top: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -92,7 +92,7 @@ extension UIView {
         }
     }
     
-    var ks_right: CGFloat {
+    public var ks_right: CGFloat {
         get {
             return self.frame.origin.x + self.frame.width
         }
@@ -106,7 +106,7 @@ extension UIView {
         }
     }
     
-    var ks_bottom: CGFloat {
+    public var ks_bottom: CGFloat {
         get {
             return self.frame.origin.y + self.frame.height
         }
@@ -120,7 +120,7 @@ extension UIView {
         }
     }
     
-    var ks_centerX: CGFloat {
+    public var ks_centerX: CGFloat {
         get {
             return self.center.x
         }
@@ -133,7 +133,7 @@ extension UIView {
         }
     }
     
-    var ks_centerY: CGFloat {
+    public var ks_centerY: CGFloat {
         get {
             return self.center.y
         }
@@ -146,7 +146,7 @@ extension UIView {
         }
     }
     
-    var ks_width: CGFloat {
+    public var ks_width: CGFloat {
         get {
             return self.frame.width
         }
@@ -158,7 +158,7 @@ extension UIView {
             }
         }
     }
-    var ks_height: CGFloat {
+    public var ks_height: CGFloat {
         get {
             return self.frame.height
         }
@@ -171,7 +171,7 @@ extension UIView {
         }
     }
     
-    var ks_origin: CGPoint {
+    public var ks_origin: CGPoint {
         get {
             return self.frame.origin
         }
@@ -184,7 +184,7 @@ extension UIView {
         }
     }
     
-    var ks_size: CGSize {
+    public var ks_size: CGSize {
         get {
             return self.frame.size
         }
