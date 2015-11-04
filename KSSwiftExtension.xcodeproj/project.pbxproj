@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CBC20C71BBD96570007DC65 /* KSSwiftExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */; settings = {ASSET_TAGS = (); }; };
 		3CBC20DF1BBD97400007DC65 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20921BBD90190007DC65 /* Color.swift */; };
 		3CBC20E01BBD97400007DC65 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20941BBD90190007DC65 /* NSDate.swift */; };
 		3CBC20E11BBD97400007DC65 /* NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20951BBD90190007DC65 /* NSMutableData.swift */; };
@@ -19,18 +18,7 @@
 		3CBC20E71BBD97400007DC65 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209B1BBD90190007DC65 /* UIViewController.swift */; };
 		3CBC20E81BBD97400007DC65 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209C1BBD90190007DC65 /* UIWindow.swift */; };
 		3CBC20E91BBD97400007DC65 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20A81BBD92530007DC65 /* UIScreen.swift */; };
-		3CBC20EB1BBD97750007DC65 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBC20EA1BBD97750007DC65 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3CBC20C81BBD96570007DC65 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C11828B1BBD43B000D96BB9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3CBC20BC1BBD96570007DC65;
-			remoteInfo = KSSwiftExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3C1182961BBD43B000D96BB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +38,6 @@
 		3CBC209C1BBD90190007DC65 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWindow.swift; path = Source/UIWindow.swift; sourceTree = "<group>"; };
 		3CBC20A81BBD92530007DC65 /* UIScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScreen.swift; path = Source/UIScreen.swift; sourceTree = "<group>"; };
 		3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CBC20C61BBD96570007DC65 /* KSSwiftExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSSwiftExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBC20EA1BBD97750007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,14 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3CBC20C31BBD96570007DC65 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3CBC20C71BBD96570007DC65 /* KSSwiftExtension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,7 +57,6 @@
 			children = (
 				3C1182B61BBD43E500D96BB9 /* Source */,
 				3C1182951BBD43B000D96BB9 /* KSSwiftExtension */,
-				3C1182AA1BBD43B000D96BB9 /* KSSwiftExtensionTests */,
 				3C1182941BBD43B000D96BB9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */,
-				3CBC20C61BBD96570007DC65 /* KSSwiftExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,13 +79,6 @@
 				3C11829F1BBD43B000D96BB9 /* LaunchScreen.storyboard */,
 			);
 			path = KSSwiftExtension;
-			sourceTree = "<group>";
-		};
-		3C1182AA1BBD43B000D96BB9 /* KSSwiftExtensionTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = KSSwiftExtensionTests;
 			sourceTree = "<group>";
 		};
 		3C1182B61BBD43E500D96BB9 /* Source */ = {
@@ -161,37 +131,16 @@
 			productReference = 3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3CBC20C51BBD96570007DC65 /* KSSwiftExtensionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3CBC20D11BBD96580007DC65 /* Build configuration list for PBXNativeTarget "KSSwiftExtensionTests" */;
-			buildPhases = (
-				3CBC20C21BBD96570007DC65 /* Sources */,
-				3CBC20C31BBD96570007DC65 /* Frameworks */,
-				3CBC20C41BBD96570007DC65 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3CBC20C91BBD96570007DC65 /* PBXTargetDependency */,
-			);
-			name = KSSwiftExtensionTests;
-			productName = KSSwiftExtensionTests;
-			productReference = 3CBC20C61BBD96570007DC65 /* KSSwiftExtensionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3C11828B1BBD43B000D96BB9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = king;
 				TargetAttributes = {
 					3CBC20BC1BBD96570007DC65 = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					3CBC20C51BBD96570007DC65 = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -210,21 +159,12 @@
 			projectRoot = "";
 			targets = (
 				3CBC20BC1BBD96570007DC65 /* KSSwiftExtension */,
-				3CBC20C51BBD96570007DC65 /* KSSwiftExtensionTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3CBC20BB1BBD96570007DC65 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3CBC20EB1BBD97750007DC65 /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CBC20C41BBD96570007DC65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,22 +192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3CBC20C21BBD96570007DC65 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3CBC20C91BBD96570007DC65 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3CBC20BC1BBD96570007DC65 /* KSSwiftExtension */;
-			targetProxy = 3CBC20C81BBD96570007DC65 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3C11829A1BBD43B000D96BB9 /* Main.storyboard */ = {
@@ -410,26 +335,6 @@
 			};
 			name = Release;
 		};
-		3CBC20D21BBD96580007DC65 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = KSSwiftExtensionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = king.KSSwiftExtensionTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3CBC20D31BBD96580007DC65 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = KSSwiftExtensionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = king.KSSwiftExtensionTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -449,14 +354,7 @@
 				3CBC20D01BBD96580007DC65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		3CBC20D11BBD96580007DC65 /* Build configuration list for PBXNativeTarget "KSSwiftExtensionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3CBC20D21BBD96580007DC65 /* Debug */,
-				3CBC20D31BBD96580007DC65 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
