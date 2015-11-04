@@ -8,13 +8,13 @@
 
 import UIKit
 extension NSObject {
-    class func className() -> String {
+    class public func className() -> String {
         return "\(self)".componentsSeparatedByString(".").last!
     }
-    func className() -> String {
+    public func className() -> String {
         return "\(self.dynamicType)".componentsSeparatedByString(".").last!
     }
-    func topView() -> UIView {
+    public func topView() -> UIView {
         if isKindOfClass(UIView) {
             return self as! UIView
         }else if isKindOfClass(UIViewController) {

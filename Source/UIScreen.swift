@@ -7,8 +7,8 @@
 //
 
 import UIKit
-let SCREEN_BOUND = UIScreen.mainScreen().bounds
-let SCREEN_WIDTH = SCREEN_BOUND.width
-let SCREEN_HEIGHT = SCREEN_BOUND.height
-let SCREEN_SCALE = UIScreen.mainScreen().scale
-let SCREEN_RATIO = SCREEN_WIDTH/320.0
+public let SCREEN_BOUND = UIScreen.mainScreen().bounds
+public let SCREEN_WIDTH = SCREEN_BOUND.width
+public let SCREEN_HEIGHT = SCREEN_BOUND.height
+public let SCREEN_SCALE = UIScreen.mainScreen().scale
+public let SCREEN_RATIO = SCREEN_WIDTH/320.0

@@ -30,10 +30,10 @@ extension String {
     subscript (r: Range<Int>) -> String {
         return substringWithRange(Range(start: self.startIndex.advancedBy(r.startIndex), end: self.startIndex.advancedBy(r.endIndex)))
     }
-    func checkMobileNumble() -> Bool {
+    public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluateWithObject(self)
     }
-    func checkEmail() -> Bool {
+    public func checkEmail() -> Bool {
         return String.emailRegex.evaluateWithObject(self)
     }
 }

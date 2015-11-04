@@ -16,11 +16,11 @@ extension NSDate {
     
     // MARK: To String
     
-    func toString() -> String {
+    public func toString() -> String {
         return self.toString(dateStyle: .ShortStyle, timeStyle: .ShortStyle, doesRelativeDateFormatting: false)
     }
     
-    func toString(dateStyle dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, doesRelativeDateFormatting: Bool = false) -> String
+    public func toString(dateStyle dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, doesRelativeDateFormatting: Bool = false) -> String
     {
         let formatter = NSDateFormatter()
         formatter.dateStyle = dateStyle
@@ -29,7 +29,7 @@ extension NSDate {
         return formatter.stringFromDate(self)
     }
     
-    func relativeTimeToString(containTime: Bool = false) -> String
+    public func relativeTimeToString(containTime: Bool = false) -> String
     {
         let timeInterval = NSDate() - self
         if timeInterval < 86400 {
@@ -53,7 +53,7 @@ extension NSDate {
             return self.stringFromFormat("yy/MM/dd")
         }
     }
-    func stringFromFormat(format: String) -> String {
+    public func stringFromFormat(format: String) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = format
         return formatter.stringFromDate(self)

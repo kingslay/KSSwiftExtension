@@ -10,44 +10,44 @@ import Foundation
 //大端序
 extension NSMutableData {
 
-    func appendInt64(value : Int64) {
+    public func appendInt64(value : Int64) {
         var val = value.bigEndian
         self.appendBytes(&val, length: sizeofValue(val))
     }
-    func appendUInt64(value : UInt64) {
+    public func appendUInt64(value : UInt64) {
         var val = value.bigEndian
         self.appendBytes(&val, length: sizeofValue(val))
     }
 
     
-    func appendInt32(value : Int32) {
+    public func appendInt32(value : Int32) {
         var val = value.bigEndian
         self.appendBytes(&val, length: sizeofValue(val))
     }
-    func appendUInt32(value : UInt32) {
-        var val = value.bigEndian
-        self.appendBytes(&val, length: sizeofValue(val))
-    }
-    
-    func appendInt16(value : Int16) {
-        var val = value.bigEndian
-        self.appendBytes(&val, length: sizeofValue(val))
-    }
-    func appendUInt16(value : UInt16) {
+    public func appendUInt32(value : UInt32) {
         var val = value.bigEndian
         self.appendBytes(&val, length: sizeofValue(val))
     }
     
-    func appendUInt8(value : UInt8) {
+    public func appendInt16(value : Int16) {
+        var val = value.bigEndian
+        self.appendBytes(&val, length: sizeofValue(val))
+    }
+    public func appendUInt16(value : UInt16) {
+        var val = value.bigEndian
+        self.appendBytes(&val, length: sizeofValue(val))
+    }
+    
+    public func appendUInt8(value : UInt8) {
         var val = value
         self.appendBytes(&val, length: sizeofValue(val))
     }
-    func appendInt8(value : Int8) {
+    public func appendInt8(value : Int8) {
         var val = value
         self.appendBytes(&val, length: sizeofValue(val))
     }
     
-    func appendString(value : String) {
+    public func appendString(value : String) {
         value.withCString {
             self.appendBytes($0, length: Int(strlen($0)))
         }

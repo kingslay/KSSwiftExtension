@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    convenience init(hexString:String) {
+    public convenience init(hexString:String) {
         let hexString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let scanner = NSScanner(string: hexString)
         
@@ -18,7 +18,7 @@ extension UIColor {
         }
         if hexString.hasPrefix("0X") {
             scanner.scanLocation = 2
-
+            
         }
         
         var color:UInt32 = 0
@@ -36,7 +36,7 @@ extension UIColor {
         self.init(red:red, green:green, blue:blue, alpha:1)
     }
     
-    func toHexString() -> String {
+    public func toHexString() -> String {
         var r:CGFloat = 0
         var g:CGFloat = 0
         var b:CGFloat = 0
@@ -46,7 +46,7 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
     
-    class func createImageWithColor(color: UIColor) -> UIImage {
+    class public func createImageWithColor(color: UIColor) -> UIImage {
         let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -57,5 +57,5 @@ extension UIColor {
         return image
     }
     
-
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 extension UIImage {
-    func transformtoScale(scale: CGFloat) -> UIImage {
+    public func transformtoScale(scale: CGFloat) -> UIImage {
         return UIImage(CGImage: self.CGImage!, scale: scale, orientation: UIImageOrientation.Up)
         
 //        // 创建一个bitmap的context
@@ -22,14 +22,14 @@ extension UIImage {
 //        // 返回新的改变大小后的图片
 //        return transformedImg
     }
-    func normalizedImage() -> UIImage {
+    public func normalizedImage() -> UIImage {
         var returnMe = self
         if self.size.width > SCREEN_WIDTH * SCREEN_SCALE {
             returnMe = UIImage.imageWithImage(self, scaledToWidth: SCREEN_WIDTH * SCREEN_SCALE)
         }
         return returnMe
     }
-    static func imageWithImage(sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
+    static public func imageWithImage(sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
         let oldWidth = sourceImage.size.width
         let scaleFactor = scaledToWidth/oldWidth
         let newHeight = sourceImage.size.height*scaleFactor
