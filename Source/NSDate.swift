@@ -36,7 +36,7 @@ extension NSDate {
             return self.stringFromFormat("HH:mm")
         }else if timeInterval < 2*86400 {
             if containTime {
-                 "昨天".localized + self.stringFromFormat(" HH:mm")
+                 "\("昨天".localized)\(self.stringFromFormat(" HH:mm"))"
             }else{
                 return "昨天".localized
             }
