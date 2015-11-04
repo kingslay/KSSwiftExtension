@@ -1,6 +1,6 @@
 {
   "name": "KSSwiftExtension",
-  "version": "0.1",
+  "version": "0.2",
   "summary": "UIKit 's Extension",
   "description":" KSSwiftExtension is a Extension of UIKit",
   "homepage": "https://github.com/kingslay/KSSwiftExtension",
@@ -8,7 +8,7 @@
   "authors": {"kingslay": "kingslay@icloud.com"},
   "source": {
 	  "git": "https://github.com/kingslay/KSSwiftExtension.git",
-	  "tag": "0.1"
+	  "tag": "0.2"
 	  },
  "platforms": {
     "ios": "8.0"
