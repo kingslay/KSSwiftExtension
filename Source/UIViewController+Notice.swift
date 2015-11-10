@@ -8,18 +8,18 @@ extension UIViewController {
         SwiftNotice.wait(imageNames, timeInterval: timeInterval)
     }
     // api changed from v3.3
-    public func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 1) {
+    public func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
         SwiftNotice.noticeOnSatusBar(text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     
     // new apis from v3.3
-    public func noticeSuccess(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+    public func noticeSuccess(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
         SwiftNotice.showNoticeWithText(NoticeType.success, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    public func noticeError(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+    public func noticeError(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
         SwiftNotice.showNoticeWithText(NoticeType.error, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    public func noticeInfo(text: String, autoClear: Bool = false, autoClearTime: Int = 3) {
+    public func noticeInfo(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
         SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
     public func pleaseWait() {
@@ -101,7 +101,7 @@ class SwiftNotice: NSObject {
         
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
+            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
     static func wait(imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
@@ -175,12 +175,11 @@ class SwiftNotice: NSObject {
         window.addSubview(mainView)
         windows.append(window)
         let selector = Selector("hideNotice:")
-        let clearTime = max(Double(text.length) * 0.08 + 0.3,1)
-        self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(clearTime))
+        self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text)))
     }
     
     static func showNoticeWithText(type: NoticeType,text: String, autoClear: Bool, autoClearTime: Int) {
-        var frame = CGRectMake(0, 0, 90, 90)
+        var frame = CGRectMake(0, 0, 150, 150)
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
         let mainView = UIView()
@@ -197,10 +196,10 @@ class SwiftNotice: NSObject {
             image = SwiftNoticeSDK.imageOfInfo
         }
         let checkmarkView = UIImageView(image: image)
-        checkmarkView.frame = CGRectMake(27, 15, 36, 36)
+        checkmarkView.frame = CGRectMake(0, 15, 36, 36)
         mainView.addSubview(checkmarkView)
         
-        let label = UILabel(frame: CGRectMake(5, 60, 85, 16))
+        let label = UILabel(frame: CGRectMake(5, 60, frame.size.width-10, 16))
         label.numberOfLines = 0
         label.font = UIFont.systemFontOfSize(13)
         label.textColor = UIColor.whiteColor()
@@ -211,9 +210,8 @@ class SwiftNotice: NSObject {
         frame.size.height = label.frame.origin.y + label.frame.size.height + 14
         window.frame = frame
         mainView.frame = frame
-        var center = label.center
-        center.x = mainView.center.x
-        label.center = center
+        label.ks_centerX = mainView.ks_centerX
+        checkmarkView.ks_centerX = mainView.ks_centerX
         
         window.windowLevel = UIWindowLevelAlert
         window.center = getRealCenter()
@@ -225,7 +223,7 @@ class SwiftNotice: NSObject {
         
         if autoClear {
             let selector = Selector("hideNotice:")
-            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(autoClearTime))
+            self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
     
@@ -246,6 +244,13 @@ class SwiftNotice: NSObject {
             return CGPoint(x: rv.center.y, y: rv.center.x)
         } else {
             return rv.center
+        }
+    }
+    static func getClearTime(text: String,autoClearTime:Int = 0) -> Double{
+        if autoClearTime == 0 {
+            return max(Double(text.length) * 0.08 + 0.3,1)
+        }else{
+            return Double(autoClearTime)
         }
     }
 }
