@@ -18,6 +18,7 @@
 		3CBC20E71BBD97400007DC65 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209B1BBD90190007DC65 /* UIViewController.swift */; };
 		3CBC20E81BBD97400007DC65 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209C1BBD90190007DC65 /* UIWindow.swift */; };
 		3CBC20E91BBD97400007DC65 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20A81BBD92530007DC65 /* UIScreen.swift */; };
+		CBBCA3FC1BF182B8002E04F7 /* UIViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		3CBC20A81BBD92530007DC65 /* UIScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScreen.swift; path = Source/UIScreen.swift; sourceTree = "<group>"; };
 		3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBC20EA1BBD97750007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Notice.swift"; path = "Source/UIViewController+Notice.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				3CBC20991BBD90190007DC65 /* UIImage.swift */,
 				3CBC209A1BBD90190007DC65 /* UIView.swift */,
 				3CBC209B1BBD90190007DC65 /* UIViewController.swift */,
+				CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */,
 				3CBC209C1BBD90190007DC65 /* UIWindow.swift */,
 				3CBC20A81BBD92530007DC65 /* UIScreen.swift */,
 				3CBC20EA1BBD97750007DC65 /* Info.plist */,
@@ -180,6 +183,7 @@
 			files = (
 				3CBC20DF1BBD97400007DC65 /* Color.swift in Sources */,
 				3CBC20E01BBD97400007DC65 /* NSDate.swift in Sources */,
+				CBBCA3FC1BF182B8002E04F7 /* UIViewController+Notice.swift in Sources */,
 				3CBC20E11BBD97400007DC65 /* NSMutableData.swift in Sources */,
 				3CBC20E21BBD97400007DC65 /* NSObject.swift in Sources */,
 				3CBC20E31BBD97400007DC65 /* NSUserDefaults.swift in Sources */,
