@@ -4,8 +4,8 @@ import UIKit
 
 extension UIViewController {
     /// wait with your own animated images
-    public func pleaseWaitWithImages(imageNames: Array<UIImage>, timeInterval: Int) {
-        SwiftNotice.wait(imageNames, timeInterval: timeInterval)
+    public func pleaseWaitWithImages(text: String, imageNames: Array<UIImage>, timeInterval: Int) {
+        SwiftNotice.wait(text, imageNames: imageNames, timeInterval: timeInterval)
     }
     // api changed from v3.3
     public func noticeTop(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
@@ -22,8 +22,8 @@ extension UIViewController {
     public func noticeInfo(text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
         SwiftNotice.showNoticeWithText(NoticeType.info, text: text, autoClear: autoClear, autoClearTime: autoClearTime)
     }
-    public func pleaseWait() {
-        SwiftNotice.wait()
+    public func pleaseWait(text: String = "") {
+        SwiftNotice.wait(text)
     }
     public func noticeOnlyText(text: String) {
         SwiftNotice.showText(text)
@@ -104,8 +104,8 @@ class SwiftNotice: NSObject {
             self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
-    static func wait(imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
-        let frame = CGRectMake(0, 0, 78, 78)
+    static func wait(text: String = "", imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
+        var frame = CGRectMake(0, 0, 78, 78)
         let window = UIWindow()
         window.backgroundColor = UIColor.clearColor()
         let mainView = UIView()
@@ -133,7 +133,23 @@ class SwiftNotice: NSObject {
             ai.startAnimating()
             mainView.addSubview(ai)
         }
-        
+        if text.length > 0 {
+            let label = UILabel()
+            label.text = text
+            label.numberOfLines = 0
+            label.font = UIFont.systemFontOfSize(13)
+            label.textAlignment = NSTextAlignment.Center
+            label.textColor = UIColor.whiteColor()
+            mainView.addSubview(label)
+            let size = label.sizeThatFits(CGSizeMake(UIScreen.mainScreen().bounds.width-frame.width-31, UIScreen.mainScreen().bounds.height))
+            label.ks_size = size
+            label.ks_left = frame.width
+            frame.size.width = label.ks_right + 21
+            if size.height > frame.height {
+                frame.size.height = size.height
+            }
+            label.ks_centerY = frame.height/2
+        }
         window.frame = frame
         mainView.frame = frame
         
