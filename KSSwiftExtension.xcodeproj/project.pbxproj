@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C9545B01C983857000A77B1 /* UIViewController+ Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9545AF1C983857000A77B1 /* UIViewController+ Bluetooth.swift */; };
 		3CCAA7CD1C97956D00C965D1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C11C97956D00C965D1 /* Color.swift */; };
 		3CCAA7CE1C97956D00C965D1 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C21C97956D00C965D1 /* NSDate.swift */; };
 		3CCAA7CF1C97956D00C965D1 /* NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C31C97956D00C965D1 /* NSMutableData.swift */; };
@@ -30,6 +31,7 @@
 		3C11829B1BBD43B000D96BB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C11829D1BBD43B000D96BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C1182A01BBD43B000D96BB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C9545AF1C983857000A77B1 /* UIViewController+ Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ Bluetooth.swift"; sourceTree = "<group>"; };
 		3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBC20EA1BBD97750007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCAA7C11C97956D00C965D1 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				3CCAA7C81C97956D00C965D1 /* UIScreen.swift */,
 				3CCAA7C91C97956D00C965D1 /* UIView.swift */,
 				3CCAA7CA1C97956D00C965D1 /* UIViewController.swift */,
+				3C9545AF1C983857000A77B1 /* UIViewController+ Bluetooth.swift */,
 				3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */,
 				3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */,
 				3CCAA7DE1C980A8900C965D1 /* NSURL.swift */,
@@ -223,6 +226,7 @@
 				3CCAA7D51C97956D00C965D1 /* UIView.swift in Sources */,
 				3CCAA7D41C97956D00C965D1 /* UIScreen.swift in Sources */,
 				3CCAA7D71C97956D00C965D1 /* UIViewController+Notice.swift in Sources */,
+				3C9545B01C983857000A77B1 /* UIViewController+ Bluetooth.swift in Sources */,
 				3CCAA7DB1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
