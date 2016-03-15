@@ -9,7 +9,7 @@
 import Foundation
 public class Mediator {
     public class func performAction(url: NSURL,completion: (NSDictionary? -> Void)? ) -> AnyObject? {
-        if let host = url.host, path = url.path {
+        if let host = url.host, path = url.path where !path.hasPrefix("native") {
             let result = perform(host, actionName: path, params: url.getParams())
             if let completion = completion {
                 if let result = result {
