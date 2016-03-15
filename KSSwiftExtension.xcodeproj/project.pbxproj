@@ -20,6 +20,8 @@
 		3CCAA7D71C97956D00C965D1 /* UIViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */; };
 		3CCAA7D81C97956D00C965D1 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */; };
 		3CCAA7DB1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */; };
+		3CCAA7DD1C98020B00C965D1 /* Mediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7DC1C98020B00C965D1 /* Mediator.swift */; };
+		3CCAA7DF1C980A8900C965D1 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7DE1C980A8900C965D1 /* NSURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Notice.swift"; sourceTree = "<group>"; };
 		3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycleBehavior.swift; sourceTree = "<group>"; };
+		3CCAA7DC1C98020B00C965D1 /* Mediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mediator.swift; sourceTree = "<group>"; };
+		3CCAA7DE1C980A8900C965D1 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				3CCAA7CA1C97956D00C965D1 /* UIViewController.swift */,
 				3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */,
 				3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */,
+				3CCAA7DE1C980A8900C965D1 /* NSURL.swift */,
 			);
 			name = Extension;
 			path = Source/Extension;
@@ -119,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */,
+				3CCAA7DC1C98020B00C965D1 /* Mediator.swift */,
 			);
 			name = Pattern;
 			path = Source/Pattern;
@@ -203,12 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCAA7DF1C980A8900C965D1 /* NSURL.swift in Sources */,
 				3CCAA7D21C97956D00C965D1 /* String.swift in Sources */,
 				3CCAA7D11C97956D00C965D1 /* NSUserDefaults.swift in Sources */,
 				3CCAA7CE1C97956D00C965D1 /* NSDate.swift in Sources */,
 				3CCAA7D81C97956D00C965D1 /* UIWindow.swift in Sources */,
 				3CCAA7D01C97956D00C965D1 /* NSObject.swift in Sources */,
 				3CCAA7D61C97956D00C965D1 /* UIViewController.swift in Sources */,
+				3CCAA7DD1C98020B00C965D1 /* Mediator.swift in Sources */,
 				3CCAA7CF1C97956D00C965D1 /* NSMutableData.swift in Sources */,
 				3CCAA7CD1C97956D00C965D1 /* Color.swift in Sources */,
 				3CCAA7D31C97956D00C965D1 /* UIImage.swift in Sources */,
