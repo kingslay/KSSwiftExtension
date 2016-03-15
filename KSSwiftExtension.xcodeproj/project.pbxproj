@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CBC20DF1BBD97400007DC65 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20921BBD90190007DC65 /* Color.swift */; };
-		3CBC20E01BBD97400007DC65 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20941BBD90190007DC65 /* NSDate.swift */; };
-		3CBC20E11BBD97400007DC65 /* NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20951BBD90190007DC65 /* NSMutableData.swift */; };
-		3CBC20E21BBD97400007DC65 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20961BBD90190007DC65 /* NSObject.swift */; };
-		3CBC20E31BBD97400007DC65 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20971BBD90190007DC65 /* NSUserDefaults.swift */; };
-		3CBC20E41BBD97400007DC65 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20981BBD90190007DC65 /* String.swift */; };
-		3CBC20E51BBD97400007DC65 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20991BBD90190007DC65 /* UIImage.swift */; };
-		3CBC20E61BBD97400007DC65 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209A1BBD90190007DC65 /* UIView.swift */; };
-		3CBC20E71BBD97400007DC65 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209B1BBD90190007DC65 /* UIViewController.swift */; };
-		3CBC20E81BBD97400007DC65 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC209C1BBD90190007DC65 /* UIWindow.swift */; };
-		3CBC20E91BBD97400007DC65 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20A81BBD92530007DC65 /* UIScreen.swift */; };
-		CBBCA3FC1BF182B8002E04F7 /* UIViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */; };
+		3CCAA7CD1C97956D00C965D1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C11C97956D00C965D1 /* Color.swift */; };
+		3CCAA7CE1C97956D00C965D1 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C21C97956D00C965D1 /* NSDate.swift */; };
+		3CCAA7CF1C97956D00C965D1 /* NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C31C97956D00C965D1 /* NSMutableData.swift */; };
+		3CCAA7D01C97956D00C965D1 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C41C97956D00C965D1 /* NSObject.swift */; };
+		3CCAA7D11C97956D00C965D1 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C51C97956D00C965D1 /* NSUserDefaults.swift */; };
+		3CCAA7D21C97956D00C965D1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C61C97956D00C965D1 /* String.swift */; };
+		3CCAA7D31C97956D00C965D1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C71C97956D00C965D1 /* UIImage.swift */; };
+		3CCAA7D41C97956D00C965D1 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C81C97956D00C965D1 /* UIScreen.swift */; };
+		3CCAA7D51C97956D00C965D1 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7C91C97956D00C965D1 /* UIView.swift */; };
+		3CCAA7D61C97956D00C965D1 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7CA1C97956D00C965D1 /* UIViewController.swift */; };
+		3CCAA7D71C97956D00C965D1 /* UIViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */; };
+		3CCAA7D81C97956D00C965D1 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */; };
+		3CCAA7DB1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,20 +28,21 @@
 		3C11829B1BBD43B000D96BB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C11829D1BBD43B000D96BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C1182A01BBD43B000D96BB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3CBC20921BBD90190007DC65 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Source/Color.swift; sourceTree = "<group>"; };
-		3CBC20941BBD90190007DC65 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDate.swift; path = Source/NSDate.swift; sourceTree = "<group>"; };
-		3CBC20951BBD90190007DC65 /* NSMutableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSMutableData.swift; path = Source/NSMutableData.swift; sourceTree = "<group>"; };
-		3CBC20961BBD90190007DC65 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSObject.swift; path = Source/NSObject.swift; sourceTree = "<group>"; };
-		3CBC20971BBD90190007DC65 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSUserDefaults.swift; path = Source/NSUserDefaults.swift; sourceTree = "<group>"; };
-		3CBC20981BBD90190007DC65 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Source/String.swift; sourceTree = "<group>"; };
-		3CBC20991BBD90190007DC65 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = Source/UIImage.swift; sourceTree = "<group>"; };
-		3CBC209A1BBD90190007DC65 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Source/UIView.swift; sourceTree = "<group>"; };
-		3CBC209B1BBD90190007DC65 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Source/UIViewController.swift; sourceTree = "<group>"; };
-		3CBC209C1BBD90190007DC65 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWindow.swift; path = Source/UIWindow.swift; sourceTree = "<group>"; };
-		3CBC20A81BBD92530007DC65 /* UIScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScreen.swift; path = Source/UIScreen.swift; sourceTree = "<group>"; };
 		3CBC20BD1BBD96570007DC65 /* KSSwiftExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBC20EA1BBD97750007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Notice.swift"; path = "Source/UIViewController+Notice.swift"; sourceTree = "<group>"; };
+		3CCAA7C11C97956D00C965D1 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		3CCAA7C21C97956D00C965D1 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		3CCAA7C31C97956D00C965D1 /* NSMutableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableData.swift; sourceTree = "<group>"; };
+		3CCAA7C41C97956D00C965D1 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
+		3CCAA7C51C97956D00C965D1 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		3CCAA7C61C97956D00C965D1 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		3CCAA7C71C97956D00C965D1 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		3CCAA7C81C97956D00C965D1 /* UIScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		3CCAA7C91C97956D00C965D1 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3CCAA7CA1C97956D00C965D1 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Notice.swift"; sourceTree = "<group>"; };
+		3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycleBehavior.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,21 +88,40 @@
 		3C1182B61BBD43E500D96BB9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3CBC20921BBD90190007DC65 /* Color.swift */,
-				3CBC20941BBD90190007DC65 /* NSDate.swift */,
-				3CBC20951BBD90190007DC65 /* NSMutableData.swift */,
-				3CBC20961BBD90190007DC65 /* NSObject.swift */,
-				3CBC20971BBD90190007DC65 /* NSUserDefaults.swift */,
-				3CBC20981BBD90190007DC65 /* String.swift */,
-				3CBC20991BBD90190007DC65 /* UIImage.swift */,
-				3CBC209A1BBD90190007DC65 /* UIView.swift */,
-				3CBC209B1BBD90190007DC65 /* UIViewController.swift */,
-				CBBCA3FB1BF182B8002E04F7 /* UIViewController+Notice.swift */,
-				3CBC209C1BBD90190007DC65 /* UIWindow.swift */,
-				3CBC20A81BBD92530007DC65 /* UIScreen.swift */,
+				3CCAA7C01C97955400C965D1 /* Extension */,
+				3CCAA7D91C9795BB00C965D1 /* Pattern */,
 				3CBC20EA1BBD97750007DC65 /* Info.plist */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		3CCAA7C01C97955400C965D1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3CCAA7C11C97956D00C965D1 /* Color.swift */,
+				3CCAA7C21C97956D00C965D1 /* NSDate.swift */,
+				3CCAA7C31C97956D00C965D1 /* NSMutableData.swift */,
+				3CCAA7C41C97956D00C965D1 /* NSObject.swift */,
+				3CCAA7C51C97956D00C965D1 /* NSUserDefaults.swift */,
+				3CCAA7C61C97956D00C965D1 /* String.swift */,
+				3CCAA7C71C97956D00C965D1 /* UIImage.swift */,
+				3CCAA7C81C97956D00C965D1 /* UIScreen.swift */,
+				3CCAA7C91C97956D00C965D1 /* UIView.swift */,
+				3CCAA7CA1C97956D00C965D1 /* UIViewController.swift */,
+				3CCAA7CB1C97956D00C965D1 /* UIViewController+Notice.swift */,
+				3CCAA7CC1C97956D00C965D1 /* UIWindow.swift */,
+			);
+			name = Extension;
+			path = Source/Extension;
+			sourceTree = "<group>";
+		};
+		3CCAA7D91C9795BB00C965D1 /* Pattern */ = {
+			isa = PBXGroup;
+			children = (
+				3CCAA7DA1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift */,
+			);
+			name = Pattern;
+			path = Source/Pattern;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +161,7 @@
 		3C11828B1BBD43B000D96BB9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = king;
 				TargetAttributes = {
@@ -181,18 +203,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CBC20DF1BBD97400007DC65 /* Color.swift in Sources */,
-				3CBC20E01BBD97400007DC65 /* NSDate.swift in Sources */,
-				CBBCA3FC1BF182B8002E04F7 /* UIViewController+Notice.swift in Sources */,
-				3CBC20E11BBD97400007DC65 /* NSMutableData.swift in Sources */,
-				3CBC20E21BBD97400007DC65 /* NSObject.swift in Sources */,
-				3CBC20E31BBD97400007DC65 /* NSUserDefaults.swift in Sources */,
-				3CBC20E41BBD97400007DC65 /* String.swift in Sources */,
-				3CBC20E51BBD97400007DC65 /* UIImage.swift in Sources */,
-				3CBC20E61BBD97400007DC65 /* UIView.swift in Sources */,
-				3CBC20E71BBD97400007DC65 /* UIViewController.swift in Sources */,
-				3CBC20E81BBD97400007DC65 /* UIWindow.swift in Sources */,
-				3CBC20E91BBD97400007DC65 /* UIScreen.swift in Sources */,
+				3CCAA7D21C97956D00C965D1 /* String.swift in Sources */,
+				3CCAA7D11C97956D00C965D1 /* NSUserDefaults.swift in Sources */,
+				3CCAA7CE1C97956D00C965D1 /* NSDate.swift in Sources */,
+				3CCAA7D81C97956D00C965D1 /* UIWindow.swift in Sources */,
+				3CCAA7D01C97956D00C965D1 /* NSObject.swift in Sources */,
+				3CCAA7D61C97956D00C965D1 /* UIViewController.swift in Sources */,
+				3CCAA7CF1C97956D00C965D1 /* NSMutableData.swift in Sources */,
+				3CCAA7CD1C97956D00C965D1 /* Color.swift in Sources */,
+				3CCAA7D31C97956D00C965D1 /* UIImage.swift in Sources */,
+				3CCAA7D51C97956D00C965D1 /* UIView.swift in Sources */,
+				3CCAA7D41C97956D00C965D1 /* UIScreen.swift in Sources */,
+				3CCAA7D71C97956D00C965D1 /* UIViewController+Notice.swift in Sources */,
+				3CCAA7DB1C9795FE00C965D1 /* ViewControllerLifecycleBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +325,7 @@
 		3CBC20CF1BBD96580007DC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -313,6 +337,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = king.KSSwiftExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -322,6 +347,7 @@
 		3CBC20D01BBD96580007DC65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
