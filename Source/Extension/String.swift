@@ -31,7 +31,7 @@ extension String {
     }
     
     public subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: self.startIndex.advancedBy(r.startIndex), end: self.startIndex.advancedBy(r.endIndex)))
+        return substringWithRange(self.startIndex.advancedBy(r.startIndex) ..< self.startIndex.advancedBy(r.endIndex))
     }
     public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluateWithObject(self)

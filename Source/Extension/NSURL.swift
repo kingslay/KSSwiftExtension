@@ -10,10 +10,10 @@ import Foundation
 extension NSURL {
     func getParams()->[String:String]{
         let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)
-        return components?.queryItems?.reduce([String:String]()) { (var dict, item) -> [String:String] in
-            dict[item.name] = item.value ?? ""
-            return dict
-            } ?? [:]
-        
+        var dict = [String:String]()
+        components?.queryItems?.forEach {
+            dict[$0.name] = $0.value ?? ""
+        }
+        return dict
     }
 }

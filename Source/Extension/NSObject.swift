@@ -8,11 +8,11 @@
 
 import UIKit
 extension NSObject {
-    class public func className() -> String {
-        return "\(self)".componentsSeparatedByString(".").last!
+    public static func className() -> String {
+        return NSStringFromClass(self).componentsSeparatedByString(".").last!
     }
     public func className() -> String {
-        return "\(self.dynamicType)".componentsSeparatedByString(".").last!
+        return NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!
     }
     public func topView() -> UIView {
         if isKindOfClass(UIView) {
@@ -21,6 +21,18 @@ extension NSObject {
             return (self as! UIViewController).view
         }else{
             return UIWindow.topWindow()
+        }
+    }
+    public static func ks_swizzle(originalSelector: Selector,swizzledSelector: Selector) {
+        let originalMethod = class_getInstanceMethod(self, originalSelector)
+        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+        
+        let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+        
+        if didAddMethod {
+            class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
         }
     }
 }

@@ -1,5 +1,4 @@
 
-import Foundation
 import UIKit
 
 extension UIViewController {
@@ -100,7 +99,7 @@ class SwiftNotice: NSObject {
         windows.append(window)
         
         if autoClear {
-            let selector = Selector("hideNotice:")
+            let selector = #selector(SwiftNotice.hideNotice(_:))
             self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
@@ -123,7 +122,7 @@ class SwiftNotice: NSObject {
                 dispatch_source_set_event_handler(timer, { () -> Void in
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
-                    timerTimes++
+                    timerTimes = timerTimes+1
                 })
                 dispatch_resume(timer)
             }
@@ -190,7 +189,7 @@ class SwiftNotice: NSObject {
         window.hidden = false
         window.addSubview(mainView)
         windows.append(window)
-        let selector = Selector("hideNotice:")
+        let selector = #selector(SwiftNotice.hideNotice(_:))
         self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text)))
     }
     
@@ -238,7 +237,7 @@ class SwiftNotice: NSObject {
         windows.append(window)
         
         if autoClear {
-            let selector = Selector("hideNotice:")
+            let selector = #selector(SwiftNotice.hideNotice(_:))
             self.performSelector(selector, withObject: window, afterDelay: NSTimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
