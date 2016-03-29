@@ -31,24 +31,14 @@ extension UIViewController {
             return
         }
         dispatch_once(&Static.token) {
-            let originalSelector = Selector("viewWillAppear:")
+            let originalSelector = Selector("dealloc")
             let swizzledSelector = #selector(ks_deinit)
-            
-            let originalMethod = class_getInstanceMethod(self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-            
-            let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-            
-            if didAddMethod {
-                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-            } else {
-                method_exchangeImplementations(originalMethod, swizzledMethod);
-            }
+            UIViewController.ks_swizzle(originalSelector, swizzledSelector: swizzledSelector)
         }
     }
     public func ks_deinit() {
         let message = "[标题:\(self.title)],[类:\(self.className()))]"
-//        KSDebugStatusBar.post(message)
+        KSDebugStatusBar.post(message)
         self.ks_deinit()
         NSLog("dealloc vc = \(message)")
     }
