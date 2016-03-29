@@ -48,7 +48,7 @@ extension UIViewController {
     }
     public func ks_deinit() {
         let message = "[标题:\(self.title)],[类:\(self.className()))]"
-        KSDebugStatusBar.post(message)
+//        KSDebugStatusBar.post(message)
         self.ks_deinit()
         NSLog("dealloc vc = \(message)")
     }

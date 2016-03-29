@@ -1,0 +1,14 @@
+PODS:
+  - KSSwiftExtension (0.4.1)
+
+DEPENDENCIES:
+  - KSSwiftExtension (from `../`)
+
+EXTERNAL SOURCES:
+  KSSwiftExtension:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KSSwiftExtension: 406150683d3afebe142b2cebc55d596cb23f3632
+
+COCOAPODS: 0.39.0
