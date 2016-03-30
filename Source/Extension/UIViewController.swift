@@ -22,7 +22,9 @@ extension UIViewController {
         }
         return self.navigationController
     }
-   #if DEBUG
+    #if DEBUG
+    #else
+    #endif
     public override static func initialize() {
         struct Static {
             static var token: dispatch_once_t = 0
@@ -31,14 +33,14 @@ extension UIViewController {
         if self !== UIViewController.self {
             return
         }
-        dispatch_once(&Static.token) {
-            let originalSelector = Selector("dealloc")
-            let swizzledSelector = #selector(ks_deinit)
-            UIViewController.ks_swizzle(originalSelector, swizzledSelector: swizzledSelector)
+        if KSSystem.isSimulator {
+            dispatch_once(&Static.token) {
+                let originalSelector = Selector("dealloc")
+                let swizzledSelector = #selector(ks_deinit)
+                UIViewController.ks_swizzle(originalSelector, swizzledSelector: swizzledSelector)
+            }
         }
     }
-    #else
-    #endif
     public func ks_deinit() {
 //        ks_deinit()
         let message = "[标题:\(self.title)],[类:\(self.className()))]"
