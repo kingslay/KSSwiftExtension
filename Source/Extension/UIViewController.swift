@@ -22,6 +22,7 @@ extension UIViewController {
         }
         return self.navigationController
     }
+   #if DEBUG
     public override static func initialize() {
         struct Static {
             static var token: dispatch_once_t = 0
@@ -36,10 +37,12 @@ extension UIViewController {
             UIViewController.ks_swizzle(originalSelector, swizzledSelector: swizzledSelector)
         }
     }
+    #else
+    #endif
     public func ks_deinit() {
+//        ks_deinit()
         let message = "[标题:\(self.title)],[类:\(self.className()))]"
         KSDebugStatusBar.post(message)
-        self.ks_deinit()
         NSLog("dealloc vc = \(message)")
     }
 }
