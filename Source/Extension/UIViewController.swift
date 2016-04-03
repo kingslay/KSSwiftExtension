@@ -49,4 +49,48 @@ extension UIViewController {
         }
         NSLog("dealloc vc = \(message)")
     }
+    
+    public func ksAutoAdjustKeyBoard() {
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
+            if let inputView = self.ksFindFirstResponder() {
+                let userInfo: NSDictionary = notification.userInfo!
+                let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
+                let window = UIApplication.sharedApplication().keyWindow
+                if let convertRect = inputView.superview?.convertRect(inputView.frame, toView: window) {
+                    let diff = CGRectGetMaxY(convertRect) - CGRectGetMinY(keyboardRect) + 10
+                    if diff > 0 {
+                        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
+                        UIView.animateWithDuration(duration, animations: {
+                            var bounds = self.view.bounds
+                            bounds.origin.y += diff
+                            self.view.bounds = bounds
+                        })
+                    }
+                }
+            }
+        }
+        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { [unowned self] notification in
+            let userInfo: NSDictionary = notification.userInfo!
+            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
+            UIView.animateWithDuration(duration, animations: {
+                let frame = self.view.frame
+                self.view.bounds = frame
+            })
+        }
+    }
+    
+    public func ksFindFirstResponder() -> UIView? {
+        return recursionTraverseFindFirstResponderIn(self.view)
+    }
+    private func recursionTraverseFindFirstResponderIn(view: UIView) -> UIView? {
+        for subView in view.subviews {
+            if subView.isFirstResponder() {
+                return subView
+            }
+            if let subView = recursionTraverseFindFirstResponderIn(subView) {
+                return subView
+            }
+        }
+        return nil
+    }
 }
