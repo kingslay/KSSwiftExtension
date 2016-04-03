@@ -52,6 +52,10 @@ extension UIViewController {
     
     public func ksAutoAdjustKeyBoard() {
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
+            //进入后台触发某些通知,不响应
+            if UIApplication.sharedApplication().applicationState == .Background {
+                return
+            }
             if let inputView = self.ksFindFirstResponder() {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
@@ -70,6 +74,10 @@ extension UIViewController {
             }
         }
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { [unowned self] notification in
+            //进入后台触发某些通知,不响应
+            if UIApplication.sharedApplication().applicationState == .Background {
+                return
+            }
             let userInfo: NSDictionary = notification.userInfo!
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
             UIView.animateWithDuration(duration, animations: {
