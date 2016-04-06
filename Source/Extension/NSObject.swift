@@ -14,13 +14,13 @@ extension NSObject {
     public func className() -> String {
         return NSStringFromClass(self.dynamicType).componentsSeparatedByString(".").last!
     }
-    public func topView() -> UIView {
+    public func ks_topView() -> UIView {
         if isKindOfClass(UIView) {
             return self as! UIView
         }else if isKindOfClass(UIViewController) {
             return (self as! UIViewController).view
         }else{
-            return UIWindow.topWindow()
+            return UIWindow.ks_topWindow()
         }
     }
     public static func ks_swizzle(originalSelector: Selector,swizzledSelector: Selector) {

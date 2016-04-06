@@ -16,11 +16,11 @@ extension NSDate {
     
     // MARK: To String
     
-    public func toString() -> String {
-        return self.toString(dateStyle: .ShortStyle, timeStyle: .ShortStyle, doesRelativeDateFormatting: false)
+    public func ks_toString() -> String {
+        return self.ks_toString(dateStyle: .ShortStyle, timeStyle: .ShortStyle, doesRelativeDateFormatting: false)
     }
     
-    public func toString(dateStyle dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, doesRelativeDateFormatting: Bool = false) -> String
+    public func ks_toString(dateStyle dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, doesRelativeDateFormatting: Bool = false) -> String
     {
         let formatter = NSDateFormatter()
         formatter.dateStyle = dateStyle
@@ -29,31 +29,31 @@ extension NSDate {
         return formatter.stringFromDate(self)
     }
     
-    public func relativeTimeToString(containTime: Bool = false) -> String
+    public func ks_relativeTimeToString(containTime: Bool = false) -> String
     {
         let timeInterval = NSDate() - self
         if timeInterval < 86400 {
-            return self.stringFromFormat("HH:mm")
+            return self.ks_stringFromFormat("HH:mm")
         }else if timeInterval < 2*86400 {
             if containTime {
-                 "\("昨天".localized)\(self.stringFromFormat(" HH:mm"))"
+                 "\("昨天".localized)\(self.ks_stringFromFormat(" HH:mm"))"
             }else{
                 return "昨天".localized
             }
         }else if timeInterval < 7*86400 {
             if containTime {
-                return self.stringFromFormat("EEE HH:mm")
+                return self.ks_stringFromFormat("EEE HH:mm")
             }else{
-                return self.stringFromFormat("EEE")
+                return self.ks_stringFromFormat("EEE")
             }
         }
         if containTime {
-            return self.stringFromFormat("yy/MM/dd HH:mm")
+            return self.ks_stringFromFormat("yy/MM/dd HH:mm")
         }else{
-            return self.stringFromFormat("yy/MM/dd")
+            return self.ks_stringFromFormat("yy/MM/dd")
         }
     }
-    public func stringFromFormat(format: String) -> String {
+    public func ks_stringFromFormat(format: String) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = format
         return formatter.stringFromDate(self)

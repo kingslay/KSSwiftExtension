@@ -14,11 +14,11 @@ extension UIViewController {
     class public func loadXib(name: String) -> UIViewController?{
         return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIViewController
     }
-    public func ksNavigationController() -> UINavigationController?{
+    public func ks_navigationController() -> UINavigationController?{
         if let nav = self as? UINavigationController {
             return nav
         }else if let tabBar = self as? UITabBarController {
-            return tabBar.selectedViewController?.ksNavigationController()
+            return tabBar.selectedViewController?.ks_navigationController()
         }
         return self.navigationController
     }
@@ -50,13 +50,13 @@ extension UIViewController {
         NSLog("dealloc vc = \(message)")
     }
     
-    public func ksAutoAdjustKeyBoard() {
+    public func ks_autoAdjustKeyBoard() {
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
             }
-            if let inputView = self.ksFindFirstResponder() {
+            if let inputView = self.ks_findFirstResponder() {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
                 let window = UIApplication.sharedApplication().keyWindow
@@ -87,7 +87,7 @@ extension UIViewController {
         }
     }
     
-    public func ksFindFirstResponder() -> UIView? {
+    public func ks_findFirstResponder() -> UIView? {
         return recursionTraverseFindFirstResponderIn(self.view)
     }
     private func recursionTraverseFindFirstResponderIn(view: UIView) -> UIView? {

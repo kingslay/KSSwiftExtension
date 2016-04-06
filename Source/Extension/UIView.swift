@@ -45,7 +45,7 @@ extension UIView {
             }
         }
     }
-    public func viewController() -> UIViewController?{
+    public func ks_viewController() -> UIViewController? {
         if let window = self as? UIWindow {
             return window.rootViewController
         }else{
@@ -57,10 +57,10 @@ extension UIView {
             return nil
         }
     }
-    class public func loadXib() -> UIView? {
-        return UIView.loadXib(self.className())
+    class public func ks_loadXib() -> UIView? {
+        return UIView.ks_loadXib(self.className())
     }
-    class public func loadXib(name: String) -> UIView?{
+    class public func ks_loadXib(name: String) -> UIView?{
         return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIView
     }
 }

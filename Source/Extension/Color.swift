@@ -36,7 +36,7 @@ extension UIColor {
         self.init(red:red, green:green, blue:blue, alpha:1)
     }
     
-    public func toHexString() -> String {
+    public func ks_toHexString() -> String {
         var r:CGFloat = 0
         var g:CGFloat = 0
         var b:CGFloat = 0
@@ -46,7 +46,7 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
     
-    class public func createImageWithColor(color: UIColor) -> UIImage {
+    public static func ks_createImage(color: UIColor) -> UIImage {
         let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
