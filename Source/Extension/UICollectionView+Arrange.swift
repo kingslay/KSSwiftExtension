@@ -131,11 +131,11 @@ extension UICollectionView: UIGestureRecognizerDelegate {
             }
         }
     }
-    func tapGesture(gesture: UIGestureRecognizer) {
+    @objc private func tapGesture(gesture: UIGestureRecognizer) {
         self.bundle?.deleteButton?.removeFromSuperview()
         self.removeGestureRecognizer(gesture)
     }
-    func touchUpInside(target: UIButton) {
+    @objc private func touchUpInside(target: UIButton) {
         target.removeFromSuperview()
         if let indexPath = self.bundle?.currentIndexPath {
             if let delegate = self.delegate as? KSArrangeCollectionViewDelegate {

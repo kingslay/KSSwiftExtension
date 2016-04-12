@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 extension UIViewController {
     class public func loadXib() -> UIViewController? {
         return UIViewController.loadXib(self.className())
@@ -37,54 +39,64 @@ extension UIViewController {
             dispatch_once(&Static.token) {
                 let originalSelector = NSSelectorFromString("dealloc")
                 let swizzledSelector = #selector(ks_deinit)
-                UIViewController.ks_swizzle(originalSelector, swizzledSelector: swizzledSelector)
+                swizzleInstanceMethod(self, sel1: "dealloc", sel2: "ks_deinit")
             }
         }
     }
     public func ks_deinit() {
-//        ks_deinit()
-        let message = "[标题:\(self.title)],[类:\(self.className()))]"
-        if KSSystem.isSimulator {
-            KSDebugStatusBar.post(message)
+        if !self.isKindOfClass(NSClassFromString("UIInputWindowController")!) {
+            let message = "[标题:\(self.title)],[类:\(self.className()))]"
+            if KSSystem.isSimulator {
+                KSDebugStatusBar.post(message)
+            }
+            NSLog("dealloc vc = \(message)")
+        }else{
+            ks_deinit()
         }
-        NSLog("dealloc vc = \(message)")
     }
     
     public func ks_autoAdjustKeyBoard() {
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).takeUntil(self.rx_deallocated).subscribeNext { [weak self]  notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
             }
-            if let inputView = self.ks_findFirstResponder() {
+            if let stongSelf = self, inputView = stongSelf.ks_findFirstResponder() {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
                 let window = UIApplication.sharedApplication().keyWindow
-                if let convertRect = inputView.superview?.convertRect(inputView.frame, toView: window) {
+                let relatedView = stongSelf.ks_relatedViewFor(inputView)
+                if let convertRect = relatedView.superview?.convertRect(relatedView.frame, toView: window) {
                     let diff = CGRectGetMaxY(convertRect) - CGRectGetMinY(keyboardRect) + 10
                     if diff > 0 {
                         let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
                         UIView.animateWithDuration(duration, animations: {
-                            var bounds = self.view.bounds
+                            var bounds = stongSelf.view.bounds
                             bounds.origin.y += diff
-                            self.view.bounds = bounds
+                            stongSelf.view.bounds = bounds
                         })
                     }
                 }
             }
         }
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { [unowned self] notification in
-            //进入后台触发某些通知,不响应
-            if UIApplication.sharedApplication().applicationState == .Background {
-                return
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).takeUntil(self.rx_deallocated).subscribeNext { [weak self] notification in
+            if let stongSelf = self {
+                //进入后台触发某些通知,不响应
+                if UIApplication.sharedApplication().applicationState == .Background {
+                    return
+                }
+                let userInfo: NSDictionary = notification.userInfo!
+                let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
+                UIView.animateWithDuration(duration, animations: {
+                    let frame = stongSelf.view.frame
+                    stongSelf.view.bounds = frame
+                })
             }
-            let userInfo: NSDictionary = notification.userInfo!
-            let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
-            UIView.animateWithDuration(duration, animations: {
-                let frame = self.view.frame
-                self.view.bounds = frame
-            })
         }
+    }
+    ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
+    public func ks_relatedViewFor(inputView: UIView) -> UIView {
+        return inputView
     }
     
     public func ks_findFirstResponder() -> UIView? {

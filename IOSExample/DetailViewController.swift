@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import KSSwiftExtension
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
@@ -33,6 +33,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
+        self.ks_autoAdjustKeyBoard()
+        let a = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: nil) { notification in
+            print(self)
+        }
+        NSNotificationCenter.defaultCenter().removeObserver(a)
     }
 
     override func didReceiveMemoryWarning() {

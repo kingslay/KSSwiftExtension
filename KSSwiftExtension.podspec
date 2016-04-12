@@ -15,5 +15,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/kingslay/KSSwiftExtension.git", :tag => s.version.to_s }
   s.ios.deployment_target = "8.0"
   s.tvos.deployment_target = "9.0"
-  s.source_files = 'Source/**/*.{c,h,m,swift}'                             
+  s.source_files = 'Source/**/*.{c,h,m,swift}'
+  s.resources = 'Resource/*.{xib,json,png,jpg,gif,js}'
+	s.dependency 'RxCocoa'
 end
