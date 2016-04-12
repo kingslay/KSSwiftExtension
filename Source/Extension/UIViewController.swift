@@ -37,25 +37,24 @@ extension UIViewController {
         }
         if KSSystem.isSimulator {
             dispatch_once(&Static.token) {
-                ks_swizzleInstanceMethod(self, sel1: "dealloc", sel2: "ks_deinit")
+                ks_swizzleInstanceMethod(self, sel1: "viewDidLoad", sel2: "ks_viewDidLoad")
             }
         }
     }
-    public func ks_deinit() {
-        if !self.isKindOfClass(NSClassFromString("UIInputWindowController")!) {
-            let message = "[标题:\(self.title)],[类:\(self.className()))]"
+    public func ks_viewDidLoad() {
+        self.ks_viewDidLoad()
+        let message = "[标题:\(self.title)],[类:\(self.className()))]"
+        self.rx_deallocating.subscribeNext {
             if KSSystem.isSimulator {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }else{
-            ks_deinit()
         }
     }
     
-    public func ks_autoAdjustKeyBoard()
-    {
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).takeUntil(self.rx_deallocated).subscribeNext { [weak self]  notification in
+    public func ks_autoAdjustKeyBoard() {
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).subscribeNext {
+            [weak self]  notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
@@ -77,8 +76,9 @@ extension UIViewController {
                     }
                 }
             }
-        }
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).takeUntil(self.rx_deallocated).subscribeNext { [weak self] notification in
+        }.addDisposableTo(self.ks_disposableBag)
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).takeUntil(self.rx_deallocated).subscribeNext {
+            [weak self] notification in
             if let stongSelf = self {
                 //进入后台触发某些通知,不响应
                 if UIApplication.sharedApplication().applicationState == .Background {
@@ -91,7 +91,7 @@ extension UIViewController {
                     stongSelf.view.bounds = frame
                 })
             }
-        }
+        }.addDisposableTo(self.ks_disposableBag)
     }
     ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
     public func ks_relatedViewFor(inputView: UIView) -> UIView {
