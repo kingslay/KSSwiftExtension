@@ -49,7 +49,7 @@ extension UIViewController {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }
+        }.addDisposableTo(self.ks_disposableBag)
     }
     
     public func ks_autoAdjustKeyBoard() {
