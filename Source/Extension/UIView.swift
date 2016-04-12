@@ -49,10 +49,12 @@ extension UIView {
         if let window = self as? UIWindow {
             return window.rootViewController
         }else{
-            for var next = self.nextResponder(); next != nil ;next = next?.nextResponder(){
+            var next = self.nextResponder()
+            while next != nil {
                 if let viewController = next as? UIViewController {
                     return viewController
                 }
+                next = next?.nextResponder()
             }
             return nil
         }

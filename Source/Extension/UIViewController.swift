@@ -37,9 +37,7 @@ extension UIViewController {
         }
         if KSSystem.isSimulator {
             dispatch_once(&Static.token) {
-                let originalSelector = NSSelectorFromString("dealloc")
-                let swizzledSelector = #selector(ks_deinit)
-                swizzleInstanceMethod(self, sel1: "dealloc", sel2: "ks_deinit")
+                ks_swizzleInstanceMethod(self, sel1: "dealloc", sel2: "ks_deinit")
             }
         }
     }

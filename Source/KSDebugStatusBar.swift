@@ -48,18 +48,19 @@ public class KSDebugStatusBar: UIWindow {
         }
     }
     private func showNextMessage() {
-        self.messageLabel.text = self.messageQueue.removeFirst()
+        self.messageLabel.text = self.messageQueue.first
         self.messageLabel.alpha = 1
         self.hidden = false
         let transition = CATransition()
         transition.duration = 0.3
         transition.type = kCATransitionFade
         self.messageLabel.layer.addAnimation(transition, forKey: nil)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
-            if self.messageQueue.count == 0 {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
+            if self.messageQueue.count == 1 {
                 self.messageLabel.alpha = 0
                 self.hidden = true
             }else{
+                self.messageQueue.removeFirst()
                 self.showNextMessage()
             }
         }
