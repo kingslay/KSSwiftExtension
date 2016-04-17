@@ -77,13 +77,13 @@ extension UIViewController {
                 }
             }
         }.addDisposableTo(self.ks_disposableBag)
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).takeUntil(self.rx_deallocated).subscribeNext {
+        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).subscribeNext {
             [weak self] notification in
+            //进入后台触发某些通知,不响应
+            if UIApplication.sharedApplication().applicationState == .Background {
+                return
+            }
             if let stongSelf = self {
-                //进入后台触发某些通知,不响应
-                if UIApplication.sharedApplication().applicationState == .Background {
-                    return
-                }
                 let userInfo: NSDictionary = notification.userInfo!
                 let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
                 UIView.animateWithDuration(duration, animations: {
