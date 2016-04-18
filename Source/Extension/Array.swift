@@ -7,6 +7,19 @@
 //
 
 import Foundation
-extension Array {
-   
+extension SequenceType {
+    typealias Element = Self.Generator.Element
+    
+    func partitionBy(fu: (Element)->Bool)->([Element],[Element]){
+        var first=[Element]()
+        var second=[Element]()
+        for el in self {
+            if fu(el) {
+                first.append(el)
+            }else{
+                second.append(el)
+            }
+        }
+        return (first,second)
+    }
 }
