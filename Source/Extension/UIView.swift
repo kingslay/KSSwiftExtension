@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 king. All rights reserved.
 //
 import UIKit
-extension UIView {
+public extension UIView {
     @IBInspectable public var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -45,6 +45,14 @@ extension UIView {
             }
         }
     }
+    
+    /**
+     Masks the view's layer to be in a cirle.
+     */
+    public func maskToCircle() {
+        cornerRadius = frame.size.width / 2.0
+    }
+    
     public func ks_viewController() -> UIViewController? {
         if let window = self as? UIWindow {
             return window.rootViewController
