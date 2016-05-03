@@ -1,5 +1,5 @@
 PODS:
-  - KSSwiftExtension (0.4.1):
+  - KSSwiftExtension (0.5.6):
     - RxCocoa
   - RxCocoa (2.4):
     - RxSwift (~> 2.4)
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  KSSwiftExtension: 89c851779c707fc873b016f8bcec63cf7c559505
+  KSSwiftExtension: 490126cd352e4a51a0ce95bb3555ff53567f33c9
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
 
