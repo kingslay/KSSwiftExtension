@@ -7,14 +7,12 @@
 //
 
 import Foundation
-extension NSUserDefaults {
+protocol Settings {
+    subscript(key: String) -> AnyObject? { get nonmutating set }
+}
+extension NSUserDefaults: Settings {
     public subscript (key: String) -> AnyObject? {
-        get{
-            return objectForKey(key)
-        }
-        set(newValue){
-            setObject(newValue, forKey: key)
-            synchronize()
-        }
+        get{ return objectForKey(key) }
+        set{ setObject(newValue, forKey: key) }
     }    
 }

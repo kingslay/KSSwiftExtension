@@ -35,7 +35,9 @@ public extension UIViewController {
         if self !== UIViewController.self {
             return
         }
-        if KSSystem.isSimulator {
+//        _isReleaseAssertConfiguration()
+//        _isFastAssertConfiguration()
+        if _isDebugAssertConfiguration() {
             dispatch_once(&Static.token) {
                 ks_swizzleInstanceMethod(self, sel1: "viewDidLoad", sel2: "ks_viewDidLoad")
             }
