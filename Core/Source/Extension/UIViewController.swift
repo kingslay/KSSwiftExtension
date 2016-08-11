@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 public extension UIViewController {
     class public func loadXib() -> UIViewController? {
         return UIViewController.loadXib(self.className())

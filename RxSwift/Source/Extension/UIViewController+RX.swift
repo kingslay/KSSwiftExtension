@@ -9,7 +9,6 @@
 import UIKit
 import KSSwiftExtension
 import RxSwift
-import RxCocoa
 public extension UIViewController {
     #if DEBUG
     #else

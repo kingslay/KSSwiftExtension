@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 private var prepareForReusedisposableBagAssociationKey: UInt8 = 0
 extension UITableViewCell {
     public private(set) var ks_prepareForReusedisposableBag: DisposeBag {
