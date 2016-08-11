@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   end
   s.subspec "RxCocoa" do |ss|
     ss.source_files  = "RxCocoa/Source/**/*.swift"
-    ss.dependency "KSSwiftExtension/Core"
+    ss.dependency "KSSwiftExtension/RxSwift"
     ss.dependency "RxCocoa"
   end
 end
