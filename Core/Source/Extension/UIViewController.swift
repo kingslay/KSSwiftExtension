@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 public extension UIViewController {
     class public func loadXib() -> UIViewController? {
         return UIViewController.loadXib(self.className())
