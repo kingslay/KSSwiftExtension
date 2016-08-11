@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 private var disposableBagAssociationKey: UInt8 = 0
 extension NSObject {
     public static func className() -> String {
@@ -25,20 +24,10 @@ extension NSObject {
             return UIWindow.ks_topWindow()
         }
     }
-    func rx_synchronized<T>(@noescape action: () -> T) -> T {
+    public func rx_synchronized<T>(@noescape action: () -> T) -> T {
         objc_sync_enter(self)
         let result = action()
         objc_sync_exit(self)
         return result
-    }
-    public var ks_disposableBag : DisposeBag {
-        return rx_synchronized {
-            if let disposableBag = objc_getAssociatedObject(self, &disposableBagAssociationKey) as? DisposeBag {
-                return disposableBag
-            }
-            let disposableBag = DisposeBag()
-            objc_setAssociatedObject(self, &disposableBagAssociationKey, disposableBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return disposableBag
-        }
     }
 }
