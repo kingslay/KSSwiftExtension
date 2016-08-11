@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/kingslay/KSSwiftExtension.git'
   s.license          = 'MIT'
   s.author           = { 'kingslay' => 'kingslay@icloud.com' }
-  s.source           = { :git => 'https://github.com/kingslay/KSSwiftExtension.git', :tag => "v#{s.version}" }
+  s.source           = { :git => 'https://github.com/kingslay/KSSwiftExtension.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
   s.default_subspec = "Core"
   s.subspec "Core" do |ss|
