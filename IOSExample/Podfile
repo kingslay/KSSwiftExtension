@@ -1,7 +1,14 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 platform :ios,8.0
+def default_pods
+    pod 'KSSwiftExtension/RxSwift', :path => "../"
+    pod 'KSSwiftExtension/RxCocoa', :path => "../"
+end
 target 'IOSExample' do
-pod 'KSSwiftExtension/RxSwift', :path => "../"
-pod 'KSSwiftExtension/RxCocoa', :path => "../"
+    default_pods
+end
+
+target 'IOSExampleTests' do
+    default_pods
 end

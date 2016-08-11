@@ -19,13 +19,11 @@ Pod::Spec.new do |s|
   end
   s.subspec "RxSwift" do |ss|
     ss.source_files  = "RxSwift/Source/**/*.swift"
-    ss.resources = 'RxSwift/Resource/*.{json,png,jpg,gif,js}'
     ss.dependency "KSSwiftExtension/Core"
     ss.dependency "RxSwift"
   end
   s.subspec "RxCocoa" do |ss|
     ss.source_files  = "RxCocoa/Source/**/*.swift"
-    ss.resources = 'RxCocoa/Resource/*.{json,png,jpg,gif,js}'
     ss.dependency "KSSwiftExtension/Core"
     ss.dependency "RxCocoa"
   end
