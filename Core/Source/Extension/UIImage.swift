@@ -40,4 +40,11 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImage
     }
+    public static func ks_imageFrom(view :UIView) -> UIImage {
+        UIGraphicsBeginImageContext(view.frame.size);
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
