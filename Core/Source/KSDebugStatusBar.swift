@@ -16,7 +16,7 @@ public class KSDebugStatusBar: UIWindow {
     var messageQueue = [String]()
     var messageLabel: UILabel
     private init() {
-        let statusBarFrame = CGRect(x: 0,y: 0,width: SCREEN_WIDTH,height: 20)
+        let statusBarFrame = CGRect(x: 0,y: 0,width: KS.SCREEN_WIDTH,height: 20)
         self.messageLabel = UILabel(frame: statusBarFrame)
         super.init(frame: statusBarFrame)
         self.windowLevel = UIWindowLevelStatusBar + 1

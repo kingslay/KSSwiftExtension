@@ -30,54 +30,55 @@ public extension UIViewController {
     }
     public func ks_viewDidLoad() {
         self.ks_viewDidLoad()
-        let message = "[标题:\(self.title)],[类:\(self.className()))]"
+        let message = "[标题:\(self.title)],[类:\(self.ks.className()))]"
         self.rx_deallocating.subscribeNext {
-            if KSSystem.isSimulator {
+            if KS.isSimulator {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }.addDisposableTo(self.ks_disposableBag)
+        }.addDisposableTo(self.ks.disposableBag)
     }
-    
-    public func ks_autoAdjustKeyBoard() {
+}
+extension Swifty where Base: UIViewController {
+    public func autoAdjustKeyBoard() {
         NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).subscribeNext {
-            [weak self]  notification in
+            [weak controller = self.base]  notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
             }
-            if let stongSelf = self, inputView = stongSelf.ks_findFirstResponder() {
+            if let controller = controller as? UIViewController, inputView = controller.ks.findFirstResponder() {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
                 let window = UIApplication.sharedApplication().keyWindow
-                let relatedView = stongSelf.ks_relatedViewFor(inputView)
+                let relatedView = controller.ks.relatedViewFor(inputView)
                 if let convertRect = relatedView.superview?.convertRect(relatedView.frame, toView: window) {
                     let diff = CGRectGetMaxY(convertRect) - CGRectGetMinY(keyboardRect) + 10
                     if diff > 0 {
                         let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
                         UIView.animateWithDuration(duration, animations: {
-                            var bounds = stongSelf.view.bounds
+                            var bounds = controller.view.bounds
                             bounds.origin.y += diff
-                            stongSelf.view.bounds = bounds
+                            controller.view.bounds = bounds
                         })
                     }
                 }
             }
-        }.addDisposableTo(self.ks_disposableBag)
+            }.addDisposableTo(self.disposableBag)
         NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).subscribeNext {
-            [weak self] notification in
+            [weak controller = self.base] notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
             }
-            if let stongSelf = self {
+            if let controller = controller {
                 let userInfo: NSDictionary = notification.userInfo!
                 let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval ?? 0
                 UIView.animateWithDuration(duration, animations: {
-                    let frame = stongSelf.view.frame
-                    stongSelf.view.bounds = frame
+                    let frame = controller.view.frame
+                    controller.view.bounds = frame
                 })
             }
-        }.addDisposableTo(self.ks_disposableBag)
+            }.addDisposableTo(self.disposableBag)
     }
 }

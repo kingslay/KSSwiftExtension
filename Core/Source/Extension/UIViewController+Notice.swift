@@ -141,13 +141,13 @@ class SwiftNotice: NSObject {
             label.textColor = UIColor.whiteColor()
             mainView.addSubview(label)
             let size = label.sizeThatFits(CGSizeMake(UIScreen.mainScreen().bounds.width-frame.width-31, UIScreen.mainScreen().bounds.height))
-            label.ks_size = size
-            label.ks_left = frame.width
-            frame.size.width = label.ks_right + 21
+            label.ks.size(size)
+            label.ks.left(frame.width)
+            frame.size.width = label.ks.right + 21
             if size.height > frame.height {
                 frame.size.height = size.height
             }
-            label.ks_centerY = frame.height/2
+            label.ks.centerY(frame.height/2)
         }
         window.frame = frame
         mainView.frame = frame
@@ -225,8 +225,8 @@ class SwiftNotice: NSObject {
         frame.size.height = label.frame.origin.y + label.frame.size.height + 14
         window.frame = frame
         mainView.frame = frame
-        label.ks_centerX = mainView.ks_centerX
-        checkmarkView.ks_centerX = mainView.ks_centerX
+        label.ks.centerX(mainView.ks.centerX)
+        checkmarkView.ks.centerX(mainView.ks.centerX)
         
         window.windowLevel = UIWindowLevelAlert
         window.center = getRealCenter()

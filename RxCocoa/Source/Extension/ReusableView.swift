@@ -13,7 +13,7 @@ private var prepareForReusedisposableBagAssociationKey: UInt8 = 0
 extension UITableViewCell {
     public private(set) var ks_prepareForReusedisposableBag: DisposeBag {
         get {
-            return rx_synchronized {
+            return self.ks.synchronized {
                 if let disposableBag = objc_getAssociatedObject(self, &prepareForReusedisposableBagAssociationKey) as? DisposeBag {
                     return disposableBag
                 }
@@ -23,7 +23,7 @@ extension UITableViewCell {
             }
         }
         set {
-            rx_synchronized {
+            self.ks.synchronized {
                 objc_setAssociatedObject(self, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 self.rx_sentMessage(#selector(prepareForReuse)).subscribeNext {
                     [unowned self] _ in
@@ -37,7 +37,7 @@ extension UICollectionReusableView {
     
     public private(set) var ks_prepareForReusedisposableBag: DisposeBag {
         get {
-            return rx_synchronized {
+            return self.ks.synchronized {
                 if let disposableBag = objc_getAssociatedObject(self, &prepareForReusedisposableBagAssociationKey) as? DisposeBag {
                     return disposableBag
                 }
@@ -47,7 +47,7 @@ extension UICollectionReusableView {
             }
         }
         set {
-            rx_synchronized {
+            self.ks.synchronized {
                 objc_setAssociatedObject(self, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 self.rx_sentMessage(#selector(prepareForReuse)).subscribeNext {
                     [unowned self] _ in

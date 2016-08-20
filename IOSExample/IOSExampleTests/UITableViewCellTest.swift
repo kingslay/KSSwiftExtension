@@ -24,25 +24,25 @@ class UITableViewCellTest: XCTestCase {
 
     func testPrepareForReusedisposableBag() {
         let tableViewCell = UITableViewCell()
-//        let disposableBag = cell.ks_prepareForReusedisposableBag
+//        let disposableBag = cell.ks.prepareForReusedisposableBag
         let subject = PublishSubject<String>()
         subject.subscribe {
             XCTAssertTrue($0.element == "1")
-        }.addDisposableTo(tableViewCell.ks_prepareForReusedisposableBag)
+        }.addDisposableTo(tableViewCell.ks.prepareForReusedisposableBag)
         subject.onNext("1")
         tableViewCell.prepareForReuse()
         subject.onNext("2")
         let collectionReusableView = UICollectionReusableView()
         subject.subscribe {
             XCTAssertTrue($0.element == "1")
-        }.addDisposableTo(collectionReusableView.ks_prepareForReusedisposableBag)
+        }.addDisposableTo(collectionReusableView.ks.prepareForReusedisposableBag)
         subject.onNext("1")
         collectionReusableView.prepareForReuse()
         subject.onNext("2")
 
         
 
-//        XCTAssertTrue(disposableBag !== cell.ks_prepareForReusedisposableBag)
+//        XCTAssertTrue(disposableBag !== cell.ks.prepareForReusedisposableBag)
     }
 
     func testPerformanceExample() {

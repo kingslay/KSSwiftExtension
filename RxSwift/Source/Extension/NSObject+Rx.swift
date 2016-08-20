@@ -9,14 +9,14 @@
 import UIKit
 import RxSwift
 private var disposableBagAssociationKey: UInt8 = 0
-extension NSObject {
-    public var ks_disposableBag : DisposeBag {
-        return rx_synchronized {
-            if let disposableBag = objc_getAssociatedObject(self, &disposableBagAssociationKey) as? DisposeBag {
+extension Swifty where Base: NSObject {
+    public var disposableBag : DisposeBag {
+        return synchronized {
+            if let disposableBag = objc_getAssociatedObject(self.base, &disposableBagAssociationKey) as? DisposeBag {
                 return disposableBag
             }
             let disposableBag = DisposeBag()
-            objc_setAssociatedObject(self, &disposableBagAssociationKey, disposableBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self.base, &disposableBagAssociationKey, disposableBag, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return disposableBag
         }
     }

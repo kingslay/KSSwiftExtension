@@ -8,45 +8,18 @@
 
 import UIKit
 
-extension UIColor {
-    public convenience init(hexString:String) {
-        let hexString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let scanner = NSScanner(string: hexString)
-        
-        if hexString.hasPrefix("#") {
-            scanner.scanLocation = 1
-        }
-        if hexString.hasPrefix("0X") {
-            scanner.scanLocation = 2
-            
-        }
-        
-        var color:UInt32 = 0
-        scanner.scanHexInt(&color)
-        
-        let mask = 0x000000FF
-        let r = Int(color >> 16) & mask
-        let g = Int(color >> 8) & mask
-        let b = Int(color) & mask
-        
-        let red   = CGFloat(r) / 255.0
-        let green = CGFloat(g) / 255.0
-        let blue  = CGFloat(b) / 255.0
-        
-        self.init(red:red, green:green, blue:blue, alpha:1)
-    }
-    
-    public func ks_toHexString() -> String {
+extension Swifty where Base: UIColor {
+    public func toHexString() -> String {
         var r:CGFloat = 0
         var g:CGFloat = 0
         var b:CGFloat = 0
         var a:CGFloat = 0
-        getRed(&r, green: &g, blue: &b, alpha: &a)
+        self.base.getRed(&r, green: &g, blue: &b, alpha: &a)
         let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
         return String(format:"#%06x", rgb)
     }
     
-    public static func ks_createImage(color: UIColor) -> UIImage {
+    public static func createImage(color: UIColor) -> UIImage {
         let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -56,6 +29,4 @@ extension UIColor {
         UIGraphicsEndImageContext()
         return image
     }
-    
-    
 }

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 king. All rights reserved.
 //
 import UIKit
+
 public extension UIView {
     @IBInspectable public var cornerRadius: CGFloat {
         get {
@@ -45,19 +46,20 @@ public extension UIView {
             }
         }
     }
-    
+}
+extension Swifty where Base: UIView {
     /**
      Masks the view's layer to be in a cirle.
      */
     public func maskToCircle() {
-        cornerRadius = frame.size.width / 2.0
+        self.base.cornerRadius = self.base.frame.size.width / 2.0
     }
     
-    public func ks_viewController() -> UIViewController? {
-        if let window = self as? UIWindow {
+    public func viewController() -> UIViewController? {
+        if let window = self.base as? UIWindow {
             return window.rootViewController
         }else{
-            var next = self.nextResponder()
+            var next = self.base.nextResponder()
             while next != nil {
                 if let viewController = next as? UIViewController {
                     return viewController
@@ -67,143 +69,145 @@ public extension UIView {
             return nil
         }
     }
-    class public func ks_loadXib() -> UIView? {
-        return UIView.ks_loadXib(self.className())
-    }
-    class public func ks_loadXib(name: String) -> UIView?{
-        return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIView
-    }
 }
 
-extension UIView {
-    public var ks_left: CGFloat {
+extension Swifty where Base: UIView {
+    public var left: CGFloat {
         get {
-            return self.frame.origin.x
-        }
-        set {
-            var frame = self.frame
-            if frame.origin.x != newValue {
-                frame.origin.x = newValue
-                self.frame = frame
-            }
+            return self.base.frame.origin.x
         }
     }
-    
-    public var ks_top: CGFloat {
-        get {
-            return self.frame.origin.y
-        }
-        set {
-            var frame = self.frame
-            if frame.origin.y != newValue {
-                frame.origin.y = newValue
-                self.frame = frame
-            }
+    func left(newValue: CGFloat) {
+        var frame = self.base.frame
+        if frame.origin.x != newValue {
+            frame.origin.x = newValue
+            self.base.frame = frame
         }
     }
-    
-    public var ks_right: CGFloat {
+
+    public var top: CGFloat {
         get {
-            return self.frame.origin.x + self.frame.width
-        }
-        set {
-            var frame = self.frame
-            let newRight = newValue - self.frame.width
-            if frame.origin.x != newRight {
-                frame.origin.x = newRight
-                self.frame = frame
-            }
+            return self.base.frame.origin.y
         }
     }
-    
-    public var ks_bottom: CGFloat {
-        get {
-            return self.frame.origin.y + self.frame.height
-        }
-        set {
-            var frame = self.frame
-            let newBottom = newValue - self.frame.height
-            if frame.origin.y != newBottom {
-                frame.origin.y = newBottom
-                self.frame = frame
-            }
+    func top(newValue: CGFloat) {
+        var frame = self.base.frame
+        if frame.origin.y != newValue {
+            frame.origin.y = newValue
+            self.base.frame = frame
         }
     }
-    
-    public var ks_centerX: CGFloat {
+
+    public var right: CGFloat {
         get {
-            return self.center.x
+            return self.base.frame.origin.x + self.base.frame.width
+        }
+    }
+    func right(newValue: CGFloat) {
+        var frame = self.base.frame
+        let newRight = newValue - self.base.frame.width
+        if frame.origin.x != newRight {
+            frame.origin.x = newRight
+            self.base.frame = frame
+        }
+    }
+
+    public var bottom: CGFloat {
+        get {
+            return self.base.frame.origin.y + self.base.frame.height
+        }
+    }
+    func bottom(newValue: CGFloat) {
+        var frame = self.base.frame
+        let newBottom = newValue - self.base.frame.height
+        if frame.origin.y != newBottom {
+            frame.origin.y = newBottom
+            self.base.frame = frame
+        }
+    }
+
+    public var centerX: CGFloat {
+        get {
+            return self.base.center.x
         }
         set {
-            var center = self.center
+            var center = self.base.center
             if center.x != newValue {
                 center.x = newValue
-                self.center = center
+                self.base.center = center
             }
         }
     }
-    
-    public var ks_centerY: CGFloat {
-        get {
-            return self.center.y
+    func centerX(newValue: CGFloat) {
+        var center = self.base.center
+        if center.x != newValue {
+            center.x = newValue
+            self.base.center = center
         }
-        set {
-            var center = self.center
-            if center.y != newValue {
-                center.y = newValue
-                self.center = center
-            }
+
+    }
+
+    public var centerY: CGFloat {
+        get {
+            return self.base.center.y
         }
     }
-    
-    public var ks_width: CGFloat {
-        get {
-            return self.frame.width
-        }
-        set {
-            var frame = self.frame
-            if frame.width != newValue {
-                frame.size.width = newValue
-                self.frame = frame
-            }
+    func centerY(newValue: CGFloat) {
+        var center = self.base.center
+        if center.y != newValue {
+            center.y = newValue
+            self.base.center = center
         }
     }
-    public var ks_height: CGFloat {
+
+    public var width: CGFloat {
         get {
-            return self.frame.height
-        }
-        set {
-            var frame = self.frame
-            if frame.height != newValue {
-                frame.size.height = newValue
-                self.frame = frame
-            }
+            return self.base.frame.width
         }
     }
-    
-    public var ks_origin: CGPoint {
-        get {
-            return self.frame.origin
-        }
-        set {
-            var frame = self.frame
-            if frame.origin != newValue {
-                frame.origin = newValue
-                self.frame = frame
-            }
+    func width(newValue: CGFloat) {
+        var frame = self.base.frame
+        if frame.width != newValue {
+            frame.size.width = newValue
+            self.base.frame = frame
         }
     }
-    
-    public var ks_size: CGSize {
+    public var height: CGFloat {
         get {
-            return self.frame.size
+            return self.base.frame.height
         }
-        set {
-            var frame = self.frame
-            if frame.size != newValue {
-                frame.size = newValue
-                self.frame = frame
-            }
+    }
+    func height(newValue: CGFloat) {
+        var frame = self.base.frame
+        if frame.height != newValue {
+            frame.size.height = newValue
+            self.base.frame = frame
+        }
+    }
+
+    public var origin: CGPoint {
+        get {
+            return self.base.frame.origin
+        }
+    }
+    func origin(newValue: CGPoint) {
+        var frame = self.base.frame
+        if frame.origin != newValue {
+            frame.origin = newValue
+            self.base.frame = frame
+        }
+    }
+
+    public var size: CGSize {
+        get {
+            return self.base.frame.size
+        }
+    }
+    func size(newValue: CGSize) {
+        var frame = self.base.frame
+        if frame.size != newValue {
+            frame.size = newValue
+            self.base.frame = frame
         }
     }
 }

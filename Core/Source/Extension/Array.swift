@@ -7,13 +7,13 @@
 //
 
 import Foundation
-extension SequenceType {
-    typealias Element = Self.Generator.Element
+extension Swifty where Base: SequenceType {
+    typealias Element = Base.Generator.Element
     
     func partitionBy(fu: (Element)->Bool)->([Element],[Element]){
         var first=[Element]()
         var second=[Element]()
-        for el in self {
+        for el in base {
             if fu(el) {
                 first.append(el)
             }else{

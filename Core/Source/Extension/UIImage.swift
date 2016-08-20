@@ -7,9 +7,9 @@
 //
 
 import UIKit
-extension UIImage {
+extension Swifty where Base: UIImage {
     public func transformtoScale(scale: CGFloat) -> UIImage {
-        return UIImage(CGImage: self.CGImage!, scale: scale, orientation: UIImageOrientation.Up)
+        return UIImage(CGImage: self.base.CGImage!, scale: scale, orientation: UIImageOrientation.Up)
         
 //        // 创建一个bitmap的context
 //        UIGraphicsBeginImageContext(size)
@@ -22,14 +22,15 @@ extension UIImage {
 //        // 返回新的改变大小后的图片
 //        return transformedImg
     }
-    public func ks_normalizedImage() -> UIImage {
-        var returnMe = self
-        if self.size.width > SCREEN_WIDTH * SCREEN_SCALE {
-            returnMe = UIImage.ks_image(self, scaledToWidth: SCREEN_WIDTH * SCREEN_SCALE)
+    public func normalizedImage() -> UIImage {
+        var returnMe = self.base
+        let width = KS.SCREEN_WIDTH * KS.SCREEN_SCALE
+        if returnMe.size.width > width {
+            returnMe = Swifty<UIImage>.image(returnMe, scaledToWidth: width) as! Base
         }
         return returnMe
     }
-    public static func ks_image(sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
+    public static func image(sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
         let oldWidth = sourceImage.size.width
         let scaleFactor = scaledToWidth/oldWidth
         let newHeight = sourceImage.size.height*scaleFactor
@@ -40,7 +41,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImage
     }
-    public static func ks_imageFrom(view :UIView) -> UIImage {
+    public static func imageFrom(view :UIView) -> UIImage {
         UIGraphicsBeginImageContext(view.frame.size);
         view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()

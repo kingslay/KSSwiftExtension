@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
-        self.ks_autoAdjustKeyBoard()
+        self.ks.autoAdjustKeyBoard()
         let a = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: nil) { notification in
             print(self)
         }
