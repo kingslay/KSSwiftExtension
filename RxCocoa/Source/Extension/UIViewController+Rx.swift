@@ -51,7 +51,7 @@ extension Swifty where Base: UIViewController {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
                 let window = UIApplication.sharedApplication().keyWindow
-                let relatedView = controller.ks.relatedViewFor(inputView)
+                let relatedView = controller.relatedViewFor(inputView)
                 if let convertRect = relatedView.superview?.convertRect(relatedView.frame, toView: window) {
                     let diff = CGRectGetMaxY(convertRect) - CGRectGetMinY(keyboardRect) + 10
                     if diff > 0 {

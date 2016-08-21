@@ -27,7 +27,7 @@ extension Swifty where Base: UITableViewCell {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
-                [unowned cell = self.base as! UITableViewCell] _ in
+                [unowned cell = self.base as UITableViewCell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
                 }.addDisposableTo(newValue)
         }
@@ -50,7 +50,7 @@ extension Swifty where Base: UICollectionReusableView {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
-                [unowned cell = self.base as! UICollectionReusableView] _ in
+                [unowned cell = self.base as UICollectionReusableView] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
                 }.addDisposableTo(newValue)
         }

@@ -77,7 +77,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.x
         }
     }
-    func left(newValue: CGFloat) {
+    public func left(newValue: CGFloat) {
         var frame = self.base.frame
         if frame.origin.x != newValue {
             frame.origin.x = newValue
@@ -90,7 +90,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.y
         }
     }
-    func top(newValue: CGFloat) {
+    public func top(newValue: CGFloat) {
         var frame = self.base.frame
         if frame.origin.y != newValue {
             frame.origin.y = newValue
@@ -103,7 +103,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.x + self.base.frame.width
         }
     }
-    func right(newValue: CGFloat) {
+    public func right(newValue: CGFloat) {
         var frame = self.base.frame
         let newRight = newValue - self.base.frame.width
         if frame.origin.x != newRight {
@@ -117,7 +117,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.y + self.base.frame.height
         }
     }
-    func bottom(newValue: CGFloat) {
+    public func bottom(newValue: CGFloat) {
         var frame = self.base.frame
         let newBottom = newValue - self.base.frame.height
         if frame.origin.y != newBottom {
@@ -138,7 +138,7 @@ extension Swifty where Base: UIView {
             }
         }
     }
-    func centerX(newValue: CGFloat) {
+    public func centerX(newValue: CGFloat) {
         var center = self.base.center
         if center.x != newValue {
             center.x = newValue
@@ -152,7 +152,7 @@ extension Swifty where Base: UIView {
             return self.base.center.y
         }
     }
-    func centerY(newValue: CGFloat) {
+    public func centerY(newValue: CGFloat) {
         var center = self.base.center
         if center.y != newValue {
             center.y = newValue
@@ -165,7 +165,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.width
         }
     }
-    func width(newValue: CGFloat) {
+    public func width(newValue: CGFloat) {
         var frame = self.base.frame
         if frame.width != newValue {
             frame.size.width = newValue
@@ -177,7 +177,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.height
         }
     }
-    func height(newValue: CGFloat) {
+    public func height(newValue: CGFloat) {
         var frame = self.base.frame
         if frame.height != newValue {
             frame.size.height = newValue
@@ -190,7 +190,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin
         }
     }
-    func origin(newValue: CGPoint) {
+    public func origin(newValue: CGPoint) {
         var frame = self.base.frame
         if frame.origin != newValue {
             frame.origin = newValue
@@ -203,7 +203,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.size
         }
     }
-    func size(newValue: CGSize) {
+    public func size(newValue: CGSize) {
         var frame = self.base.frame
         if frame.size != newValue {
             frame.size = newValue
