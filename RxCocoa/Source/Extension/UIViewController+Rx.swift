@@ -24,12 +24,12 @@ public extension UIViewController {
 //        _isFastAssertConfiguration()
         if _isDebugAssertConfiguration() {
             dispatch_once(&Static.token) {
-                ks_swizzleInstanceMethod(self, sel1: "viewDidLoad", sel2: "ks_viewDidLoad")
+                KS.swizzleInstanceMethod(self, sel1: "viewDidLoad", sel2: "ksviewDidLoad")
             }
         }
     }
-    public func ks_viewDidLoad() {
-        self.ks_viewDidLoad()
+    public func ksviewDidLoad() {
+        self.ksviewDidLoad()
         let message = "[标题:\(self.title)],[类:\(self.ks.className()))]"
         self.rx_deallocating.subscribeNext {
             if KS.isSimulator {
