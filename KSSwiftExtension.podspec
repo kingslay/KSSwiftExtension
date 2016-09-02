@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'KSSwiftExtension'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = "UIKit 's Extension"
   s.description      = <<-DESC
     KSSwiftExtension is a Extension of UIKit
@@ -29,5 +29,6 @@ Pod::Spec.new do |s|
   end
   s.subspec "ViewKit" do |ss|
     ss.source_files  = "ViewKit/Source/**/*.swift"
+    ss.dependency "KSSwiftExtension/Core"
   end
 end

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KSSwiftExtension
 
 extension UIViewController {
     ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身

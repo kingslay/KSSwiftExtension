@@ -9,7 +9,7 @@
 import UIKit
 @objc protocol FSRulerDelegate {
     //声明方法
-    @objc func ruler(_ rulerValue: CGFloat)
+    @objc func ruler(value: CGFloat)
 }
 
 public class KSRulerView: UIView, UIScrollViewDelegate {
@@ -38,7 +38,7 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
         }
     }
 
-    public func showRulerScrollViewWithCount(_ count: NSInteger, beginValue: CGFloat, endValue: CGFloat) {
+    public func showRulerScrollViewWithCount(count: NSInteger, beginValue: CGFloat, endValue: CGFloat) {
         rulerScrollView.rulerCount = count
         rulerScrollView.beginValue = beginValue
         rulerScrollView.endValue = endValue
@@ -62,21 +62,21 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
 
 
     //MARK: ScrollView Delegete
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
         if let delegete = delegete {
             delegete.ruler(currentValue)
         }
     }
 
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         self.animationRebound(scrollView)
     }
 
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         self.animationRebound(scrollView)
     }
 
-    func animationRebound(_ scrollView: UIScrollView) {
+    func animationRebound(scrollView: UIScrollView) {
         
     }
     

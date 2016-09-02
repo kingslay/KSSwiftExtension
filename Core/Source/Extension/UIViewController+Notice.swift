@@ -1,6 +1,6 @@
 
 import UIKit
-extension UIViewController {
+extension Swifty where Base: UIViewController {
     /// wait with your own animated images
     public func pleaseWaitWithImages(text: String, imageNames: Array<UIImage>, timeInterval: Int) {
         SwiftNotice.wait(text, imageNames: imageNames, timeInterval: timeInterval)
