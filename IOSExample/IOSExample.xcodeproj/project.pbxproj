@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C3468231CC3DB17003EE5DA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C3468211CC3DB17003EE5DA /* Info.plist */; };
 		3C3468241CC3DB17003EE5DA /* UITableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3468221CC3DB17003EE5DA /* UITableViewCellTest.swift */; };
 		3C43EEE41CAAD8AA007F35C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C43EEDA1CAAD8AA007F35C8 /* AppDelegate.swift */; };
 		3C43EEE51CAAD8AA007F35C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C43EEDB1CAAD8AA007F35C8 /* Assets.xcassets */; };
@@ -191,7 +190,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = king;
 				TargetAttributes = {
 					3C43EEB41CAAD3B7007F35C8 = {
@@ -237,7 +236,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C3468231CC3DB17003EE5DA /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
