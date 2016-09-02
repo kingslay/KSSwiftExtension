@@ -1,6 +1,5 @@
 
 import UIKit
-
 extension UIViewController {
     /// wait with your own animated images
     public func pleaseWaitWithImages(text: String, imageNames: Array<UIImage>, timeInterval: Int) {

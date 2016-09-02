@@ -15,6 +15,8 @@
 		3C43EEE71CAAD8AA007F35C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C43EEDF1CAAD8AA007F35C8 /* Main.storyboard */; };
 		3C43EEE81CAAD8AA007F35C8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C43EEE11CAAD8AA007F35C8 /* DetailViewController.swift */; };
 		3C43EEEA1CAAD8AA007F35C8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C43EEE31CAAD8AA007F35C8 /* MasterViewController.swift */; };
+		3C9DF5C01D7873BC009E135C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DF5BF1D7873BC009E135C /* TableViewController.swift */; };
+		3C9DF5C21D7878F1009E135C /* RulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DF5C11D7878F1009E135C /* RulerViewController.swift */; };
 		DDB50878C8802706ABFE7947 /* Pods_IOSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FAE009B5585D022E861A84 /* Pods_IOSExample.framework */; };
 		E90D91A65ECD41620C9C626D /* Pods_IOSExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D99E1A2EF7372D6A50785A /* Pods_IOSExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,8 @@
 		3C43EEE11CAAD8AA007F35C8 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3C43EEE21CAAD8AA007F35C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C43EEE31CAAD8AA007F35C8 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		3C9DF5BF1D7873BC009E135C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3C9DF5C11D7878F1009E135C /* RulerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerViewController.swift; sourceTree = "<group>"; };
 		63DAAB96880149C7A451FCEF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B87CC9BA090CB95BB9CD43 /* Pods-IOSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample.release.xcconfig"; sourceTree = "<group>"; };
 		99F75FF976BB3F3E5CCDF1F9 /* Pods-IOSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		3C11828A1BBD43B000D96BB9 = {
 			isa = PBXGroup;
 			children = (
+				3C9DF5C11D7878F1009E135C /* RulerViewController.swift */,
+				3C9DF5BF1D7873BC009E135C /* TableViewController.swift */,
 				3C43EEDA1CAAD8AA007F35C8 /* AppDelegate.swift */,
 				3C43EEE11CAAD8AA007F35C8 /* DetailViewController.swift */,
 				3C43EEE31CAAD8AA007F35C8 /* MasterViewController.swift */,
@@ -336,8 +342,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C43EEE41CAAD8AA007F35C8 /* AppDelegate.swift in Sources */,
+				3C9DF5C21D7878F1009E135C /* RulerViewController.swift in Sources */,
 				3C43EEE81CAAD8AA007F35C8 /* DetailViewController.swift in Sources */,
 				3C43EEEA1CAAD8AA007F35C8 /* MasterViewController.swift in Sources */,
+				3C9DF5C01D7873BC009E135C /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

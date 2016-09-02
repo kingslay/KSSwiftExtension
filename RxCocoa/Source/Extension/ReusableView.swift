@@ -10,7 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 private var prepareForReusedisposableBagAssociationKey: UInt8 = 0
-extension Swifty where Base: UITableViewCell {
+
+public extension Swifty where Base: UITableViewCell {
     public var prepareForReusedisposableBag: DisposeBag {
          get {
             return self.synchronized {
@@ -33,7 +34,8 @@ extension Swifty where Base: UITableViewCell {
         }
     }
 }
-extension Swifty where Base: UICollectionReusableView {
+
+public extension Swifty where Base: UICollectionReusableView {
     public var prepareForReusedisposableBag: DisposeBag {
         get {
             return self.synchronized {

@@ -8,6 +8,8 @@
 
 import UIKit
 import RxCocoa
+import KSSwiftExtension
+
 public extension UIViewController {
     #if DEBUG
     #else
@@ -39,6 +41,8 @@ public extension UIViewController {
         }.addDisposableTo(self.ks.disposableBag)
     }
 }
+
+extension UIViewController: KSCompatible { }
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
         NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).subscribeNext {
