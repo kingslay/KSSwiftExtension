@@ -9,15 +9,6 @@
 import UIKit
 
 public class KSRulerScrollView: UIScrollView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.brownColor()
-    }
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        fatalError("init(coder:) has not been implemented")
-    }
-
     var ruleLength: CGFloat = 20 //刻度实际长度
     var distance: CGFloat = 8.0 //标尺上下距离
     var rulerCount = 1

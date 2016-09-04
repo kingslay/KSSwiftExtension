@@ -16,7 +16,7 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
 
     weak var delegete: FSRulerDelegate?
     lazy public var rulerScrollView: KSRulerScrollView = {
-        let scrollView = KSRulerScrollView(frame: self.bounds)
+        let scrollView = KSRulerScrollView()
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -43,24 +43,24 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
         rulerScrollView.beginValue = beginValue
         rulerScrollView.endValue = endValue
         self.addSubview(rulerScrollView)
+        rulerScrollView.frame = self.bounds
+        rulerScrollView.autoresizingMask = [.FlexibleHeight,.FlexibleWidth]
         rulerScrollView.drawRuler()
         self.drawline()
     }
 
     func drawline() {
-        let pathLine = CGPathCreateMutable()
         let shapeLayerLine: CAShapeLayer = CAShapeLayer()
+        shapeLayerLine.fillColor = UIColor.clearColor().CGColor
         shapeLayerLine.strokeColor = strokeColor.CGColor
         shapeLayerLine.lineWidth = lineWidth
-        shapeLayerLine.lineCap = kCALineCapSquare
-        CGPathMoveToPoint(pathLine, nil, 0, self.frame.size.height/2)
-        CGPathAddLineToPoint(pathLine, nil, self.frame.size.width, self.frame.size.height/2)
-        shapeLayerLine.path = pathLine
+        shapeLayerLine.lineDashPattern = [8,12]
+        shapeLayerLine.lineCap = kCALineCapRound
+        shapeLayerLine.lineJoin = kCALineJoinRound
+        let path = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.width, height: 0))
+        shapeLayerLine.path = path.CGPath
         self.layer.addSublayer(shapeLayerLine)
     }
-
-
-
     //MARK: ScrollView Delegete
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         if let delegete = delegete {
