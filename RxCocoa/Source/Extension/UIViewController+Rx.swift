@@ -39,7 +39,6 @@ public extension UIViewController {
         }.addDisposableTo(self.ks.disposableBag)
     }
 }
-//extension UIViewController: KSCompatible { }
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
         NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).subscribeNext {

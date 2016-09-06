@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'KSSwiftExtension'
-  s.version          = '1.1.3'
+  s.version          = '1.1.4'
   s.summary          = "UIKit 's Extension"
   s.description      = <<-DESC
     KSSwiftExtension is a Extension of UIKit
@@ -15,7 +15,6 @@ Pod::Spec.new do |s|
   s.default_subspec = "Core"
   s.subspec "Core" do |ss|
     ss.source_files  = 'Core/Source/**/*.swift'
-    ss.resources = 'Core/Resource/*.{json,png,jpg,gif,js}'
   end
   s.subspec "RxSwift" do |ss|
     ss.source_files  = "RxSwift/Source/**/*.swift"
@@ -29,6 +28,7 @@ Pod::Spec.new do |s|
   end
   s.subspec "ViewKit" do |ss|
     ss.source_files  = "ViewKit/Source/**/*.swift"
+    ss.resources = 'Core/Resource/*.{json,png,jpg,gif,js}'
     ss.dependency "KSSwiftExtension/Core"
   end
 end

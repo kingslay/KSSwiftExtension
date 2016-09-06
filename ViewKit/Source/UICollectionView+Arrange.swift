@@ -6,7 +6,6 @@
 //  Copyright © 2015年 king. All rights reserved.
 //
 
-import Foundation
 import UIKit
 public protocol KSArrangeCollectionViewDelegate : NSObjectProtocol {
     func moveDataItem(fromIndexPath : NSIndexPath, toIndexPath: NSIndexPath) -> Void

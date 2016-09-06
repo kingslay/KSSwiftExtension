@@ -9,7 +9,7 @@
 import UIKit
 @objc protocol FSRulerDelegate {
     //声明方法
-    @objc func ruler(value: CGFloat)
+    func ruler(value: CGFloat)
 }
 
 public class KSRulerView: UIView, UIScrollViewDelegate {

@@ -47,7 +47,6 @@ public extension UIView {
         }
     }
 }
-//extension UIView: KSCompatible { }
 extension Swifty where Base: UIView {
     /**
      Masks the view's layer to be in a cirle.
