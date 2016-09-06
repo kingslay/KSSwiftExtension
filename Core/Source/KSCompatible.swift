@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public struct Swifty<Base> {
     public var base: Base
     public init(_ base: Base) {
