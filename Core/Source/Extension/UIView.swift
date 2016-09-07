@@ -47,6 +47,17 @@ public extension UIView {
         }
     }
 }
+public struct KSDirection : OptionSetType {
+    public let rawValue: UInt
+    public init(rawValue: UInt) {
+        self.rawValue = rawValue
+    }
+    public static var top = KSDirection(rawValue: 1 << 0)
+    public static var left = KSDirection(rawValue: 1 << 1)
+    public static var bottom = KSDirection(rawValue: 1 << 2)
+    public static var right = KSDirection(rawValue: 1 << 3)
+    public static var all = [top,left,bottom,right]
+}
 extension Swifty where Base: UIView {
     /**
      Masks the view's layer to be in a cirle.
@@ -54,7 +65,34 @@ extension Swifty where Base: UIView {
     public func maskToCircle() {
         self.base.cornerRadius = self.base.frame.size.width / 2.0
     }
-    
+
+    public func showBorder(direction:KSDirection,margin:CGFloat=0,color:UIColor = UIColor.blackColor(),borderWidth:CGFloat = 1) {
+        if direction.contains(.top) {
+            let layer = CALayer()
+            layer.frame = CGRect(x: margin,y: 0,width: base.frame.width-margin,height: borderWidth)
+            layer.backgroundColor = color.CGColor
+            base.layer.addSublayer(layer)
+        }
+        if direction.contains(.left) {
+            let layer = CALayer()
+            layer.frame = CGRect(x: 0,y: margin,width: borderWidth,height: base.frame.height-margin)
+            layer.backgroundColor = color.CGColor
+            base.layer.addSublayer(layer)
+        }
+        if direction.contains(.bottom) {
+            let layer = CALayer()
+            layer.frame = CGRect(x: margin,y: base.frame.height-borderWidth,width: base.frame.width-margin,height: borderWidth)
+            layer.backgroundColor = color.CGColor
+            base.layer.addSublayer(layer)
+        }
+        if direction.contains(.right) {
+            let layer = CALayer()
+            layer.frame = CGRect(x:base.frame.width-borderWidth,y: margin,width: borderWidth,height: base.frame.height-margin)
+            layer.backgroundColor = color.CGColor
+            base.layer.addSublayer(layer)
+        }
+    }
+
     public func viewController() -> UIViewController? {
         if let window = self.base as? UIWindow {
             return window.rootViewController
