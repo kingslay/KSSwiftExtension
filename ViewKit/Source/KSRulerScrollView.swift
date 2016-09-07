@@ -9,11 +9,11 @@
 import UIKit
 
 public class KSRulerScrollView: UIScrollView {
-    var ruleLength: CGFloat = 20 //刻度实际长度
-    var distance: CGFloat = 8.0 //标尺上下距离
+    public var ruleLength: CGFloat = 20 //刻度实际长度
+    public var distance: CGFloat = 8.0 //标尺上下距离
+    public var stroke1Color = UIColor.lightGrayColor()
+    public var stroke2Color = UIColor.lightGrayColor()
     var rulerCount = 1
-    var stroke1Color = UIColor.lightGrayColor()
-    var stroke2Color = UIColor.lightGrayColor()
     var beginValue: CGFloat = 0.0
     var endValue: CGFloat = 0.0
     var rulerAverage: CGFloat = 0.0

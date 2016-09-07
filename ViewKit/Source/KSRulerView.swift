@@ -7,14 +7,15 @@
 //
 
 import UIKit
-@objc protocol FSRulerDelegate {
+
+@objc public protocol KSRulerDelegate {
     //声明方法
     func ruler(value: CGFloat)
 }
 
 public class KSRulerView: UIView, UIScrollViewDelegate {
 
-    weak var delegete: FSRulerDelegate?
+    weak public var delegete: KSRulerDelegate?
     lazy public var rulerScrollView: KSRulerScrollView = {
         let scrollView = KSRulerScrollView()
         scrollView.delegate = self
@@ -22,11 +23,8 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
-    let DISTANCELEFTANDRIGHT :CGFloat = 8  //标尺左右距离
-    let DISTANCEVALUE: CGFloat = 8 //刻度实际长度
-    let DISTANCETOPANDBOTTOM: CGFloat = 20 //标尺上下距离
-    var strokeColor = UIColor.redColor()
-    var lineWidth:CGFloat = 1.0;
+    public var strokeColor = UIColor.redColor()
+    public var lineWidth:CGFloat = 1.0;
     public var currentValue: CGFloat {
         get {
             let offSetY = rulerScrollView.contentOffset.y + rulerScrollView.frame.size.height / 2
@@ -54,7 +52,7 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
         shapeLayerLine.fillColor = UIColor.clearColor().CGColor
         shapeLayerLine.strokeColor = strokeColor.CGColor
         shapeLayerLine.lineWidth = lineWidth
-        shapeLayerLine.lineDashPattern = [8,12]
+//        shapeLayerLine.lineDashPattern = [8,12]
         shapeLayerLine.lineCap = kCALineCapRound
         shapeLayerLine.lineJoin = kCALineJoinRound
         let path = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.width, height: 0))
