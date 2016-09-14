@@ -26,7 +26,7 @@ public extension UINavigationItem {
         if item == nil {
             item = objc_getAssociatedObject(self, &backBarButtonItemAssociationKey) as? UIBarButtonItem
             if (item == nil) {
-                item = UIBarButtonItem(title: "", style: .Bordered, target: nil, action: nil)
+                item = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
             }
         }
         return item
