@@ -42,7 +42,7 @@ extension Swifty where Base: UIImage {
         return newImage
     }
     public static func imageFrom(view :UIView) -> UIImage {
-        UIGraphicsBeginImageContext(view.frame.size);
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
         view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

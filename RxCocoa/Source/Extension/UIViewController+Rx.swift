@@ -9,9 +9,9 @@
 import UIKit
 import RxCocoa
 public extension UIViewController {
-    #if DEBUG
-    #else
-    #endif
+//    #if DEBUG
+//    #else
+//    #endif
     public override static func initialize() {
         struct Static {
             static var token: dispatch_once_t = 0
