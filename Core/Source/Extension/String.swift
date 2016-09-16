@@ -12,18 +12,18 @@ extension String {
     static let  emailRegex = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     
     public var localized: String {
-        let s = NSLocalizedString(self, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let s = NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
         return s
     }
     public var length : Int {
         return self.characters.count
     }
-    public init(data: NSData){
-        let str =  NSString(data: data, encoding: NSUTF8StringEncoding)  as! String
+    public init(data: Data){
+        let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)  as! String
         self.init(stringLiteral: str)
     }
     public subscript (i: Int) -> Character {
-        return self[self.startIndex.advancedBy(i)]
+        return self[self.characters.index(self.startIndex, offsetBy: i)]
     }
     
     public subscript (i: Int) -> String {
@@ -31,12 +31,12 @@ extension String {
     }
     
     public subscript (r: Range<Int>) -> String {
-        return substringWithRange(self.startIndex.advancedBy(r.startIndex) ..< self.startIndex.advancedBy(r.endIndex))
+        return substring(with: self.characters.index(self.startIndex, offsetBy: r.lowerBound) ..< self.characters.index(self.startIndex, offsetBy: r.upperBound))
     }
     public func checkMobileNumble() -> Bool {
-        return String.phoneRegex.evaluateWithObject(self)
+        return String.phoneRegex.evaluate(with: self)
     }
     public func checkEmail() -> Bool {
-        return String.emailRegex.evaluateWithObject(self)
+        return String.emailRegex.evaluate(with: self)
     }
 }

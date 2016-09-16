@@ -10,9 +10,9 @@ import Foundation
 protocol Settings {
     subscript(key: String) -> AnyObject? { get nonmutating set }
 }
-extension NSUserDefaults: Settings {
+extension UserDefaults: Settings {
     public subscript (key: String) -> AnyObject? {
-        get{ return objectForKey(key) }
-        set{ setObject(newValue, forKey: key) }
+        get{ return object(forKey: key) as AnyObject? }
+        set{ set(newValue, forKey: key) }
     }    
 }

@@ -10,22 +10,22 @@ import UIKit
 
 @objc public protocol KSRulerDelegate {
     //声明方法
-    func ruler(value: CGFloat)
+    func ruler(_ value: CGFloat)
 }
 
-public class KSRulerView: UIView, UIScrollViewDelegate {
+open class KSRulerView: UIView, UIScrollViewDelegate {
 
-    weak public var delegete: KSRulerDelegate?
-    lazy public var rulerScrollView: KSRulerScrollView = {
+    weak open var delegete: KSRulerDelegate?
+    lazy open var rulerScrollView: KSRulerScrollView = {
         let scrollView = KSRulerScrollView()
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
-    public var strokeColor = UIColor.redColor()
-    public var lineWidth:CGFloat = 1.0;
-    public var currentValue: CGFloat {
+    open var strokeColor = UIColor.red
+    open var lineWidth:CGFloat = 1.0;
+    open var currentValue: CGFloat {
         get {
             let offSetY = rulerScrollView.contentOffset.y + rulerScrollView.frame.size.height / 2
             return  rulerScrollView.beginValue + offSetY / rulerScrollView.distance * rulerScrollView.rulerAverage
@@ -36,45 +36,45 @@ public class KSRulerView: UIView, UIScrollViewDelegate {
         }
     }
 
-    public func showRulerScrollViewWithCount(count: NSInteger, beginValue: CGFloat, endValue: CGFloat) {
+    open func showRulerScrollViewWithCount(_ count: NSInteger, beginValue: CGFloat, endValue: CGFloat) {
         rulerScrollView.rulerCount = count
         rulerScrollView.beginValue = beginValue
         rulerScrollView.endValue = endValue
         self.addSubview(rulerScrollView)
         rulerScrollView.frame = self.bounds
-        rulerScrollView.autoresizingMask = [.FlexibleHeight,.FlexibleWidth]
+        rulerScrollView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
         rulerScrollView.drawRuler()
         self.drawline()
     }
 
     func drawline() {
         let shapeLayerLine: CAShapeLayer = CAShapeLayer()
-        shapeLayerLine.fillColor = UIColor.clearColor().CGColor
-        shapeLayerLine.strokeColor = strokeColor.CGColor
+        shapeLayerLine.fillColor = UIColor.clear.cgColor
+        shapeLayerLine.strokeColor = strokeColor.cgColor
         shapeLayerLine.lineWidth = lineWidth
 //        shapeLayerLine.lineDashPattern = [8,12]
         shapeLayerLine.lineCap = kCALineCapRound
         shapeLayerLine.lineJoin = kCALineJoinRound
         let path = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.width, height: 0))
-        shapeLayerLine.path = path.CGPath
+        shapeLayerLine.path = path.cgPath
         self.layer.addSublayer(shapeLayerLine)
     }
     //MARK: ScrollView Delegete
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let delegete = delegete {
             delegete.ruler(currentValue)
         }
     }
 
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.animationRebound(scrollView)
     }
 
-    public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         self.animationRebound(scrollView)
     }
 
-    func animationRebound(scrollView: UIScrollView) {
+    func animationRebound(_ scrollView: UIScrollView) {
         
     }
     

@@ -34,10 +34,10 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
         self.ks.autoAdjustKeyBoard()
-        let a = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil, queue: nil) { notification in
+        let a = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) { notification in
             print(self)
         }
-        NSNotificationCenter.defaultCenter().removeObserver(a)
+        NotificationCenter.default.removeObserver(a)
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,8 +9,8 @@
 import Foundation
 extension Int: KSCompatible { }
 extension Double: KSCompatible { }
-extension Swifty where Base: CVarArgType {
-    public func format(f:String) -> String {
+extension Swifty where Base: CVarArg {
+    public func format(_ f:String) -> String {
         return String(format:"\(f)",self.base)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-extension Swifty where Base: SequenceType {
+extension Swifty where Base: Sequence {
     typealias Element = Base.Generator.Element
     
     func partitionBy(fu: (Element)->Bool)->([Element],[Element]){

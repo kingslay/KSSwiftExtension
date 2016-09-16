@@ -8,20 +8,20 @@
 
 import UIKit
 public protocol KSArrangeCollectionViewDelegate : NSObjectProtocol {
-    func moveDataItem(fromIndexPath : NSIndexPath, toIndexPath: NSIndexPath) -> Void
-    func deleteItemAtIndexPath(indexPath : NSIndexPath) -> Void
+    func moveDataItem(_ fromIndexPath : IndexPath, toIndexPath: IndexPath) -> Void
+    func deleteItemAtIndexPath(_ indexPath : IndexPath) -> Void
 }
 
 private var bundleAssociationKey: UInt8 = 0
 private var deleteButtonAssociationKey: UInt8 = 0
 extension UICollectionView: UIGestureRecognizerDelegate {
     class Bundle {
-        var offset : CGPoint = CGPointZero
+        var offset : CGPoint = CGPoint.zero
         var sourceCell : UICollectionViewCell
         var representationImageView : UIView
-        var currentIndexPath : NSIndexPath
+        var currentIndexPath : IndexPath
         var deleteButton: UIButton?
-        init(offset: CGPoint, sourceCell: UICollectionViewCell, representationImageView:UIView, currentIndexPath: NSIndexPath)
+        init(offset: CGPoint, sourceCell: UICollectionViewCell, representationImageView:UIView, currentIndexPath: IndexPath)
         {
             self.offset = offset
             self.sourceCell = sourceCell
@@ -52,24 +52,24 @@ extension UICollectionView: UIGestureRecognizerDelegate {
     }
     // MARK: - UIGestureRecognizerDelegate
     
-    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         self.bundle?.deleteButton?.removeFromSuperview()
         self.bundle = nil
-        let pointPressedInCollectionView = gestureRecognizer.locationInView(self)
-        if let indexPath = self.indexPathForItemAtPoint(pointPressedInCollectionView),cell = self.cellForItemAtIndexPath(indexPath) {
+        let pointPressedInCollectionView = gestureRecognizer.location(in: self)
+        if let indexPath = self.indexPathForItem(at: pointPressedInCollectionView),let cell = self.cellForItem(at: indexPath) {
 
-            let representationImage = cell.snapshotViewAfterScreenUpdates(true)
-            representationImage.frame = cell.frame
+            let representationImage = cell.snapshotView(afterScreenUpdates: true)
+            representationImage?.frame = cell.frame
             
-            let offset = CGPointMake(pointPressedInCollectionView.x - representationImage.frame.origin.x, pointPressedInCollectionView.y - representationImage.frame.origin.y)
+            let offset = CGPoint(x: pointPressedInCollectionView.x - (representationImage?.frame.origin.x)!, y: pointPressedInCollectionView.y - (representationImage?.frame.origin.y)!)
             
-            self.bundle = Bundle(offset: offset, sourceCell: cell, representationImageView:representationImage, currentIndexPath: indexPath)
-            if gestureRecognizer.isKindOfClass(UILongPressGestureRecognizer) {
+            self.bundle = Bundle(offset: offset, sourceCell: cell, representationImageView:representationImage!, currentIndexPath: indexPath)
+            if gestureRecognizer.isKind(of: UILongPressGestureRecognizer.self) {
                 let button = UIButton()
                 self.bundle!.deleteButton = button
-                button.setImage(UIImage(named: "tata_close"), forState: .Normal)
-                button.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 18, 18)
-                button.addTarget(self, action: #selector(touchUpInside(_:)), forControlEvents: .TouchUpInside)
+                button.setImage(UIImage(named: "tata_close"), for: UIControlState())
+                button.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: 18, height: 18)
+                button.addTarget(self, action: #selector(touchUpInside(_:)), for: .touchUpInside)
                 let tapGestureRecogniser = UITapGestureRecognizer()
                 self.addGestureRecognizer(tapGestureRecogniser)
                 tapGestureRecogniser.addTarget(self, action: #selector(tapGesture(_:)))
@@ -78,50 +78,50 @@ extension UICollectionView: UIGestureRecognizerDelegate {
         return (self.bundle != nil)
     }
     
-    public func handleGesture(gesture: UIGestureRecognizer) -> Void {
+    public func handleGesture(_ gesture: UIGestureRecognizer) -> Void {
         
         
         if let bundle = self.bundle {
             
-            let dragPointOnCollectionView = gesture.locationInView(self)
+            let dragPointOnCollectionView = gesture.location(in: self)
             
-            if gesture.state == UIGestureRecognizerState.Began {
+            if gesture.state == UIGestureRecognizerState.began {
                 
-                bundle.sourceCell.hidden = true
+                bundle.sourceCell.isHidden = true
                 self.addSubview(bundle.representationImageView)
                 if let deleteButton = bundle.deleteButton {
                     self.addSubview(deleteButton)
                 }
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     bundle.representationImageView.alpha = 0.8
                 });
             }
-            if gesture.state == UIGestureRecognizerState.Changed {
+            if gesture.state == UIGestureRecognizerState.changed {
                 // Update the representation image
                 var imageViewFrame = bundle.representationImageView.frame
-                var point = CGPointZero
+                var point = CGPoint.zero
                 point.x = dragPointOnCollectionView.x - bundle.offset.x
                 point.y = dragPointOnCollectionView.y - bundle.offset.y
                 imageViewFrame.origin = point
                 bundle.representationImageView.frame = imageViewFrame
-                bundle.deleteButton?.frame = CGRectMake(point.x, point.y, 18, 18)
+                bundle.deleteButton?.frame = CGRect(x: point.x, y: point.y, width: 18, height: 18)
                 
-                if let indexPath : NSIndexPath = self.indexPathForItemAtPoint(dragPointOnCollectionView) {
+                if let indexPath : IndexPath = self.indexPathForItem(at: dragPointOnCollectionView) {
                     
-                    if indexPath.isEqual(bundle.currentIndexPath) == false {
+                    if (indexPath == bundle.currentIndexPath) == false {
                         bundle.deleteButton?.removeFromSuperview()
                         // If we have a collection view controller that implements the delegate we call the method first
                         if let delegate = self.delegate as? KSArrangeCollectionViewDelegate {
                             delegate.moveDataItem(bundle.currentIndexPath, toIndexPath: indexPath)
                         }
-                        self.moveItemAtIndexPath(bundle.currentIndexPath, toIndexPath: indexPath)
+                        self.moveItem(at: bundle.currentIndexPath, to: indexPath)
                         self.bundle!.currentIndexPath = indexPath
                     }
                 }
             }
             
-            if gesture.state == UIGestureRecognizerState.Ended {
-                bundle.sourceCell.hidden = false
+            if gesture.state == UIGestureRecognizerState.ended {
+                bundle.sourceCell.isHidden = false
                 bundle.representationImageView.removeFromSuperview()
                 
                 if let _ = self.delegate as? KSArrangeCollectionViewDelegate { // if we have a proper data source then we can reload and have the data displayed correctly
@@ -130,17 +130,17 @@ extension UICollectionView: UIGestureRecognizerDelegate {
             }
         }
     }
-    @objc private func tapGesture(gesture: UIGestureRecognizer) {
+    @objc fileprivate func tapGesture(_ gesture: UIGestureRecognizer) {
         self.bundle?.deleteButton?.removeFromSuperview()
         self.removeGestureRecognizer(gesture)
     }
-    @objc private func touchUpInside(target: UIButton) {
+    @objc fileprivate func touchUpInside(_ target: UIButton) {
         target.removeFromSuperview()
         if let indexPath = self.bundle?.currentIndexPath {
             if let delegate = self.delegate as? KSArrangeCollectionViewDelegate {
                 delegate.deleteItemAtIndexPath(indexPath)
             }
-            self.deleteItemsAtIndexPaths([indexPath])
+            self.deleteItems(at: [indexPath])
         }
     }
 }

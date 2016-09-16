@@ -12,9 +12,9 @@ public extension UIViewController {
 //    #if DEBUG
 //    #else
 //    #endif
-    public override static func initialize() {
+    open override static func initialize() {
         struct Static {
-            static var token: dispatch_once_t = 0
+            static var token: Int = 0
         }
         // 确保不是子类
         if self !== UIViewController.self {
@@ -41,13 +41,13 @@ public extension UIViewController {
 }
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillShowNotification).subscribeNext {
+        NotificationCenter.default.rx_notification(NSNotification.Name.UIKeyboardWillShow).subscribeNext {
             [weak controller = self.base]  notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {
                 return
             }
-            if let controller = controller as? UIViewController, inputView = controller.ks.findFirstResponder() {
+            if let controller = controller as? UIViewController, let inputView = controller.ks.findFirstResponder() {
                 let userInfo: NSDictionary = notification.userInfo!
                 let keyboardRect = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue
                 let window = UIApplication.sharedApplication().keyWindow
@@ -65,7 +65,7 @@ extension Swifty where Base: UIViewController {
                 }
             }
             }.addDisposableTo(self.disposableBag)
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillHideNotification).subscribeNext {
+        NotificationCenter.default.rx_notification(NSNotification.Name.UIKeyboardWillHide).subscribeNext {
             [weak controller = self.base] notification in
             //进入后台触发某些通知,不响应
             if UIApplication.sharedApplication().applicationState == .Background {

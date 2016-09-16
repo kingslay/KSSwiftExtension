@@ -29,10 +29,10 @@ public extension UIView {
     
     @IBInspectable public var borderColor: UIColor {
         get {
-            return UIColor(CGColor: layer.borderColor!)
+            return UIColor(cgColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue.CGColor
+            layer.borderColor = newValue.cgColor
         }
     }
     
@@ -42,12 +42,12 @@ public extension UIView {
         }
         set {
             if (onePx == true){
-                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 1 / UIScreen.mainScreen().scale)
+                self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: 1 / UIScreen.main.scale)
             }
         }
     }
 }
-public struct KSDirection : OptionSetType {
+public struct KSDirection : OptionSet {
     public let rawValue: UInt
     public init(rawValue: UInt) {
         self.rawValue = rawValue
@@ -66,29 +66,29 @@ extension Swifty where Base: UIView {
         self.base.cornerRadius = self.base.frame.size.width / 2.0
     }
 
-    public func showBorder(direction:KSDirection,margin:CGFloat=0,color:UIColor = UIColor.blackColor(),borderWidth:CGFloat = 1) {
+    public func showBorder(_ direction:KSDirection,margin:CGFloat=0,color:UIColor = UIColor.black,borderWidth:CGFloat = 1) {
         if direction.contains(.top) {
             let layer = CALayer()
             layer.frame = CGRect(x: margin,y: 0,width: base.frame.width-margin,height: borderWidth)
-            layer.backgroundColor = color.CGColor
+            layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.left) {
             let layer = CALayer()
             layer.frame = CGRect(x: 0,y: margin,width: borderWidth,height: base.frame.height-margin)
-            layer.backgroundColor = color.CGColor
+            layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.bottom) {
             let layer = CALayer()
             layer.frame = CGRect(x: margin,y: base.frame.height-borderWidth,width: base.frame.width-margin,height: borderWidth)
-            layer.backgroundColor = color.CGColor
+            layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.right) {
             let layer = CALayer()
             layer.frame = CGRect(x:base.frame.width-borderWidth,y: margin,width: borderWidth,height: base.frame.height-margin)
-            layer.backgroundColor = color.CGColor
+            layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
     }
@@ -97,12 +97,12 @@ extension Swifty where Base: UIView {
         if let window = self.base as? UIWindow {
             return window.rootViewController
         }else{
-            var next = self.base.nextResponder()
+            var next = self.base.next
             while next != nil {
                 if let viewController = next as? UIViewController {
                     return viewController
                 }
-                next = next?.nextResponder()
+                next = next?.next
             }
             return nil
         }
@@ -115,7 +115,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.x
         }
     }
-    public func left(newValue: CGFloat) {
+    public func left(_ newValue: CGFloat) {
         var frame = self.base.frame
         if frame.origin.x != newValue {
             frame.origin.x = newValue
@@ -128,7 +128,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.y
         }
     }
-    public func top(newValue: CGFloat) {
+    public func top(_ newValue: CGFloat) {
         var frame = self.base.frame
         if frame.origin.y != newValue {
             frame.origin.y = newValue
@@ -141,7 +141,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.x + self.base.frame.width
         }
     }
-    public func right(newValue: CGFloat) {
+    public func right(_ newValue: CGFloat) {
         var frame = self.base.frame
         let newRight = newValue - self.base.frame.width
         if frame.origin.x != newRight {
@@ -155,7 +155,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin.y + self.base.frame.height
         }
     }
-    public func bottom(newValue: CGFloat) {
+    public func bottom(_ newValue: CGFloat) {
         var frame = self.base.frame
         let newBottom = newValue - self.base.frame.height
         if frame.origin.y != newBottom {
@@ -176,7 +176,7 @@ extension Swifty where Base: UIView {
             }
         }
     }
-    public func centerX(newValue: CGFloat) {
+    public func centerX(_ newValue: CGFloat) {
         var center = self.base.center
         if center.x != newValue {
             center.x = newValue
@@ -190,7 +190,7 @@ extension Swifty where Base: UIView {
             return self.base.center.y
         }
     }
-    public func centerY(newValue: CGFloat) {
+    public func centerY(_ newValue: CGFloat) {
         var center = self.base.center
         if center.y != newValue {
             center.y = newValue
@@ -203,7 +203,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.width
         }
     }
-    public func width(newValue: CGFloat) {
+    public func width(_ newValue: CGFloat) {
         var frame = self.base.frame
         if frame.width != newValue {
             frame.size.width = newValue
@@ -215,7 +215,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.height
         }
     }
-    public func height(newValue: CGFloat) {
+    public func height(_ newValue: CGFloat) {
         var frame = self.base.frame
         if frame.height != newValue {
             frame.size.height = newValue
@@ -228,7 +228,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.origin
         }
     }
-    public func origin(newValue: CGPoint) {
+    public func origin(_ newValue: CGPoint) {
         var frame = self.base.frame
         if frame.origin != newValue {
             frame.origin = newValue
@@ -241,7 +241,7 @@ extension Swifty where Base: UIView {
             return self.base.frame.size
         }
     }
-    public func size(newValue: CGSize) {
+    public func size(_ newValue: CGSize) {
         var frame = self.base.frame
         if frame.size != newValue {
             frame.size = newValue

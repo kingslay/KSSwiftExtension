@@ -9,9 +9,9 @@
 import Foundation
 private var backBarButtonItemAssociationKey: UInt8 = 0
 public extension UINavigationItem {
-    public override static func initialize() {
+    open override static func initialize() {
         struct Static {
-            static var token: dispatch_once_t = 0
+            static var token: Int = 0
         }
         // 确保不是子类
         if self !== UINavigationItem.self {
@@ -26,7 +26,7 @@ public extension UINavigationItem {
         if item == nil {
             item = objc_getAssociatedObject(self, &backBarButtonItemAssociationKey) as? UIBarButtonItem
             if (item == nil) {
-                item = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+                item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             }
         }
         return item

@@ -10,28 +10,28 @@ import UIKit
 private var disposableBagAssociationKey: UInt8 = 0
 extension Swifty where Base: NSObject {
     public static func className() -> String {
-        return NSStringFromClass(Base).componentsSeparatedByString(".").last!
+        return NSStringFromClass(Base).components(separatedBy: ".").last!
     }
 
     static public func loadXib() -> UIView? {
         return loadXib(className())
     }
-    static public func loadXib(name: String) -> UIView?{
-        return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIView
+    static public func loadXib(_ name: String) -> UIView?{
+        return Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView
     }
     public func className() -> String {
-        return NSStringFromClass(self.base.dynamicType).componentsSeparatedByString(".").last!
+        return NSStringFromClass(type(of: self.base)).components(separatedBy: ".").last!
     }
     public func topView() -> UIView {
-        if self.base.isKindOfClass(UIView) {
+        if self.base.isKind(of: UIView.self) {
             return self.base as! UIView
-        }else if self.base.isKindOfClass(UIViewController) {
+        }else if self.base.isKind(of: UIViewController.self) {
             return (self.base as! UIViewController).view
         }else{
             return Swifty<UIWindow>.topWindow()
         }
     }
-    public func synchronized<T>(@noescape action: () -> T) -> T {
+    public func synchronized<T>(_ action: () -> T) -> T {
         objc_sync_enter(self.base)
         let result = action()
         objc_sync_exit(self.base)

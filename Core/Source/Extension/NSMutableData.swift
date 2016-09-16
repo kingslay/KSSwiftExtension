@@ -9,46 +9,46 @@
 import Foundation
 //大端序
 extension Swifty where Base: NSMutableData {
-    public func appendInt64(value : Int64) {
+    public func appendInt64(_ value : Int64) {
         var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
-    public func appendUInt64(value : UInt64) {
+    public func appendUInt64(_ value : UInt64) {
         var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
 
     
-    public func appendInt32(value : Int32) {
+    public func appendInt32(_ value : Int32) {
         var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
-    public func appendUInt32(value : UInt32) {
+    public func appendUInt32(_ value : UInt32) {
         var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
-    }
-    
-    public func appendInt16(value : Int16) {
-        var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
-    }
-    public func appendUInt16(value : UInt16) {
-        var val = value.bigEndian
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
     
-    public func appendUInt8(value : UInt8) {
+    public func appendInt16(_ value : Int16) {
+        var val = value.bigEndian
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
+    }
+    public func appendUInt16(_ value : UInt16) {
+        var val = value.bigEndian
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
+    }
+    
+    public func appendUInt8(_ value : UInt8) {
         var val = value
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
-    public func appendInt8(value : Int8) {
+    public func appendInt8(_ value : Int8) {
         var val = value
-        self.base.appendBytes(&val, length: sizeofValue(val))
+        self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
     
-    public func appendString(value : String) {
+    public func appendString(_ value : String) {
         value.withCString {
-            self.base.appendBytes($0, length: Int(strlen($0)))
+            self.base.append($0, length: Int(strlen($0)))
         }
     }
 }

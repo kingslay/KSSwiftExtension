@@ -27,27 +27,30 @@ public extension KSCompatible {
 /**
  Extend NSObject with `ks` proxy.
  */
+extension Data: KSCompatible { }
+extension Date: KSCompatible { }
 extension NSObject: KSCompatible { }
+extension URL: KSCompatible { }
 
 public struct KS {
-    public static let SCREEN_BOUND = UIScreen.mainScreen().bounds
+    public static let SCREEN_BOUND = UIScreen.main.bounds
     public static let SCREEN_WIDTH = SCREEN_BOUND.width
     public static let SCREEN_HEIGHT = SCREEN_BOUND.height
-    public static let SCREEN_SCALE = UIScreen.mainScreen().scale
+    public static let SCREEN_SCALE = UIScreen.main.scale
     public static let SCREEN_RATIO = SCREEN_WIDTH/320.0
     public static var isSimulator: Bool = {
-        let device = UIDevice.currentDevice()
-        var simulator = device.model.containsString("Simulator")
+        let device = UIDevice.current
+        var simulator = device.model.contains("Simulator")
         if !simulator {
-            simulator = KS.machineModel.containsString("x86")
+            simulator = KS.machineModel.contains("x86")
         }
         return simulator
     }()
     public static var machineModel: String = {
         var size : Int = 0 // as Ben Stahl noticed in his answer
         sysctlbyname("hw.machine", nil, &size, nil, 0)
-        var machine = [CChar](count: Int(size), repeatedValue: 0)
+        var machine = [CChar](repeating: 0, count: Int(size))
         sysctlbyname("hw.machine", &machine, &size, nil, 0)
-        return String.fromCString(machine)!
+        return String(cString: machine)
     }()
 }

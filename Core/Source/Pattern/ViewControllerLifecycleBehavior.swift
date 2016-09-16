@@ -8,41 +8,41 @@
 
 import UIKit
 protocol ViewControllerLifecycleBehavior {
-    func afterLoading(viewController: UIViewController)
+    func afterLoading(_ viewController: UIViewController)
     
-    func beforeAppearing(viewController: UIViewController)
+    func beforeAppearing(_ viewController: UIViewController)
     
-    func afterAppearing(viewController: UIViewController)
+    func afterAppearing(_ viewController: UIViewController)
     
-    func beforeDisappearing(viewController: UIViewController)
+    func beforeDisappearing(_ viewController: UIViewController)
     
-    func afterDisappearing(viewController: UIViewController)
+    func afterDisappearing(_ viewController: UIViewController)
     
-    func beforeLayingOutSubviews(viewController: UIViewController)
+    func beforeLayingOutSubviews(_ viewController: UIViewController)
     
-    func afterLayingOutSubviews(viewController: UIViewController)
+    func afterLayingOutSubviews(_ viewController: UIViewController)
 }
 extension ViewControllerLifecycleBehavior {
-    func afterLoading(viewController: UIViewController) {}
+    func afterLoading(_ viewController: UIViewController) {}
     
-    func beforeAppearing(viewController: UIViewController) {}
+    func beforeAppearing(_ viewController: UIViewController) {}
     
-    func afterAppearing(viewController: UIViewController) {}
+    func afterAppearing(_ viewController: UIViewController) {}
     
-    func beforeDisappearing(viewController: UIViewController) {}
+    func beforeDisappearing(_ viewController: UIViewController) {}
     
-    func afterDisappearing(viewController: UIViewController) {}
+    func afterDisappearing(_ viewController: UIViewController) {}
     
-    func beforeLayingOutSubviews(viewController: UIViewController) {}
+    func beforeLayingOutSubviews(_ viewController: UIViewController) {}
     
-    func afterLayingOutSubviews(viewController: UIViewController) {}
+    func afterLayingOutSubviews(_ viewController: UIViewController) {}
 }
 struct HideNavigationBarBehavior: ViewControllerLifecycleBehavior {
-    func beforeAppearing(viewController: UIViewController) {
+    func beforeAppearing(_ viewController: UIViewController) {
         viewController.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func beforeDisappearing(viewController: UIViewController) {
+    func beforeDisappearing(_ viewController: UIViewController) {
         viewController.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
@@ -55,16 +55,16 @@ extension UIViewController {
      
      - parameter behaviors: Behaviors to be added.
      */
-    func addBehaviors(behaviors: [ViewControllerLifecycleBehavior]) {
+    func addBehaviors(_ behaviors: [ViewControllerLifecycleBehavior]) {
         let behaviorViewController = LifecycleBehaviorViewController(behaviors: behaviors)
         
         addChildViewController(behaviorViewController)
         view.addSubview(behaviorViewController.view)
-        behaviorViewController.didMoveToParentViewController(self)
+        behaviorViewController.didMove(toParentViewController: self)
     }
     
-    private final class LifecycleBehaviorViewController: UIViewController {
-        private let behaviors: [ViewControllerLifecycleBehavior]
+    fileprivate final class LifecycleBehaviorViewController: UIViewController {
+        fileprivate let behaviors: [ViewControllerLifecycleBehavior]
         
         // MARK: - Initialization
         
@@ -83,14 +83,14 @@ extension UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            view.hidden = true
+            view.isHidden = true
             
             applyBehaviors { behavior, viewController in
                 behavior.afterLoading(viewController)
             }
         }
         
-        override func viewWillAppear(animated: Bool) {
+        override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
             applyBehaviors { behavior, viewController in
@@ -98,7 +98,7 @@ extension UIViewController {
             }
         }
         
-        override func viewDidAppear(animated: Bool) {
+        override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             
             applyBehaviors { behavior, viewController in
@@ -106,7 +106,7 @@ extension UIViewController {
             }
         }
         
-        override func viewWillDisappear(animated: Bool) {
+        override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             
             applyBehaviors { behavior, viewController in
@@ -114,7 +114,7 @@ extension UIViewController {
             }
         }
         
-        override func viewDidDisappear(animated: Bool) {
+        override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
             
             applyBehaviors { behavior, viewController in
@@ -140,11 +140,11 @@ extension UIViewController {
         
         // MARK: - Private
         
-        private func applyBehaviors(@noescape body: (behavior: ViewControllerLifecycleBehavior, viewController: UIViewController) -> Void) {
-            guard let parentViewController = parentViewController else { return }
+        fileprivate func applyBehaviors(_ body: (_ behavior: ViewControllerLifecycleBehavior, _ viewController: UIViewController) -> Void) {
+            guard let parentViewController = parent else { return }
             
             for behavior in behaviors {
-                body(behavior: behavior, viewController: parentViewController)
+                body(behavior, parentViewController)
             }
         }
     }

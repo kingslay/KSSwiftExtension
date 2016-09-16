@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
-    public func relatedViewFor(inputView: UIView) -> UIView {
+    public func relatedViewFor(_ inputView: UIView) -> UIView {
         return inputView
     }
 }
@@ -18,8 +18,8 @@ extension Swifty where Base: UIViewController {
     static public func loadXib() -> UIViewController? {
         return loadXib(self.className())
     }
-    static public func loadXib(name: String) -> UIViewController?{
-        return NSBundle.mainBundle().loadNibNamed(name, owner: nil, options: nil).first as? UIViewController
+    static public func loadXib(_ name: String) -> UIViewController?{
+        return Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIViewController
     }
     public func navigationController() -> UINavigationController?{
         if let nav = self.base as? UINavigationController {
@@ -33,9 +33,9 @@ extension Swifty where Base: UIViewController {
     public func findFirstResponder() -> UIView? {
         return recursionTraverseFindFirstResponderIn(self.base.view)
     }
-    private func recursionTraverseFindFirstResponderIn(view: UIView) -> UIView? {
+    fileprivate func recursionTraverseFindFirstResponderIn(_ view: UIView) -> UIView? {
         for subView in view.subviews {
-            if subView.isFirstResponder() {
+            if subView.isFirstResponder {
                 return subView
             }
             if let subView = recursionTraverseFindFirstResponderIn(subView) {

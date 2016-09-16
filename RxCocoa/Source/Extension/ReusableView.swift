@@ -24,7 +24,7 @@ public extension Swifty where Base: UITableViewCell {
             }
         }
     }
-    private func prepareForReusedisposableBag(newValue: DisposeBag) {
+    fileprivate func prepareForReusedisposableBag(_ newValue: DisposeBag) {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
@@ -48,7 +48,7 @@ public extension Swifty where Base: UICollectionReusableView {
             }
         }
     }
-    private func prepareForReusedisposableBag(newValue: DisposeBag) {
+    fileprivate func prepareForReusedisposableBag(_ newValue: DisposeBag) {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {

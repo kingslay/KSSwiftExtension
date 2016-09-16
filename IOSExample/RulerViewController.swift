@@ -14,7 +14,7 @@ class RulerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         rulerView.showRulerScrollViewWithCount(200, beginValue: 100, endValue: 300)
         rulerView.currentValue = 190

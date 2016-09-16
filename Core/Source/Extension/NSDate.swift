@@ -9,27 +9,27 @@
 import Foundation
 import ObjectiveC
 
-public func - (lhs: NSDate, rhs: NSDate) -> NSTimeInterval {
-    return lhs.timeIntervalSinceDate(rhs)
+public func - (lhs: Date, rhs: Date) -> TimeInterval {
+    return lhs.timeIntervalSince(rhs)
 }
-extension Swifty where Base: NSDate {
+extension Swifty where Base: Date {
     
     public func toString() -> String {
-        return self.toString(dateStyle: .ShortStyle, timeStyle: .ShortStyle, doesRelativeDateFormatting: false)
+        return self.toString(dateStyle: .short, timeStyle: .short, doesRelativeDateFormatting: false)
     }
     
-    public func toString(dateStyle dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, doesRelativeDateFormatting: Bool = false) -> String
+    public func toString(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, doesRelativeDateFormatting: Bool = false) -> String
     {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
         formatter.doesRelativeDateFormatting = doesRelativeDateFormatting
-        return formatter.stringFromDate(self.base)
+        return formatter.string(from: self.base)
     }
     
-    public func relativeTimeToString(containTime: Bool = false) -> String
+    public func relativeTimeToString(_ containTime: Bool = false) -> String
     {
-        let timeInterval = NSDate() - self.base
+        let timeInterval = Date() - self.base
         if timeInterval < 86400 {
             return self.stringFromFormat("HH:mm")
         }else if timeInterval < 2*86400 {
@@ -51,10 +51,10 @@ extension Swifty where Base: NSDate {
             return self.stringFromFormat("yy/MM/dd")
         }
     }
-    public func stringFromFormat(format: String) -> String {
-        let formatter = NSDateFormatter()
+    public func stringFromFormat(_ format: String) -> String {
+        let formatter = DateFormatter()
         formatter.dateFormat = format
-        return formatter.stringFromDate(self.base)
+        return formatter.string(from: self.base)
     }
 }
 

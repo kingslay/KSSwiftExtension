@@ -9,11 +9,11 @@
 import UIKit
 
 extension Swifty where Base: UIColor {
-    static public func colorFrom(colorString: String) -> UIColor {
-        let leftParenCharset: NSCharacterSet = NSCharacterSet(charactersInString: "( ")
-        let commaCharset: NSCharacterSet = NSCharacterSet(charactersInString: ", ")
+    static public func colorFrom(_ colorString: String) -> UIColor {
+        let leftParenCharset: CharacterSet = CharacterSet(charactersIn: "( ")
+        let commaCharset: CharacterSet = CharacterSet(charactersIn: ", ")
 
-        let colorString = colorString.lowercaseString
+        let colorString = colorString.lowercased()
 
         if colorString.hasPrefix("#")
         {
@@ -22,8 +22,7 @@ extension Swifty where Base: UIColor {
             var length = colorString.count
             var index = colorString.startIndex
             let endIndex = colorString.endIndex
-
-            index = index.advancedBy(1)
+            index = colorString.index(index, offsetBy:1)
             length = length - 1
 
             if length == 3 || length == 6 || length == 8
@@ -32,7 +31,7 @@ extension Swifty where Base: UIColor {
                 while index < endIndex
                 {
                     var c = colorString[index]
-                    index = index.advancedBy(1)
+                    index = colorString.index(index, offsetBy:1)
 
                     var val = (c.value >= 0x61 && c.value <= 0x66) ? (c.value - 0x61 + 10) : c.value - 0x30
                     argb[i] = UInt(val) * 16
@@ -43,8 +42,7 @@ extension Swifty where Base: UIColor {
                     else
                     {
                         c = colorString[index]
-                        index = index.advancedBy(1)
-
+                        index = colorString.index(index, offsetBy:1)
                         val = (c.value >= 0x61 && c.value <= 0x66) ? (c.value - 0x61 + 10) : c.value - 0x30
                         argb[i] = argb[i] + UInt(val)
                     }
@@ -61,15 +59,15 @@ extension Swifty where Base: UIColor {
             var r: Int32 = 0
             var g: Int32 = 0
             var b: Int32 = 0
-            let scanner: NSScanner = NSScanner(string: colorString)
-            scanner.scanString("rgba", intoString: nil)
-            scanner.scanCharactersFromSet(leftParenCharset, intoString: nil)
-            scanner.scanInt(&r)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&g)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&b)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
+            let scanner: Scanner = Scanner(string: colorString)
+            scanner.scanString("rgba", into: nil)
+            scanner.scanCharacters(from: leftParenCharset, into: nil)
+            scanner.scanInt32(&r)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&g)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&b)
+            scanner.scanCharacters(from: commaCharset, into: nil)
             scanner.scanFloat(&a)
             return UIColor(
                 red: CGFloat(r) / 255.0,
@@ -84,16 +82,16 @@ extension Swifty where Base: UIColor {
             var r: Int32 = 0
             var g: Int32 = 0
             var b: Int32 = 0
-            let scanner: NSScanner = NSScanner(string: colorString)
-            scanner.scanString("argb", intoString: nil)
-            scanner.scanCharactersFromSet(leftParenCharset, intoString: nil)
+            let scanner: Scanner = Scanner(string: colorString)
+            scanner.scanString("argb", into: nil)
+            scanner.scanCharacters(from: leftParenCharset, into: nil)
             scanner.scanFloat(&a)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&r)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&g)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&b)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&r)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&g)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&b)
             return UIColor(
                 red: CGFloat(r) / 255.0,
                 green: CGFloat(g) / 255.0,
@@ -106,14 +104,14 @@ extension Swifty where Base: UIColor {
             var r: Int32 = 0
             var g: Int32 = 0
             var b: Int32 = 0
-            let scanner: NSScanner = NSScanner(string: colorString)
-            scanner.scanString("rgb", intoString: nil)
-            scanner.scanCharactersFromSet(leftParenCharset, intoString: nil)
-            scanner.scanInt(&r)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&g)
-            scanner.scanCharactersFromSet(commaCharset, intoString: nil)
-            scanner.scanInt(&b)
+            let scanner: Scanner = Scanner(string: colorString)
+            scanner.scanString("rgb", into: nil)
+            scanner.scanCharacters(from: leftParenCharset, into: nil)
+            scanner.scanInt32(&r)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&g)
+            scanner.scanCharacters(from: commaCharset, into: nil)
+            scanner.scanInt32(&b)
             return UIColor(
                 red: CGFloat(r) / 255.0,
                 green: CGFloat(g) / 255.0,
@@ -122,7 +120,7 @@ extension Swifty where Base: UIColor {
             )
         }
 
-        return UIColor.clearColor()
+        return UIColor.clear
     }
 
     public func toHexString() -> String {
@@ -135,14 +133,14 @@ extension Swifty where Base: UIColor {
         return String(format:"#%06x", rgb)
     }
 
-    public static func createImage(color: UIColor) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+    public static func createImage(_ color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
 }

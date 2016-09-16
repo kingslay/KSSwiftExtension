@@ -8,8 +8,8 @@
 
 import UIKit
 extension Swifty where Base: UIImage {
-    public func transformtoScale(scale: CGFloat) -> UIImage {
-        return UIImage(CGImage: self.base.CGImage!, scale: scale, orientation: UIImageOrientation.Up)
+    public func transformtoScale(_ scale: CGFloat) -> UIImage {
+        return UIImage(cgImage: self.base.cgImage!, scale: scale, orientation: UIImageOrientation.up)
         
 //        // 创建一个bitmap的context
 //        UIGraphicsBeginImageContext(size)
@@ -30,22 +30,22 @@ extension Swifty where Base: UIImage {
         }
         return returnMe
     }
-    public static func image(sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
+    public static func image(_ sourceImage: UIImage,scaledToWidth:CGFloat) -> UIImage {
         let oldWidth = sourceImage.size.width
         let scaleFactor = scaledToWidth/oldWidth
         let newHeight = sourceImage.size.height*scaleFactor
         let newWidth = oldWidth * scaleFactor
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-        sourceImage.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        sourceImage.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
-    public static func imageFrom(view :UIView) -> UIImage {
+    public static func imageFrom(_ view :UIView) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0.0)
-        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
 }

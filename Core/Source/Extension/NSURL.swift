@@ -7,9 +7,9 @@
 //
 
 import Foundation
-extension Swifty where Base: NSURL {
+extension Swifty where Base: URL {
     func getParams()->[String:String]{
-        let components = NSURLComponents(URL: self.base, resolvingAgainstBaseURL: false)
+        let components = URLComponents(url: self.base, resolvingAgainstBaseURL: false)
         var dict = [String:String]()
         components?.queryItems?.forEach {
             dict[$0.name] = $0.value ?? ""
