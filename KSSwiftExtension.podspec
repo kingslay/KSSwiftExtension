@@ -19,12 +19,12 @@ Pod::Spec.new do |s|
   s.subspec "RxSwift" do |ss|
     ss.source_files  = "RxSwift/Source/**/*.swift"
     ss.dependency "KSSwiftExtension/Core"
-    ss.dependency "RxSwift"
+    ss.dependency 'RxSwift', '~> 3.0.0-beta.2'
   end
   s.subspec "RxCocoa" do |ss|
     ss.source_files  = "RxCocoa/Source/**/*.swift"
     ss.dependency "KSSwiftExtension/RxSwift"
-    ss.dependency "RxCocoa"
+    ss.dependency "RxCocoa", '~> 3.0.0-beta.2'
   end
   s.subspec "ViewKit" do |ss|
     ss.source_files  = "ViewKit/Source/**/*.swift"
