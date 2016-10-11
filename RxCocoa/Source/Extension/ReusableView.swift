@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 private var prepareForReusedisposableBagAssociationKey: UInt8 = 0
 
 public extension Swifty where Base: UITableViewCell {
@@ -27,8 +28,9 @@ public extension Swifty where Base: UITableViewCell {
     fileprivate func prepareForReusedisposableBag(_ newValue: DisposeBag) {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
-                [unowned cell = self.base as UITableViewCell] _ in
+            let cell = self.base as UITableViewCell
+            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
+                [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
                 }.addDisposableTo(newValue)
         }
@@ -51,8 +53,9 @@ public extension Swifty where Base: UICollectionReusableView {
     fileprivate func prepareForReusedisposableBag(_ newValue: DisposeBag) {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            self.base.rx_sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
-                [unowned cell = self.base as UICollectionReusableView] _ in
+            let cell = self.base as UICollectionReusableView
+            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
+                [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
                 }.addDisposableTo(newValue)
         }

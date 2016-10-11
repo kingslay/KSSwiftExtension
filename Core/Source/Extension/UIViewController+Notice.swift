@@ -3,7 +3,7 @@ import UIKit
 extension Swifty where Base: UIViewController {
     /// wait with your own animated images
     public func pleaseWaitWithImages(_ text: String, imageNames: Array<UIImage>, timeInterval: Int) {
-        SwiftNotice.wait(text, imageNames: imageNames, timeInterval: timeInterval)
+        SwiftNotice.wait(text, imageNames: imageNames, timeInterval: Double(timeInterval))
     }
     // api changed from v3.3
     public func noticeTop(_ text: String, autoClear: Bool = true, autoClearTime: Int = 0) {
@@ -102,7 +102,7 @@ class SwiftNotice: NSObject {
             self.perform(selector, with: window, afterDelay: TimeInterval(getClearTime(text,autoClearTime: autoClearTime)))
         }
     }
-    static func wait(_ text: String = "", imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) {
+    static func wait(_ text: String = "", imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Double = 0) {
         var frame = CGRect(x: 0, y: 0, width: 78, height: 78)
         let window = UIWindow()
         window.backgroundColor = UIColor.clear
@@ -116,13 +116,13 @@ class SwiftNotice: NSObject {
                 iv.image = imageNames.first!
                 iv.contentMode = UIViewContentMode.scaleAspectFit
                 mainView.addSubview(iv)
-                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) /*Migrator FIXME: Use DispatchSourceTimer to avoid the cast*/ as! DispatchSource
-                timer.setTimer(start: DispatchTime.now(), interval: UInt64(timeInterval) * NSEC_PER_MSEC, leeway: 0)
-                timer.setEventHandler(handler: { () -> Void in
+                timer = DispatchSource.makeTimerSource(queue: .main) as! DispatchSource
+                timer.scheduleRepeating(deadline: .now(), interval: timeInterval)
+                timer.setEventHandler {
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
                     timerTimes = timerTimes+1
-                })
+                }
                 timer.resume()
             }
         } else {

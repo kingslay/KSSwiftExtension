@@ -8,8 +8,8 @@
 
 import Foundation
 extension Swifty where Base: Sequence {
-    typealias Element = Base.Generator.Element
-    
+    typealias Element = Base.Iterator.Element
+
     func partitionBy(fu: (Element)->Bool)->([Element],[Element]){
         var first=[Element]()
         var second=[Element]()

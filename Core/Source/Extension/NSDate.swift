@@ -8,11 +8,19 @@
 
 import Foundation
 import ObjectiveC
-
 public func - (lhs: Date, rhs: Date) -> TimeInterval {
     return lhs.timeIntervalSince(rhs)
 }
-extension Swifty where Base: Date {
+extension Date: KSCompatible {
+    public var ks: SwiftyDate {
+        return SwiftyDate(self)
+    }
+}
+public struct SwiftyDate {
+    let date: Date
+    public init(_ date: Date) {
+        self.date = date
+    }
     
     public func toString() -> String {
         return self.toString(dateStyle: .short, timeStyle: .short, doesRelativeDateFormatting: false)
@@ -24,12 +32,12 @@ extension Swifty where Base: Date {
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
         formatter.doesRelativeDateFormatting = doesRelativeDateFormatting
-        return formatter.string(from: self.base)
+        return formatter.string(from: self.date)
     }
     
     public func relativeTimeToString(_ containTime: Bool = false) -> String
     {
-        let timeInterval = Date() - self.base
+        let timeInterval = Date() - self.date
         if timeInterval < 86400 {
             return self.stringFromFormat("HH:mm")
         }else if timeInterval < 2*86400 {
@@ -54,7 +62,7 @@ extension Swifty where Base: Date {
     public func stringFromFormat(_ format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return formatter.string(from: self.base)
+        return formatter.string(from: self.date)
     }
 }
 

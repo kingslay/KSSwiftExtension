@@ -7,13 +7,23 @@
 //
 
 import Foundation
-extension Swifty where Base: URL {
+
+extension URL: KSCompatible {
+    public var ks: SwiftyURL {
+        return SwiftyURL(self)
+    }
+}
+public struct SwiftyURL {
+    let url: URL
+    public init(_ url: URL) {
+        self.url = url
+    }
     func getParams()->[String:String]{
-        let components = URLComponents(url: self.base, resolvingAgainstBaseURL: false)
         var dict = [String:String]()
-        components?.queryItems?.forEach {
+        URLComponents(url: self.url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
             dict[$0.name] = $0.value ?? ""
         }
         return dict
     }
 }
+

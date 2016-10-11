@@ -10,7 +10,7 @@ import Foundation
 open class Mediator {
     open static func performAction(_ url: URL,completion: ((NSDictionary?) -> Void)? ) -> AnyObject? {
         if let host = url.host, url.path.hasPrefix("native") {
-            let result = perform(host, actionName: url.path, params: url.ks.getParams())
+            let result = perform(host, actionName: url.path, params: url.ks.getParams() as NSDictionary)
             if let completion = completion {
                 if let result = result {
                     completion(["result":result])

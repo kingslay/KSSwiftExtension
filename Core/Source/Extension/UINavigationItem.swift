@@ -10,14 +10,11 @@ import Foundation
 private var backBarButtonItemAssociationKey: UInt8 = 0
 public extension UINavigationItem {
     open override static func initialize() {
-        struct Static {
-            static var token: Int = 0
-        }
         // 确保不是子类
         if self !== UINavigationItem.self {
             return
         }
-        dispatch_once(&Static.token) {
+        DispatchQueue.once(token: NSUUID().uuidString) {
             KS.swizzleInstanceMethod(self, sel1: "backBarButtonItem", sel2: "ksbackBarbuttonItem")
         }
     }

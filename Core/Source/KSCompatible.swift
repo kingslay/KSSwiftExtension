@@ -6,7 +6,7 @@
 //
 //
 
-public struct Swifty<Base> {
+public struct Swifty<Base>{
     public var base: Base
     public init(_ base: Base) {
         self.base = base
@@ -15,10 +15,15 @@ public struct Swifty<Base> {
 
 public protocol KSCompatible {
     associatedtype CompatibleType
+    static var ks: Swifty<CompatibleType>.Type { get }
     var ks: Swifty<CompatibleType> { get }
 }
 
 public extension KSCompatible {
+    public static var ks: Swifty<Self>.Type {
+        return Swifty<Self>.self
+    }
+
     public var ks: Swifty<Self> {
         return Swifty(self)
     }
@@ -27,10 +32,8 @@ public extension KSCompatible {
 /**
  Extend NSObject with `ks` proxy.
  */
-extension Data: KSCompatible { }
-extension Date: KSCompatible { }
+import Foundation
 extension NSObject: KSCompatible { }
-extension URL: KSCompatible { }
 
 public struct KS {
     public static let SCREEN_BOUND = UIScreen.main.bounds

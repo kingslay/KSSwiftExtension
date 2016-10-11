@@ -3,10 +3,10 @@ use_frameworks!
 platform :ios,8.0
 def default_pods
     pod 'KSSwiftExtension', :path => "../"
-#    pod 'KSSwiftExtension/RxCocoa', :path => "../"
-#    pod 'KSSwiftExtension/ViewKit', :path => "../"
-#    pod 'RxSwift', '~> 3.0.0.alpha.1'
-#    pod 'RxCocoa', '~> 3.0.0-beta.1'
+    pod 'KSSwiftExtension/RxCocoa', :path => "../"
+    pod 'KSSwiftExtension/ViewKit', :path => "../"
+    pod 'RxSwift', '~> 3.0.0-beta.2'
+    pod 'RxCocoa', '~> 3.0.0-beta.2'
 end
 target 'IOSExample' do
     default_pods
