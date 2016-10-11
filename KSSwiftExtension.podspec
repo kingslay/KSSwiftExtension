@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'KSSwiftExtension'
-  s.version          = '1.1.7'
+  s.version          = '2.0.0'
   s.summary          = "UIKit 's Extension"
   s.description      = <<-DESC
     KSSwiftExtension is a Extension of UIKit
