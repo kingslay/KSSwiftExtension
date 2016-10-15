@@ -18,27 +18,27 @@ public protocol BluetoothDelegate : NSObjectProtocol{
 }
 //extension BluetoothDelegate where Self: UIViewController, Self: CBPeripheralDelegate {
 extension UIViewController: BluetoothDelegate,CBCentralManagerDelegate,CBPeripheralDelegate {
-    public var serviceUUIDs: [CBUUID]? {
+    open var serviceUUIDs: [CBUUID]? {
         get{
             return nil
         }
     }
 
-    public func scanForPeripherals(_ central: CBCentralManager) {
+    open func scanForPeripherals(_ central: CBCentralManager) {
         central.scanForPeripherals(withServices: nil, options: nil)
     }
 
-    public func characteristicUUIDs(_ service: CBUUID) -> [CBUUID]? {
+    open func characteristicUUIDs(_ service: CBUUID) -> [CBUUID]? {
         return nil
     }
-    public func didDiscoverPeripheral(_ peripheral: CBPeripheral) {
+    open func didDiscoverPeripheral(_ peripheral: CBPeripheral) {
 
     }
-    public func didDiscoverCharacteristicsForService(_ characteristic: CBCharacteristic) {
+    open func didDiscoverCharacteristicsForService(_ characteristic: CBCharacteristic) {
 
     }
 
-    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    open func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             self.scanForPeripherals(central)
         }else if central.state == .poweredOn {
@@ -58,18 +58,18 @@ extension UIViewController: BluetoothDelegate,CBCentralManagerDelegate,CBPeriphe
         }
 
     }
-    public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    open func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         self.didDiscoverPeripheral(peripheral)
     }
-    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    open func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.discoverServices(serviceUUIDs)
     }
-    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    open func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print(error)
     }
 
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)
+    open func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)
     {
         if let services = peripheral.services {
             for service in services {
@@ -77,7 +77,7 @@ extension UIViewController: BluetoothDelegate,CBCentralManagerDelegate,CBPeriphe
             }
         }
     }
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+    open func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 self.didDiscoverCharacteristicsForService(characteristic)

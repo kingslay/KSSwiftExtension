@@ -33,6 +33,9 @@ extension String {
     public subscript (r: Range<Int>) -> String {
         return substring(with: self.characters.index(self.startIndex, offsetBy: r.lowerBound) ..< self.characters.index(self.startIndex, offsetBy: r.upperBound))
     }
+    public subscript (r: ClosedRange<Int>) -> String {
+        return self[r.lowerBound ..< r.upperBound+1]
+    }
     public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluate(with: self)
     }

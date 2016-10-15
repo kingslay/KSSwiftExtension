@@ -8,25 +8,105 @@
 
 import Foundation
 import ObjectiveC
+extension DateComponents {
+    /// Define a list of all calendar components as a set
+    internal static let allComponentsSet: Set<Calendar.Component> = [.nanosecond, .second, .minute, .hour,.day, .month, .year, .yearForWeekOfYear, .weekOfYear, .weekday, .quarter, .weekdayOrdinal,.weekOfMonth,.calendar]
+
+
+    /// Define a list of all calendar components as array
+    internal static let allComponents: [Calendar.Component] =  [.nanosecond, .second, .minute, .hour,.day, .month, .year, .yearForWeekOfYear, .weekOfYear, .weekday, .quarter, .weekdayOrdinal,.weekOfMonth,.calendar]
+}
+
 public func - (lhs: Date, rhs: Date) -> TimeInterval {
     return lhs.timeIntervalSince(rhs)
 }
-extension Date: KSCompatible {
+public prefix func - (dateComponents: DateComponents) -> DateComponents {
+    var invertedCmps = DateComponents()
+
+    DateComponents.allComponents.forEach { component in
+        let value = dateComponents.value(for: component)
+        if value != nil && value != Int(NSDateComponentUndefined) {
+            invertedCmps.setValue(-value!, for: component)
+        }
+    }
+    return invertedCmps
+}
+public func - (lhs: Date, rhs: DateComponents) -> Date {
+    return lhs + (-rhs)
+}
+
+public func + (lhs: Date, rhs: DateComponents) -> Date {
+    return lhs.ks.add(components: rhs)
+}
+
+public func + (lhs: Date, rhs: TimeInterval) -> Date {
+    return lhs.addingTimeInterval(rhs)
+}
+
+public func - (lhs: Date, rhs: TimeInterval) -> Date {
+    return lhs.addingTimeInterval(-rhs)
+}
+
+public func + (lhs: Date, rhs: [Calendar.Component : Int]) -> Date {
+    return lhs.ks.add(components: Date.componentsFrom(values: rhs))
+}
+public func - (lhs: Date, rhs: [Calendar.Component : Int]) -> Date {
+    return lhs.ks.add(components: Date.componentsFrom(values: rhs, multipler: -1))
+}
+extension Date {
     public var ks: SwiftyDate {
         return SwiftyDate(self)
+    }
+    internal static func componentsFrom(values: [Calendar.Component : Int], multipler: Int = 1) -> DateComponents {
+        var cmps = DateComponents()
+        cmps.calendar = NSCalendar.current
+        cmps.timeZone = TimeZone.current
+        values.forEach { key,value in
+            if key != .timeZone && key != .calendar {
+                cmps.setValue( multipler*value, for: key)
+            }
+        }
+        return cmps
     }
 }
 public struct SwiftyDate {
     let date: Date
+    public var dateComponents: DateComponents
+    public var weekOfYear: Int {
+        return dateComponents.weekOfYear!
+    }
+    public var year: Int {
+        return dateComponents.year!
+    }
+    public var month: Int {
+        return dateComponents.month!
+    }
+    public var day: Int {
+        return dateComponents.day!
+    }
+    public var hour: Int {
+        return dateComponents.hour!
+    }
+    public var minute: Int {
+        return dateComponents.minute!
+    }
+    public var second: Int {
+        return dateComponents.second!
+    }
     public init(_ date: Date) {
         self.date = date
+        self.dateComponents = NSCalendar.current.dateComponents(DateComponents.allComponentsSet, from: date)
+        self.dateComponents.timeZone = TimeZone.current
     }
-    
+    public func add(components: DateComponents) -> Date {
+        let nextDate = dateComponents.calendar!.date(byAdding: components, to: date)
+        return nextDate!
+    }
     public func toString() -> String {
-        return self.toString(dateStyle: .short, timeStyle: .short, doesRelativeDateFormatting: false)
+        return self.toString(.short, timeStyle: .short, doesRelativeDateFormatting: false)
     }
     
-    public func toString(dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, doesRelativeDateFormatting: Bool = false) -> String
+    public func toString(_ dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, doesRelativeDateFormatting: Bool = false) -> String
     {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
@@ -39,30 +119,29 @@ public struct SwiftyDate {
     {
         let timeInterval = Date() - self.date
         if timeInterval < 86400 {
-            return self.stringFromFormat("HH:mm")
+            return self.string(fromFormat:"HH:mm")
         }else if timeInterval < 2*86400 {
             if containTime {
-                 "\("昨天".localized)\(self.stringFromFormat(" HH:mm"))"
+                 "\("昨天".localized)\(self.string(fromFormat:" HH:mm"))"
             }else{
                 return "昨天".localized
             }
         }else if timeInterval < 7*86400 {
             if containTime {
-                return self.stringFromFormat("EEE HH:mm")
+                return self.string(fromFormat:"EEE HH:mm")
             }else{
-                return self.stringFromFormat("EEE")
+                return self.string(fromFormat:"EEE")
             }
         }
         if containTime {
-            return self.stringFromFormat("yy/MM/dd HH:mm")
+            return self.string(fromFormat:"yy/MM/dd HH:mm")
         }else{
-            return self.stringFromFormat("yy/MM/dd")
+            return self.string(fromFormat:"yy/MM/dd")
         }
     }
-    public func stringFromFormat(_ format: String) -> String {
+    public func string(fromFormat: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = format
+        formatter.dateFormat = fromFormat
         return formatter.string(from: self.date)
     }
 }
-

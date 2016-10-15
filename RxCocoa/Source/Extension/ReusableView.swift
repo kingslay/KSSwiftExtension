@@ -29,10 +29,10 @@ public extension Swifty where Base: UITableViewCell {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let cell = self.base as UITableViewCell
-            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
+            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribe(onNext: {
                 [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
-                }.addDisposableTo(newValue)
+                }).addDisposableTo(newValue)
         }
     }
 }
@@ -54,10 +54,10 @@ public extension Swifty where Base: UICollectionReusableView {
         self.synchronized {
             objc_setAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let cell = self.base as UICollectionReusableView
-            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribeNext {
+            cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribe(onNext: {
                 [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
-                }.addDisposableTo(newValue)
+                }).addDisposableTo(newValue)
         }
     }
 }

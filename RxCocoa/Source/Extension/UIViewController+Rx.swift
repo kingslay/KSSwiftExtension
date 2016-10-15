@@ -28,17 +28,17 @@ public extension UIViewController {
     public func ksviewDidLoad() {
         self.ksviewDidLoad()
         let message = "[标题:\(self.title)],[类:\(self.ks.className()))]"
-        self.rx.deallocating.subscribeNext {
+        self.rx.deallocating.subscribe(onNext: {
             if KS.isSimulator {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }.addDisposableTo(self.ks.disposableBag)
+        }).addDisposableTo(self.ks.disposableBag)
     }
 }
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow).subscribeNext {
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow).subscribe(onNext: {
             [weak controller = self.base]  notification in
             //进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
@@ -61,8 +61,8 @@ extension Swifty where Base: UIViewController {
                     }
                 }
             }
-            }.addDisposableTo(self.disposableBag)
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide).subscribeNext {
+            }).addDisposableTo(self.disposableBag)
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide).subscribe(onNext: {
             [weak controller = self.base] notification in
             //进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
@@ -76,6 +76,6 @@ extension Swifty where Base: UIViewController {
                     controller.view.bounds = frame
                 })
             }
-            }.addDisposableTo(self.disposableBag)
+            }).addDisposableTo(self.disposableBag)
     }
 }

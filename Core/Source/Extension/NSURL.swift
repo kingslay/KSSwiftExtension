@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URL: KSCompatible {
+extension URL {
     public var ks: SwiftyURL {
         return SwiftyURL(self)
     }

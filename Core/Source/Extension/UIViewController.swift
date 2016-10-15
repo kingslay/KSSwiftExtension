@@ -8,12 +8,6 @@
 
 import UIKit
 
-extension UIViewController {
-    ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
-    public func relatedViewFor(_ inputView: UIView) -> UIView {
-        return inputView
-    }
-}
 extension Swifty where Base: UIViewController {
     static public func loadXib() -> UIViewController? {
         return loadXib(self.className())
@@ -43,5 +37,12 @@ extension Swifty where Base: UIViewController {
             }
         }
         return nil
+    }
+}
+
+extension UIViewController {
+    ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
+    open func relatedViewFor(_ inputView: UIView) -> UIView {
+        return inputView
     }
 }
