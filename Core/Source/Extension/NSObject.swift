@@ -28,7 +28,7 @@ extension Swifty where Base: NSObject {
         }else if self.base.isKind(of: UIViewController.self) {
             return (self.base as! UIViewController).view
         }else{
-            return Swifty<UIWindow>.topWindow()
+            return UIWindow.ks.topWindow()
         }
     }
     public func synchronized<T>(_ action: () -> T) -> T {

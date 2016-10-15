@@ -26,7 +26,7 @@ extension Swifty where Base: UIImage {
         var returnMe = self.base
         let width = KS.SCREEN_WIDTH * KS.SCREEN_SCALE
         if returnMe.size.width > width {
-            returnMe = Swifty<UIImage>.image(returnMe, scaledToWidth: width) as! Base
+            returnMe = UIImage.ks.image(returnMe, scaledToWidth: width) as! Base
         }
         return returnMe
     }
