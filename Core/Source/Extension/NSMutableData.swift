@@ -41,6 +41,11 @@ extension Swifty where Base: NSMutableData {
         var val = value
         self.base.append(&val, length: MemoryLayout.size(ofValue: val))
     }
+    public func appendUInt8(_ values : [UInt8]) {
+        for value in values {
+            appendUInt8(value)
+        }
+    }
     public func appendInt8(_ value : Int8) {
         var val = value
         self.base.append(&val, length: MemoryLayout.size(ofValue: val))

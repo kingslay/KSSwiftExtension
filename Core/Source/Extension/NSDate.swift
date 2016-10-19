@@ -48,20 +48,20 @@ public func - (lhs: Date, rhs: TimeInterval) -> Date {
 }
 
 public func + (lhs: Date, rhs: [Calendar.Component : Int]) -> Date {
-    return lhs.ks.add(components: Date.componentsFrom(values: rhs))
+    return lhs.ks.add(components: Date.components(fromValues: rhs))
 }
 public func - (lhs: Date, rhs: [Calendar.Component : Int]) -> Date {
-    return lhs.ks.add(components: Date.componentsFrom(values: rhs, multipler: -1))
+    return lhs.ks.add(components: Date.components(fromValues: rhs, multipler: -1))
 }
 extension Date {
     public var ks: SwiftyDate {
         return SwiftyDate(self)
     }
-    internal static func componentsFrom(values: [Calendar.Component : Int], multipler: Int = 1) -> DateComponents {
+    internal static func components(fromValues: [Calendar.Component : Int], multipler: Int = 1) -> DateComponents {
         var cmps = DateComponents()
         cmps.calendar = NSCalendar.current
         cmps.timeZone = TimeZone.current
-        values.forEach { key,value in
+        fromValues.forEach { key,value in
             if key != .timeZone && key != .calendar {
                 cmps.setValue( multipler*value, for: key)
             }
@@ -97,6 +97,15 @@ public struct SwiftyDate {
         self.date = date
         self.dateComponents = NSCalendar.current.dateComponents(DateComponents.allComponentsSet, from: date)
         self.dateComponents.timeZone = TimeZone.current
+    }
+    public func date(fromValues: [Calendar.Component : Int]) -> Date {
+        var dateComponents = self.dateComponents
+        fromValues.forEach { key,value in
+            if key != .timeZone && key != .calendar {
+                dateComponents.setValue(value, for: key)
+            }
+        }
+        return NSCalendar.autoupdatingCurrent.date(from:dateComponents)!
     }
     public func add(components: DateComponents) -> Date {
         let nextDate = dateComponents.calendar!.date(byAdding: components, to: date)
