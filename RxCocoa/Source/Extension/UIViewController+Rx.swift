@@ -9,25 +9,21 @@
 import UIKit
 import RxCocoa
 public extension UIViewController {
-//    #if DEBUG
-//    #else
-//    #endif
-    open override static func initialize() {
-        // 确保不是子类
-        if self !== UIViewController.self {
-            return
-        }
-//        _isReleaseAssertConfiguration()
-//        _isFastAssertConfiguration()
+    private static let runOnce: Void = {
         if _isDebugAssertConfiguration() {
-            DispatchQueue.once(token: NSUUID().uuidString) {
-                KS.swizzleInstanceMethod(self, sel1: "viewDidLoad", sel2: "ksviewDidLoad")
+            KS.swizzleInstanceMethod(NSClassFromString("UIViewController")!, sel1: "motionBegan:withEvent:", sel2: "ksmotionBegan:with:")
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil, queue: nil){ _ in
+                UIApplication.shared.applicationSupportsShakeToEdit = true
             }
         }
+    }()
+    override open var next: UIResponder? {
+        UIViewController.runOnce
+        return super.next
     }
     public func ksviewDidLoad() {
         self.ksviewDidLoad()
-        let message = "[标题:\(self.title)],[类:\(self.ks.className()))]"
+        let message = "[标题:\(String(describing: self.title))],[类:\(self.ks.className()))]"
         self.rx.deallocating.subscribe(onNext: {
             if KS.isSimulator {
                 KSDebugStatusBar.post(message)
@@ -44,8 +40,8 @@ extension Swifty where Base: UIViewController {
             if UIApplication.shared.applicationState == .background {
                 return
             }
-            if let controller = controller as? UIViewController, let inputView = controller.ks.findFirstResponder() {
-                let userInfo = notification.userInfo as! NSDictionary
+            if let controller = controller, let inputView = controller.ks.findFirstResponder() {
+                let userInfo = notification.userInfo! as NSDictionary
                 let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
                 let window = UIApplication.shared.keyWindow
                 let relatedView = controller.relatedViewFor(inputView)
@@ -69,7 +65,7 @@ extension Swifty where Base: UIViewController {
                 return
             }
             if let controller = controller {
-                let userInfo = notification.userInfo as! NSDictionary
+                let userInfo = notification.userInfo! as NSDictionary
                 let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
                 UIView.animate(withDuration: duration, animations: {
                     let frame = controller.view.frame
