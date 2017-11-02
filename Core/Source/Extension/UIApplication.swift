@@ -17,10 +17,10 @@ extension UIApplication {
         }
     }()
 
-    override open var next: UIResponder? {
-        // Called before applicationDidFinishLaunching
-        UIApplication.runOnce
-        return super.next
-    }
-    
+//    override open var next: UIResponder? {
+//        // Called before applicationDidFinishLaunching
+//        UIApplication.runOnce
+//        return super.next
+//    }
+
 }

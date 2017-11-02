@@ -9,18 +9,6 @@
 import UIKit
 import RxCocoa
 public extension UIViewController {
-    private static let runOnce: Void = {
-        if _isDebugAssertConfiguration() {
-            KS.swizzleInstanceMethod(NSClassFromString("UIViewController")!, sel1: "motionBegan:withEvent:", sel2: "ksmotionBegan:with:")
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil, queue: nil){ _ in
-                UIApplication.shared.applicationSupportsShakeToEdit = true
-            }
-        }
-    }()
-    override open var next: UIResponder? {
-        UIViewController.runOnce
-        return super.next
-    }
     public func ksviewDidLoad() {
         self.ksviewDidLoad()
         let message = "[标题:\(String(describing: self.title))],[类:\(self.ks.className()))]"
