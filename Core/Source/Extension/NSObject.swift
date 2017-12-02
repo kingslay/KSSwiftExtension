@@ -10,7 +10,7 @@ import UIKit
 private var disposableBagAssociationKey: UInt8 = 0
 extension Swifty where Base: NSObject {
     public static func className() -> String {
-        return NSStringFromClass(Base).components(separatedBy: ".").last!
+        return NSStringFromClass(Base.self).components(separatedBy: ".").last!
     }
 
     static public func loadXib() -> UIView? {

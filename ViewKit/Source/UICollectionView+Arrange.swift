@@ -78,7 +78,7 @@ extension UICollectionView: UIGestureRecognizerDelegate {
         return (self.bundle != nil)
     }
     
-    public func handleGesture(_ gesture: UIGestureRecognizer) -> Void {
+    @objc public func handleGesture(_ gesture: UIGestureRecognizer) -> Void {
         
         
         if let bundle = self.bundle {

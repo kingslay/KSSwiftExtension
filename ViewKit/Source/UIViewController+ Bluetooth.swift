@@ -66,7 +66,9 @@ extension UIViewController: BluetoothDelegate,CBCentralManagerDelegate,CBPeriphe
         peripheral.discoverServices(serviceUUIDs)
     }
     open func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print(error)
+        if let error = error {
+            print(error)
+        }
     }
 
     open func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)

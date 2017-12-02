@@ -131,7 +131,7 @@ public struct SwiftyDate {
             return self.string(fromFormat:"HH:mm")
         }else if timeInterval < 2*86400 {
             if containTime {
-                 "\("昨天".localized)\(self.string(fromFormat:" HH:mm"))"
+                 return "\("昨天".localized)\(self.string(fromFormat:" HH:mm"))"
             }else{
                 return "昨天".localized
             }

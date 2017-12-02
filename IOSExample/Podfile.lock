@@ -4,32 +4,30 @@ PODS:
   - KSSwiftExtension/Core (2.0.0)
   - KSSwiftExtension/RxCocoa (2.0.0):
     - KSSwiftExtension/RxSwift
-    - RxCocoa (~> 3.0.0-beta.2)
+    - RxCocoa
   - KSSwiftExtension/RxSwift (2.0.0):
     - KSSwiftExtension/Core
-    - RxSwift (~> 3.0.0-beta.2)
+    - RxSwift
   - KSSwiftExtension/ViewKit (2.0.0):
     - KSSwiftExtension/Core
-  - RxCocoa (3.0.1):
-    - RxSwift (~> 3.0)
-  - RxSwift (3.0.1)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
 
 DEPENDENCIES:
   - KSSwiftExtension (from `../`)
   - KSSwiftExtension/RxCocoa (from `../`)
   - KSSwiftExtension/ViewKit (from `../`)
-  - RxCocoa (~> 3.0.0-beta.2)
-  - RxSwift (~> 3.0.0-beta.2)
 
 EXTERNAL SOURCES:
   KSSwiftExtension:
     :path: ../
 
 SPEC CHECKSUMS:
-  KSSwiftExtension: 313554d0cfd7b05ff1315daea31ac173a0bcab3e
-  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
-  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
+  KSSwiftExtension: 18faad50f47f5788ae57c4b0f9d664a17cbde3be
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
 
-PODFILE CHECKSUM: f757c96ae45c5671d680249d4c162d8bce835c7d
+PODFILE CHECKSUM: 10464827c4f0aff151fa2487ee3cdad41a15a881
 
 COCOAPODS: 1.3.1

@@ -17,7 +17,7 @@ public extension UIViewController {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }).addDisposableTo(self.ks.disposableBag)
+        }).disposed(by: self.ks.disposableBag)
     }
 }
 extension Swifty where Base: UIViewController {
@@ -45,7 +45,7 @@ extension Swifty where Base: UIViewController {
                     }
                 }
             }
-            }).addDisposableTo(self.disposableBag)
+        }).disposed(by: self.disposableBag)
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide).subscribe(onNext: {
             [weak controller = self.base] notification in
             //进入后台触发某些通知,不响应
@@ -60,6 +60,6 @@ extension Swifty where Base: UIViewController {
                     controller.view.bounds = frame
                 })
             }
-            }).addDisposableTo(self.disposableBag)
+        }).disposed(by: self.disposableBag)
     }
 }
