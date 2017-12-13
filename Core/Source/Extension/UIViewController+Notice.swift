@@ -93,7 +93,7 @@ class SwiftNotice: NSObject {
         window.isHidden = false
         // change orientation
         window.center = center
-        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         window.addSubview(view)
         windows.append(window)
         
@@ -117,7 +117,7 @@ class SwiftNotice: NSObject {
                 iv.contentMode = UIViewContentMode.scaleAspectFit
                 mainView.addSubview(iv)
                 timer = DispatchSource.makeTimerSource(queue: .main) as! DispatchSource
-                timer.scheduleRepeating(deadline: .now(), interval: timeInterval)
+                timer.schedule(deadline: .now(), repeating: timeInterval)
                 timer.setEventHandler {
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
@@ -131,7 +131,7 @@ class SwiftNotice: NSObject {
             ai.startAnimating()
             mainView.addSubview(ai)
         }
-        if text.length > 0 {
+        if text.count > 0 {
             let label = UILabel()
             label.text = text
             label.numberOfLines = 0
@@ -154,7 +154,7 @@ class SwiftNotice: NSObject {
         window.windowLevel = UIWindowLevelAlert
         window.center = getRealCenter()
         // change orientation
-        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -184,7 +184,7 @@ class SwiftNotice: NSObject {
         window.windowLevel = UIWindowLevelAlert
         window.center = getRealCenter()
         // change orientation
-        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -230,7 +230,7 @@ class SwiftNotice: NSObject {
         window.windowLevel = UIWindowLevelAlert
         window.center = getRealCenter()
         // change orientation
-        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * M_PI / 180))
+        window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -242,7 +242,7 @@ class SwiftNotice: NSObject {
     }
     
     // fix https://github.com/johnlui/SwiftNotice/issues/2
-    static func hideNotice(_ sender: AnyObject) {
+    @objc static func hideNotice(_ sender: AnyObject) {
         if let window = sender as? UIWindow {
             if let index = windows.index(where: { (item) -> Bool in
                 return item == window
@@ -262,7 +262,7 @@ class SwiftNotice: NSObject {
     }
     static func getClearTime(_ text: String,autoClearTime:Int = 0) -> Double{
         if autoClearTime == 0 {
-            return max(Double(text.length) * 0.08 + 0.3,1)
+            return max(Double(text.count) * 0.08 + 0.3,1)
         }else{
             return Double(autoClearTime)
         }
@@ -280,7 +280,7 @@ class SwiftNoticeSDK {
         
         // draw circle
         checkmarkShapePath.move(to: CGPoint(x: 36, y: 18))
-        checkmarkShapePath.addArc(withCenter: CGPoint(x: 18, y: 18), radius: 17.5, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
+        checkmarkShapePath.addArc(withCenter: CGPoint(x: 18, y: 18), radius: 17.5, startAngle: 0, endAngle: CGFloat(Double.pi*2), clockwise: true)
         checkmarkShapePath.close()
         
         switch type {
@@ -308,7 +308,7 @@ class SwiftNoticeSDK {
             
             let checkmarkShapePath = UIBezierPath()
             checkmarkShapePath.move(to: CGPoint(x: 18, y: 27))
-            checkmarkShapePath.addArc(withCenter: CGPoint(x: 18, y: 27), radius: 1, startAngle: 0, endAngle: CGFloat(M_PI*2), clockwise: true)
+            checkmarkShapePath.addArc(withCenter: CGPoint(x: 18, y: 27), radius: 1, startAngle: 0, endAngle: CGFloat(Double.pi*2), clockwise: true)
             checkmarkShapePath.close()
             
             UIColor.white.setFill()

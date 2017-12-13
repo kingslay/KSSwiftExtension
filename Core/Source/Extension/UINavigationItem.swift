@@ -9,15 +9,15 @@
 import Foundation
 private var backBarButtonItemAssociationKey: UInt8 = 0
 public extension UINavigationItem {
-    open override static func initialize() {
-        // 确保不是子类
-        if self !== UINavigationItem.self {
-            return
-        }
-        DispatchQueue.once(token: NSUUID().uuidString) {
-            KS.swizzleInstanceMethod(self, sel1: "backBarButtonItem", sel2: "ksbackBarbuttonItem")
-        }
-    }
+//    open override static func initialize() {
+//        // 确保不是子类
+//        if self !== UINavigationItem.self {
+//            return
+//        }s
+//        DispatchQueue.once(token: NSUUID().uuidString) {
+//            KS.swizzleInstanceMethod(self, sel1: "backBarButtonItem", sel2: "ksbackBarbuttonItem")
+//        }
+//    }
     public func ksbackBarbuttonItem() -> UIBarButtonItem? {
         var item = self.ksbackBarbuttonItem()
         if item == nil {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-func ==<T: Equatable, K1: Hashable>(lhs: [K1: T], rhs: [K1: T]) -> Bool {
+func ==<K1: Hashable,T: Equatable>(lhs: [K1: T], rhs: [K1: T]) -> Bool {
     if lhs.count != rhs.count { return false }
     for (key, lhsub) in lhs {
         if lhsub != rhs[key] {

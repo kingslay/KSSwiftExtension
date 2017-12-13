@@ -32,7 +32,7 @@ public extension Swifty where Base: UITableViewCell {
             cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribe(onNext: {
                 [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
-                }).addDisposableTo(newValue)
+            }).disposed(by: newValue)
         }
     }
 }
@@ -57,7 +57,7 @@ public extension Swifty where Base: UICollectionReusableView {
             cell.rx.sentMessage(#selector(self.base.prepareForReuse)).subscribe(onNext: {
                 [unowned cell] _ in
                 cell.ks.prepareForReusedisposableBag(DisposeBag())
-                }).addDisposableTo(newValue)
+            }).disposed(by: newValue)
         }
     }
 }

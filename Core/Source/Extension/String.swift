@@ -15,27 +15,11 @@ extension String {
         let s = NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
         return s
     }
-    public var length : Int {
-        return self.characters.count
-    }
     public init(data: Data){
-        let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)  as! String
+        let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         self.init(stringLiteral: str)
     }
-    public subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
-    }
-    
-    public subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    public subscript (r: Range<Int>) -> String {
-        return substring(with: self.characters.index(self.startIndex, offsetBy: r.lowerBound) ..< self.characters.index(self.startIndex, offsetBy: r.upperBound))
-    }
-    public subscript (r: ClosedRange<Int>) -> String {
-        return self[r.lowerBound ..< r.upperBound+1]
-    }
+
     public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluate(with: self)
     }
