@@ -15,6 +15,9 @@ extension String {
         let s = NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
         return s
     }
+    public var length : Int {
+        return self.count
+    }
     public init(data: Data){
         let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         self.init(stringLiteral: str)
