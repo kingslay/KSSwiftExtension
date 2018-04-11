@@ -31,7 +31,7 @@ extension Swifty where Base: UIScrollView {
 
         let splitFrame = CGRect(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height, width: self.base.bounds.size.width, height: self.base.bounds.size.height)
         self.base.setContentOffset(splitFrame.origin, animated: false)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) { () -> Void in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) { () -> Void in
             self.base.drawHierarchy(in: splitFrame, afterScreenUpdates: true)
             if index < maxIndex {
                 self.contentScrollPageDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)

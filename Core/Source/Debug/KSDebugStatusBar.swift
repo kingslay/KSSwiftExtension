@@ -55,7 +55,7 @@ open class KSDebugStatusBar: UIWindow {
         transition.duration = 0.3
         transition.type = kCATransitionFade
         self.messageLabel.layer.add(transition, forKey: nil)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.messageQueue.removeFirst()
             if self.messageQueue.count == 0 {
                 self.messageLabel.alpha = 0
