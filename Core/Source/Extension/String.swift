@@ -22,11 +22,26 @@ extension String {
         let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         self.init(stringLiteral: str)
     }
-
     public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluate(with: self)
     }
     public func checkEmail() -> Bool {
         return String.emailRegex.evaluate(with: self)
+    }
+
+    public func widthForComment(fontSize: CGFloat, height: CGFloat) -> CGFloat {
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let rect = NSString(string: self).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        return ceil(rect.width)
+    }
+
+    public func heightForComment(fontSize: CGFloat, width: CGFloat) -> CGFloat {
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let rect = NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        return ceil(rect.height)
+    }
+
+    public func heightForComment(fontSize: CGFloat, width: CGFloat, maxHeight: CGFloat) -> CGFloat {
+        return min(heightForComment(fontSize: fontSize, width: width), maxHeight)
     }
 }
