@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import WebKit
 extension Swifty where Base: UIScrollView {
     public func contentScrollCapture (_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
         // Put a fake Cover of View
-        let snapShotView = self.base.snapshotView(afterScreenUpdates: true)
-        snapShotView?.frame = self.base.frame
-        self.base.superview?.addSubview(snapShotView!)
+        let snapShotView = base.snapshotView(afterScreenUpdates: false)
+        snapShotView?.backgroundColor = UIColor.white
+        snapShotView?.frame = base.frame
+        base.superview?.addSubview(snapShotView!)
         // Backup
         let bakOffset    = self.base.contentOffset
         // Divide
@@ -28,11 +30,15 @@ extension Swifty where Base: UIScrollView {
     }
 
     fileprivate func contentScrollPageDraw (_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {
-
         let splitFrame = CGRect(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height, width: self.base.bounds.size.width, height: self.base.bounds.size.height)
         self.base.setContentOffset(splitFrame.origin, animated: false)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) { () -> Void in
-            self.base.drawHierarchy(in: splitFrame, afterScreenUpdates: true)
+        var delay = 0.6
+        if base.superview is WKWebView {
+            delay = 0.25
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) { () -> Void in
+            self.base.drawHierarchy(in: self.base.bounds, afterScreenUpdates: false)
+//            self.base.layer.render(in: UIGraphicsGetCurrentContext()!)
             if index < maxIndex {
                 self.contentScrollPageDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)
             }else{
