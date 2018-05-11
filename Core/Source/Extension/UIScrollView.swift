@@ -11,11 +11,13 @@ extension Swifty where Base: UIScrollView {
     public func contentScrollCapture (_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
         // Put a fake Cover of View
         let snapShotView = base.snapshotView(afterScreenUpdates: false)
-        snapShotView?.backgroundColor = UIColor.white
         snapShotView?.frame = base.frame
         base.superview?.addSubview(snapShotView!)
         // Backup
-        let bakOffset    = self.base.contentOffset
+        let contentOffset    = base.contentOffset
+        let frame = base.frame
+        let clipsToBounds = base.clipsToBounds
+        base.clipsToBounds = false
         // Divide
         let page  = floorf(Float(self.base.contentSize.height / self.base.bounds.height))
         UIGraphicsBeginImageContextWithOptions(self.base.contentSize, false, UIScreen.main.scale)
@@ -23,20 +25,24 @@ extension Swifty where Base: UIScrollView {
             let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             // Recover
-            self.base.setContentOffset(bakOffset, animated: false)
+            self.base.setContentOffset(contentOffset, animated: false)
+            self.base.frame = frame
+            self.base.clipsToBounds = clipsToBounds
             snapShotView?.removeFromSuperview()
             completionHandler(capturedImage)
         })
     }
 
     fileprivate func contentScrollPageDraw (_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {
-        let splitFrame = CGRect(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height, width: self.base.bounds.size.width, height: self.base.bounds.size.height)
-        self.base.setContentOffset(splitFrame.origin, animated: false)
+        self.base.setContentOffset(CGPoint(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height), animated: false)
         var delay = 0.6
         if base.superview is WKWebView {
             delay = 0.25
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) { () -> Void in
+            var frame = self.base.frame
+            frame.size.width = self.base.contentSize.width
+            self.base.frame = frame
             self.base.drawHierarchy(in: self.base.bounds, afterScreenUpdates: false)
 //            self.base.layer.render(in: UIGraphicsGetCurrentContext()!)
             if index < maxIndex {
