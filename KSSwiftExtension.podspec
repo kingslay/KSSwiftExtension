@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/kingslay/KSSwiftExtension.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.default_subspec = "Core"
+  s.static_framework = true
   s.subspec "Core" do |ss|
     ss.source_files  = 'Core/Source/**/*.swift'
   end
