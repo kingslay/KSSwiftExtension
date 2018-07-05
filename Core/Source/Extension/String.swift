@@ -12,8 +12,7 @@ extension String {
     static let  emailRegex = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     
     public var localized: String {
-        let s = NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
-        return s
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
     public var length : Int {
         return self.count
