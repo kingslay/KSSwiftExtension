@@ -34,20 +34,25 @@ extension Swifty where Base: UIScrollView {
     }
 
     fileprivate func contentScrollPageDraw (_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {
-        self.base.setContentOffset(CGPoint(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height), animated: false)
+        let point = CGPoint(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height)
+        self.base.setContentOffset(point, animated: false)
         var delay = 0.6
         if base.superview is WKWebView {
             delay = 0.25
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) { () -> Void in
             var frame = self.base.frame
-            frame.size.width = self.base.contentSize.width
-            self.base.frame = frame
-            self.base.drawHierarchy(in: self.base.bounds, afterScreenUpdates: false)
-//            self.base.layer.render(in: UIGraphicsGetCurrentContext()!)
+            frame.origin = point
+            if frame.width < self.base.contentSize.width {
+                frame.size.width = self.base.contentSize.width
+                if self.base.superview is WKWebView {
+                    self.base.frame = frame
+                }
+            }
+            self.base.drawHierarchy(in: frame, afterScreenUpdates: true)
             if index < maxIndex {
                 self.contentScrollPageDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)
-            }else{
+            } else {
                 drawCallback()
             }
         }
