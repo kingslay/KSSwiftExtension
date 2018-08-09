@@ -144,3 +144,12 @@ extension Swifty where Base: UIColor {
         return image!
     }
 }
+
+extension UIColor {
+    public convenience init?(hex: Int, alpha: CGFloat = 1) {
+        let red = CGFloat((hex >> 16) & 0xff)
+        let green = CGFloat((hex >> 8) & 0xff)
+        let blue = CGFloat(hex & 0xff)
+        self.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
+    }
+}
