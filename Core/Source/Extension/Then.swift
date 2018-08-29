@@ -10,7 +10,6 @@ import Foundation
 public protocol Then {}
 
 extension Then where Self: Any {
-
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let label = UILabel().then {
@@ -23,11 +22,9 @@ extension Then where Self: Any {
         block(&copy)
         return copy
     }
-
 }
 
 extension Then where Self: AnyObject {
-
     /// Makes it available to set properties with closures just after initializing.
     ///
     ///     let label = UILabel().then {
@@ -39,7 +36,6 @@ extension Then where Self: AnyObject {
         block(self)
         return self
     }
-
 }
 
 extension NSObject: Then {}

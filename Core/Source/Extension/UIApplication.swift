@@ -11,7 +11,7 @@ extension UIApplication {
     private static let runOnce: Void = {
         if _isDebugAssertConfiguration() {
             KS.swizzleInstanceMethod(NSClassFromString("UIViewController")!, sel1: "motionBegan:withEvent:", sel2: "ksmotionBegan:with:")
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil, queue: nil){ _ in
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidFinishLaunching, object: nil, queue: nil) { _ in
                 UIApplication.shared.applicationSupportsShakeToEdit = true
             }
         }
@@ -22,5 +22,4 @@ extension UIApplication {
 //        UIApplication.runOnce
 //        return super.next
 //    }
-
 }

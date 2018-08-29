@@ -6,17 +6,15 @@
 //  Copyright © 2016年 king. All rights reserved.
 //
 
-import UIKit
 import KSSwiftExtension
+import UIKit
 class DetailViewController: UIViewController {
-
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet var detailDescriptionLabel: UILabel!
 
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
-            self.configureView()
+            configureView()
         }
     }
 
@@ -32,9 +30,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
-        self.ks.autoAdjustKeyBoard()
-        let a = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) { notification in
+        configureView()
+        ks.autoAdjustKeyBoard()
+        let a = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) { _ in
             print(self)
         }
         NotificationCenter.default.removeObserver(a)
@@ -45,4 +43,3 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
-

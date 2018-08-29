@@ -9,43 +9,39 @@
 import Foundation
 import UIKit
 
-
 extension CFCityPickerVC {
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
+
         /** 返回按钮 */
         dismissBtnPrepare()
-        
+
         /** 为tableView准备 */
         tableViewPrepare()
-        
+
         /** 处理label */
         labelPrepare()
-        
-        self.tableView.sectionIndexColor = CFCityPickerVC.cityPVCTintColor
-        
+
+        tableView.sectionIndexColor = CFCityPickerVC.cityPVCTintColor
+
         /** headerView */
         headerviewPrepare()
-        
+
         /** 定位处理 */
         locationPrepare()
-        
-        //通知处理
+
+        // 通知处理
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(notiAction(_:)), name: CityChoosedNoti, object: nil)
     }
-    
+
     /** 返回按钮 */
-    func dismissBtnPrepare(){
-        
+    func dismissBtnPrepare() {
         dismissBtn.setImage(UIImage(named: "img.bundle/cancel"), forState: UIControlState.Normal)
         dismissBtn.addTarget(self, action: #selector(dismiss), forControlEvents: UIControlEvents.TouchUpInside)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dismissBtn)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dismissBtn)
     }
-    
-    func dismiss(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+
+    func dismiss() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

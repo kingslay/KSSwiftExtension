@@ -15,13 +15,8 @@ let CityChoosedNoti = "CityChoosedNoti"
 /** 归档key */
 let SelectedCityKey = "SelectedCityKey"
 
-extension CFCityPickerVC{
-    
-    class func rgba(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor{
-        
-        return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
+extension CFCityPickerVC {
+    class func rgba(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
+        return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
     }
-    
-
 }
-

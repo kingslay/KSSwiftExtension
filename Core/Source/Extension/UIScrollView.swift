@@ -8,20 +8,20 @@
 import UIKit
 import WebKit
 extension Swifty where Base: UIScrollView {
-    public func contentScrollCapture (_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
+    public func contentScrollCapture(_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
         // Put a fake Cover of View
         let snapShotView = base.snapshotView(afterScreenUpdates: false)
         snapShotView?.frame = base.frame
         base.superview?.addSubview(snapShotView!)
         // Backup
-        let contentOffset    = base.contentOffset
+        let contentOffset = base.contentOffset
         let frame = base.frame
         let clipsToBounds = base.clipsToBounds
         base.clipsToBounds = false
         // Divide
-        let page  = floorf(Float(self.base.contentSize.height / self.base.bounds.height))
-        UIGraphicsBeginImageContextWithOptions(self.base.contentSize, false, UIScreen.main.scale)
-        self.contentScrollPageDraw(0, maxIndex: Int(page), drawCallback: { () -> Void in
+        let page = floorf(Float(base.contentSize.height / base.bounds.height))
+        UIGraphicsBeginImageContextWithOptions(base.contentSize, false, UIScreen.main.scale)
+        contentScrollPageDraw(0, maxIndex: Int(page), drawCallback: { () -> Void in
             let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             // Recover
@@ -33,9 +33,9 @@ extension Swifty where Base: UIScrollView {
         })
     }
 
-    fileprivate func contentScrollPageDraw (_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {
-        let point = CGPoint(x: -self.base.contentInset.left, y: CGFloat(index) * self.base.frame.size.height)
-        self.base.setContentOffset(point, animated: false)
+    fileprivate func contentScrollPageDraw(_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {
+        let point = CGPoint(x: -base.contentInset.left, y: CGFloat(index) * base.frame.size.height)
+        base.setContentOffset(point, animated: false)
         var delay = 0.6
         if base.superview is WKWebView {
             delay = 0.25
@@ -58,8 +58,9 @@ extension Swifty where Base: UIScrollView {
         }
     }
 }
+
 extension UIScrollView {
-    @objc public func contentScrollCapture (_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
-        self.ks.contentScrollCapture(completionHandler)
+    @objc public func contentScrollCapture(_ completionHandler: @escaping (_ capturedImage: UIImage?) -> Void) {
+        ks.contentScrollCapture(completionHandler)
     }
 }

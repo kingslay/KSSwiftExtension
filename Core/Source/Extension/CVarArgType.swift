@@ -7,10 +7,10 @@
 //
 
 import Foundation
-extension Int: KSCompatible { }
-extension Double: KSCompatible { }
+extension Int: KSCompatible {}
+extension Double: KSCompatible {}
 extension Swifty where Base: CVarArg {
-    public func format(_ f:String) -> String {
-        return String(format:"\(f)",self.base)
+    public func format(_ f: String) -> String {
+        return String(format: "\(f)", base)
     }
 }

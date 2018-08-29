@@ -9,11 +9,11 @@
 import UIKit
 extension Swifty where Base: UINavigationController {
     public func pushViewController(_ viewController: UIViewController) {
-        if self.base.viewControllers.count > 0 {
+        if base.viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
         } else {
             viewController.hidesBottomBarWhenPushed = false
         }
-      self.base.pushViewController(viewController, animated: true)
+        base.pushViewController(viewController, animated: true)
     }
 }

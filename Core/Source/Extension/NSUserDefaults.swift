@@ -8,11 +8,12 @@
 
 import Foundation
 protocol Settings {
-    subscript(key: String) -> AnyObject? { get nonmutating set }
+    subscript(_: String) -> AnyObject? { get nonmutating set }
 }
+
 extension UserDefaults: Settings {
-    public subscript (key: String) -> AnyObject? {
-        get{ return object(forKey: key) as AnyObject? }
-        set{ set(newValue, forKey: key) }
-    }    
+    public subscript(key: String) -> AnyObject? {
+        get { return object(forKey: key) as AnyObject? }
+        set { set(newValue, forKey: key) }
+    }
 }

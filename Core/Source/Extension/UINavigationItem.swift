@@ -19,10 +19,10 @@ public extension UINavigationItem {
 //        }
 //    }
     public func ksbackBarbuttonItem() -> UIBarButtonItem? {
-        var item = self.ksbackBarbuttonItem()
+        var item = ksbackBarbuttonItem()
         if item == nil {
             item = objc_getAssociatedObject(self, &backBarButtonItemAssociationKey) as? UIBarButtonItem
-            if (item == nil) {
+            if item == nil {
                 item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             }
         }

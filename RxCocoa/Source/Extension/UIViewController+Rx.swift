@@ -6,25 +6,26 @@
 //  Copyright © 2015年 king. All rights reserved.
 //
 
-import UIKit
 import RxCocoa
+import UIKit
 public extension UIViewController {
     public func ksviewDidLoad() {
-        self.ksviewDidLoad()
-        let message = "[标题:\(String(describing: self.title))],[类:\(self.ks.className()))]"
-        self.rx.deallocating.subscribe(onNext: {
+        ksviewDidLoad()
+        let message = "[标题:\(String(describing: title))],[类:\(ks.className()))]"
+        rx.deallocating.subscribe(onNext: {
             if KS.isSimulator {
                 KSDebugStatusBar.post(message)
             }
             NSLog("dealloc vc = \(message)")
-        }).disposed(by: self.ks.disposableBag)
+        }).disposed(by: ks.disposableBag)
     }
 }
+
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow).subscribe(onNext: {
-            [weak controller = self.base]  notification in
-            //进入后台触发某些通知,不响应
+            [weak controller = self.base] notification in
+            // 进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
                 return
             }
@@ -45,10 +46,10 @@ extension Swifty where Base: UIViewController {
                     }
                 }
             }
-        }).disposed(by: self.disposableBag)
+        }).disposed(by: disposableBag)
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide).subscribe(onNext: {
             [weak controller = self.base] notification in
-            //进入后台触发某些通知,不响应
+            // 进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
                 return
             }
@@ -60,6 +61,6 @@ extension Swifty where Base: UIViewController {
                     controller.view.bounds = frame
                 })
             }
-        }).disposed(by: self.disposableBag)
+        }).disposed(by: disposableBag)
     }
 }

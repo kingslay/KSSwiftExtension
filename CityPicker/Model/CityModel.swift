@@ -9,65 +9,49 @@
 import Foundation
 @objc(CityModel)
 public class CityModel: NSObject {
-    
     var id: NSNumber!
     var pid: NSNumber!
     var name: String!
     var spell: String!
     var children: [CityModel]?
-    
-    override init() {
-    }
-    
-    
+
+    override init() {}
+
     /** 首字母获取 */
-    var getFirstUpperLetter: String {return (self.spell as NSString).substringToIndex(1).uppercaseString}
-    
-    
-    /** 寻找城市模型:*/
-    class func findCityModelWithCityName(cityNames: [String]?, cityModels: [CityModel], isFuzzy: Bool) -> [CityModel]?{
-        
-        if cityNames == nil {return nil}
-        
+    var getFirstUpperLetter: String { return (spell as NSString).substringToIndex(1).uppercaseString }
+
+    /** 寻找城市模型: */
+    class func findCityModelWithCityName(cityNames: [String]?, cityModels: [CityModel], isFuzzy: Bool) -> [CityModel]? {
+        if cityNames == nil { return nil }
+
         var destinationModels: [CityModel]? = []
-        
-        for name in cityNames!{
-            
-            for cityModel in cityModels{ //省
-                
-                if cityModel.children == nil {continue}
-                
-                for cityModel2 in cityModel.children! { //市
-                    
-                    if !isFuzzy { //精确查找
-                        
-                        if cityModel2.name != name {continue}
-                        
+
+        for name in cityNames! {
+            for cityModel in cityModels { // 省
+                if cityModel.children == nil { continue }
+
+                for cityModel2 in cityModel.children! { // 市
+                    if !isFuzzy { // 精确查找
+                        if cityModel2.name != name { continue }
+
                         destinationModels?.append(cityModel2)
-                        
-                    }else{//模糊搜索
-                        
+
+                    } else { // 模糊搜索
                         let checkName = (name as NSString).lowercaseString
-                        
-                        if (cityModel2.name as NSString).rangeOfString(name).length > 0 || ((cityModel2.spell as NSString).lowercaseString as NSString).rangeOfString(checkName).length > 0{
+
+                        if (cityModel2.name as NSString).rangeOfString(name).length > 0 || ((cityModel2.spell as NSString).lowercaseString as NSString).rangeOfString(checkName).length > 0 {
                             destinationModels?.append(cityModel2)
-                            
                         }
                     }
                 }
             }
-            
         }
-        
+
         return destinationModels
     }
-    
-    /** 城市检索 */
-    class func searchCityModelsWithCondition(condition: String, cities: [CityModel]) -> [CityModel]?{
-        
-        return self.findCityModelWithCityName([condition], cityModels: cities, isFuzzy: true)
-    }
-    
-}
 
-    
+    /** 城市检索 */
+    class func searchCityModelsWithCondition(condition: String, cities: [CityModel]) -> [CityModel]? {
+        return findCityModelWithCityName([condition], cityModels: cities, isFuzzy: true)
+    }
+}

@@ -9,24 +9,27 @@
 import UIKit
 
 extension Swifty where Base: UIViewController {
-    static public func loadXib() -> UIViewController? {
-        return loadXib(self.className())
+    public static func loadXib() -> UIViewController? {
+        return loadXib(className())
     }
-    static public func loadXib(_ name: String) -> UIViewController?{
+
+    public static func loadXib(_ name: String) -> UIViewController? {
         return Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIViewController
     }
-    public func navigationController() -> UINavigationController?{
+
+    public func navigationController() -> UINavigationController? {
         if let nav = self.base as? UINavigationController {
             return nav
-        }else if let tabBar = self.base as? UITabBarController {
+        } else if let tabBar = self.base as? UITabBarController {
             return tabBar.selectedViewController?.ks.navigationController()
         }
-        return self.base.navigationController
+        return base.navigationController
     }
 
     public func findFirstResponder() -> UIView? {
-        return recursionTraverseFindFirstResponderIn(self.base.view)
+        return recursionTraverseFindFirstResponderIn(base.view)
     }
+
     fileprivate func recursionTraverseFindFirstResponderIn(_ view: UIView) -> UIView? {
         for subView in view.subviews {
             if subView.isFirstResponder {
@@ -41,7 +44,7 @@ extension Swifty where Base: UIViewController {
 }
 
 extension UIViewController {
-    ///弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
+    /// 弹出键盘的时候，那个控制不能被键盘遮住。默认是自己本身
     open func relatedViewFor(_ inputView: UIView) -> UIView {
         return inputView
     }

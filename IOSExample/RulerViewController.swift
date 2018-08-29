@@ -6,14 +6,14 @@
 //  Copyright © 2016年 king. All rights reserved.
 //
 
-import UIKit
 import KSSwiftExtension
+import UIKit
 class RulerViewController: UIViewController {
-
-    @IBOutlet weak var rulerView: KSRulerView!
+    @IBOutlet var rulerView: KSRulerView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         rulerView.showRulerScrollViewWithCount(200, beginValue: 100, endValue: 300)

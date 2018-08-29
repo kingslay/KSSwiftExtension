@@ -9,29 +9,29 @@
 import UIKit
 
 @objc public protocol KSRulerDelegate {
-    //声明方法
+    // 声明方法
     func ruler(_ value: CGFloat)
 }
 
 open class KSRulerView: UIView, UIScrollViewDelegate {
-
-    weak open var delegete: KSRulerDelegate?
-    lazy open var rulerScrollView: KSRulerScrollView = {
+    open weak var delegete: KSRulerDelegate?
+    open lazy var rulerScrollView: KSRulerScrollView = {
         let scrollView = KSRulerScrollView()
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
+
     open var strokeColor = UIColor.red
-    open var lineWidth:CGFloat = 1.0;
+    open var lineWidth: CGFloat = 1.0
     open var currentValue: CGFloat {
         get {
             let offSetY = rulerScrollView.contentOffset.y + rulerScrollView.frame.size.height / 2
-            return  rulerScrollView.beginValue + offSetY / rulerScrollView.distance * rulerScrollView.rulerAverage
+            return rulerScrollView.beginValue + offSetY / rulerScrollView.distance * rulerScrollView.rulerAverage
         }
         set {
-            let offSetY = (newValue - rulerScrollView.beginValue)/rulerScrollView.rulerAverage * rulerScrollView.distance - rulerScrollView.frame.size.height / 2
+            let offSetY = (newValue - rulerScrollView.beginValue) / rulerScrollView.rulerAverage * rulerScrollView.distance - rulerScrollView.frame.size.height / 2
             rulerScrollView.contentOffset.y = offSetY
         }
     }
@@ -40,11 +40,11 @@ open class KSRulerView: UIView, UIScrollViewDelegate {
         rulerScrollView.rulerCount = count
         rulerScrollView.beginValue = beginValue
         rulerScrollView.endValue = endValue
-        self.addSubview(rulerScrollView)
-        rulerScrollView.frame = self.bounds
-        rulerScrollView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+        addSubview(rulerScrollView)
+        rulerScrollView.frame = bounds
+        rulerScrollView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         rulerScrollView.drawRuler()
-        self.drawline()
+        drawline()
     }
 
     func drawline() {
@@ -55,27 +55,26 @@ open class KSRulerView: UIView, UIScrollViewDelegate {
 //        shapeLayerLine.lineDashPattern = [8,12]
         shapeLayerLine.lineCap = kCALineCapRound
         shapeLayerLine.lineJoin = kCALineJoinRound
-        let path = UIBezierPath(rect: CGRect(x: 0, y: self.frame.size.height/2, width: self.frame.width, height: 0))
+        let path = UIBezierPath(rect: CGRect(x: 0, y: frame.size.height / 2, width: frame.width, height: 0))
         shapeLayerLine.path = path.cgPath
-        self.layer.addSublayer(shapeLayerLine)
+        layer.addSublayer(shapeLayerLine)
     }
-    //MARK: ScrollView Delegete
-    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    // MARK: ScrollView Delegete
+
+    open func scrollViewDidScroll(_: UIScrollView) {
         if let delegete = delegete {
             delegete.ruler(currentValue)
         }
     }
 
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.animationRebound(scrollView)
+        animationRebound(scrollView)
     }
 
-    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        self.animationRebound(scrollView)
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {
+        animationRebound(scrollView)
     }
 
-    func animationRebound(_ scrollView: UIScrollView) {
-        
-    }
-    
+    func animationRebound(_: UIScrollView) {}
 }

@@ -6,11 +6,11 @@
 //  Copyright © 2015年 king. All rights reserved.
 //
 
-import UIKit
 import RxSwift
+import UIKit
 private var disposableBagAssociationKey: UInt8 = 0
 extension Swifty where Base: NSObject {
-    public var disposableBag : DisposeBag {
+    public var disposableBag: DisposeBag {
         return synchronized {
             if let disposableBag = objc_getAssociatedObject(self.base, &disposableBagAssociationKey) as? DisposeBag {
                 return disposableBag

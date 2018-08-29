@@ -10,16 +10,16 @@ import Foundation
 extension Swifty where Base: Sequence {
     typealias Element = Base.Iterator.Element
 
-    func partitionBy(fu: (Element)->Bool)->([Element],[Element]){
-        var first=[Element]()
-        var second=[Element]()
+    func partitionBy(fu: (Element) -> Bool) -> ([Element], [Element]) {
+        var first = [Element]()
+        var second = [Element]()
         for el in base {
             if fu(el) {
                 first.append(el)
-            }else{
+            } else {
                 second.append(el)
             }
         }
-        return (first,second)
+        return (first, second)
     }
 }

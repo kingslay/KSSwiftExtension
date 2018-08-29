@@ -16,7 +16,7 @@ public extension UIView {
             layer.masksToBounds = newValue > 0
         }
     }
-    
+
     @IBInspectable public var borderWidth: CGFloat {
         get {
             return layer.borderWidth
@@ -25,7 +25,7 @@ public extension UIView {
             layer.borderWidth = newValue
         }
     }
-    
+
     @IBInspectable public var borderColor: UIColor {
         get {
             return UIColor(cgColor: layer.borderColor!)
@@ -34,34 +34,38 @@ public extension UIView {
             layer.borderColor = newValue.cgColor
         }
     }
-    
+
     @IBInspectable public var onePx: Bool {
         get {
-            return self.onePx
+            return onePx
         }
         set {
-            if (onePx == true){
-                self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: 1 / UIScreen.main.scale)
+            if onePx == true {
+                frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 1 / UIScreen.main.scale)
             }
         }
     }
 }
+
 open class LayerContainerView: UIView {
-    override open class var layerClass: Swift.AnyClass {
+    open override class var layerClass: Swift.AnyClass {
         return CAGradientLayer.self
     }
 }
-public struct KSDirection : OptionSet {
+
+public struct KSDirection: OptionSet {
     public let rawValue: UInt
     public init(rawValue: UInt) {
         self.rawValue = rawValue
     }
+
     public static var top = KSDirection(rawValue: 1 << 0)
     public static var left = KSDirection(rawValue: 1 << 1)
     public static var bottom = KSDirection(rawValue: 1 << 2)
     public static var right = KSDirection(rawValue: 1 << 3)
-    public static var all = [top,left,bottom,right]
+    public static var all = [top, left, bottom, right]
 }
+
 extension Swifty where Base: UIView {
     /**
      Masks the view's layer to be in a cirle.
@@ -70,28 +74,28 @@ extension Swifty where Base: UIView {
         base.cornerRadius = base.frame.size.width / 2.0
     }
 
-    public func showBorder(_ direction:KSDirection,margin:CGFloat=0,color:UIColor = UIColor.black,borderWidth:CGFloat = 1) {
+    public func showBorder(_ direction: KSDirection, margin: CGFloat = 0, color: UIColor = UIColor.black, borderWidth: CGFloat = 1) {
         if direction.contains(.top) {
             let layer = CALayer()
-            layer.frame = CGRect(x: margin,y: 0,width: base.frame.width-margin,height: borderWidth)
+            layer.frame = CGRect(x: margin, y: 0, width: base.frame.width - margin, height: borderWidth)
             layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.left) {
             let layer = CALayer()
-            layer.frame = CGRect(x: 0,y: margin,width: borderWidth,height: base.frame.height-margin)
+            layer.frame = CGRect(x: 0, y: margin, width: borderWidth, height: base.frame.height - margin)
             layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.bottom) {
             let layer = CALayer()
-            layer.frame = CGRect(x: margin,y: base.frame.height-borderWidth,width: base.frame.width-margin,height: borderWidth)
+            layer.frame = CGRect(x: margin, y: base.frame.height - borderWidth, width: base.frame.width - margin, height: borderWidth)
             layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
         if direction.contains(.right) {
             let layer = CALayer()
-            layer.frame = CGRect(x:base.frame.width-borderWidth,y: margin,width: borderWidth,height: base.frame.height-margin)
+            layer.frame = CGRect(x: base.frame.width - borderWidth, y: margin, width: borderWidth, height: base.frame.height - margin)
             layer.backgroundColor = color.cgColor
             base.layer.addSublayer(layer)
         }
@@ -100,7 +104,7 @@ extension Swifty where Base: UIView {
     public func viewController() -> UIViewController? {
         if let window = base as? UIWindow {
             return window.rootViewController
-        }else{
+        } else {
             var next = base.next
             while next != nil {
                 if let viewController = next as? UIViewController {
@@ -115,10 +119,9 @@ extension Swifty where Base: UIView {
 
 extension Swifty where Base: UIView {
     public var left: CGFloat {
-        get {
-            return base.frame.origin.x
-        }
+        return base.frame.origin.x
     }
+
     public func left(_ newValue: CGFloat) {
         var frame = base.frame
         if frame.origin.x != newValue {
@@ -128,10 +131,9 @@ extension Swifty where Base: UIView {
     }
 
     public var top: CGFloat {
-        get {
-            return base.frame.origin.y
-        }
+        return base.frame.origin.y
     }
+
     public func top(_ newValue: CGFloat) {
         var frame = base.frame
         if frame.origin.y != newValue {
@@ -141,10 +143,9 @@ extension Swifty where Base: UIView {
     }
 
     public var right: CGFloat {
-        get {
-            return base.frame.origin.x + base.frame.width
-        }
+        return base.frame.origin.x + base.frame.width
     }
+
     public func right(_ newValue: CGFloat) {
         var frame = base.frame
         let newRight = newValue - base.frame.width
@@ -155,10 +156,9 @@ extension Swifty where Base: UIView {
     }
 
     public var bottom: CGFloat {
-        get {
-            return base.frame.origin.y + base.frame.height
-        }
+        return base.frame.origin.y + base.frame.height
     }
+
     public func bottom(_ newValue: CGFloat) {
         var frame = base.frame
         let newBottom = newValue - base.frame.height
@@ -180,20 +180,19 @@ extension Swifty where Base: UIView {
             }
         }
     }
+
     public func centerX(_ newValue: CGFloat) {
         var center = base.center
         if center.x != newValue {
             center.x = newValue
             base.center = center
         }
-
     }
 
     public var centerY: CGFloat {
-        get {
-            return base.center.y
-        }
+        return base.center.y
     }
+
     public func centerY(_ newValue: CGFloat) {
         var center = base.center
         if center.y != newValue {
@@ -203,10 +202,9 @@ extension Swifty where Base: UIView {
     }
 
     public var width: CGFloat {
-        get {
-            return base.frame.width
-        }
+        return base.frame.width
     }
+
     public func width(_ newValue: CGFloat) {
         var frame = base.frame
         if frame.width != newValue {
@@ -214,11 +212,11 @@ extension Swifty where Base: UIView {
             base.frame = frame
         }
     }
+
     public var height: CGFloat {
-        get {
-            return base.frame.height
-        }
+        return base.frame.height
     }
+
     public func height(_ newValue: CGFloat) {
         var frame = base.frame
         if frame.height != newValue {
@@ -228,10 +226,9 @@ extension Swifty where Base: UIView {
     }
 
     public var origin: CGPoint {
-        get {
-            return base.frame.origin
-        }
+        return base.frame.origin
     }
+
     public func origin(_ newValue: CGPoint) {
         var frame = base.frame
         if frame.origin != newValue {
@@ -241,10 +238,9 @@ extension Swifty where Base: UIView {
     }
 
     public var size: CGSize {
-        get {
-            return base.frame.size
-        }
+        return base.frame.size
     }
+
     public func size(_ newValue: CGSize) {
         var frame = base.frame
         if frame.size != newValue {
@@ -253,53 +249,50 @@ extension Swifty where Base: UIView {
         }
     }
 }
+
 extension Swifty where Base: UIView {
     var widthConstraint: NSLayoutConstraint? {
-        get {
-            for constraint in base.constraints {
-                //防止返回NSContentSizeLayoutConstraint
-                if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .width {
-                    return constraint
-                }
+        for constraint in base.constraints {
+            // 防止返回NSContentSizeLayoutConstraint
+            if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .width {
+                return constraint
             }
-            return nil
         }
+        return nil
     }
+
     var heightConstraint: NSLayoutConstraint? {
-        get {
+        for constraint in base.constraints {
+            // 防止返回NSContentSizeLayoutConstraint
+            if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .height {
+                return constraint
+            }
+        }
+        return nil
+    }
+
+    var rightConstraint: NSLayoutConstraint? {
+        if let constraints = base.superview?.constraints {
             for constraint in base.constraints {
-                //防止返回NSContentSizeLayoutConstraint
-                if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .height {
+                if constraint.firstItem === base && constraint.firstAttribute == .right {
                     return constraint
                 }
             }
-            return nil
         }
+        return nil
     }
-    var rightConstraint: NSLayoutConstraint? {
-        get {
-            if let constraints = base.superview?.constraints {
-                for constraint in base.constraints {
-                    if constraint.firstItem === base && constraint.firstAttribute == .right {
-                        return constraint
-                    }
-                }
-            }
-            return nil
-        }
-    }
+
     var leftConstraint: NSLayoutConstraint? {
-        get {
-            if let constraints = base.superview?.constraints {
-                for constraint in base.constraints {
-                    if constraint.firstItem === base && constraint.firstAttribute == .left {
-                        return constraint
-                    }
+        if let constraints = base.superview?.constraints {
+            for constraint in base.constraints {
+                if constraint.firstItem === base && constraint.firstAttribute == .left {
+                    return constraint
                 }
             }
-            return nil
         }
+        return nil
     }
+
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return base.safeAreaLayoutGuide.topAnchor
@@ -309,17 +302,17 @@ extension Swifty where Base: UIView {
     }
 
     var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *){
+        if #available(iOS 11.0, *) {
             return base.safeAreaLayoutGuide.leftAnchor
-        }else {
+        } else {
             return base.leftAnchor
         }
     }
 
     var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *){
+        if #available(iOS 11.0, *) {
             return base.safeAreaLayoutGuide.rightAnchor
-        }else {
+        } else {
             return base.rightAnchor
         }
     }

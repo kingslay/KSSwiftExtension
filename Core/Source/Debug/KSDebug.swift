@@ -9,11 +9,10 @@
 import UIKit
 
 public extension UIViewController {
-    func ksmotionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+    func ksmotionBegan(_: UIEventSubtype, with _: UIEvent?) {
         let overlayClass = NSClassFromString("UIDebuggingInformationOverlay") as? UIWindow.Type
-        _=overlayClass?.perform(NSSelectorFromString("prepareDebuggingOverlay"))
+        _ = overlayClass?.perform(NSSelectorFromString("prepareDebuggingOverlay"))
         let overlay = overlayClass?.perform(NSSelectorFromString("overlay")).takeUnretainedValue() as? UIWindow
-        _=overlay?.perform(NSSelectorFromString("toggleVisibility"))
-
+        _ = overlay?.perform(NSSelectorFromString("toggleVisibility"))
     }
 }

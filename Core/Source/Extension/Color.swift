@@ -9,40 +9,34 @@
 import UIKit
 
 extension Swifty where Base: UIColor {
-    static public func colorFrom(_ colorString: String) -> UIColor {
+    public static func colorFrom(_ colorString: String) -> UIColor {
         let leftParenCharset: CharacterSet = CharacterSet(charactersIn: "( ")
         let commaCharset: CharacterSet = CharacterSet(charactersIn: ", ")
 
         let colorString = colorString.lowercased()
 
-        if colorString.hasPrefix("#")
-        {
+        if colorString.hasPrefix("#") {
             var argb: [UInt] = [255, 0, 0, 0]
             let colorString = colorString.unicodeScalars
             var length = colorString.count
             var index = colorString.startIndex
             let endIndex = colorString.endIndex
-            index = colorString.index(index, offsetBy:1)
+            index = colorString.index(index, offsetBy: 1)
             length = length - 1
 
-            if length == 3 || length == 6 || length == 8
-            {
+            if length == 3 || length == 6 || length == 8 {
                 var i = length == 8 ? 0 : 1
-                while index < endIndex
-                {
+                while index < endIndex {
                     var c = colorString[index]
-                    index = colorString.index(index, offsetBy:1)
+                    index = colorString.index(index, offsetBy: 1)
 
                     var val = (c.value >= 0x61 && c.value <= 0x66) ? (c.value - 0x61 + 10) : c.value - 0x30
                     argb[i] = UInt(val) * 16
-                    if length == 3
-                    {
+                    if length == 3 {
                         argb[i] = argb[i] + UInt(val)
-                    }
-                    else
-                    {
+                    } else {
                         c = colorString[index]
-                        index = colorString.index(index, offsetBy:1)
+                        index = colorString.index(index, offsetBy: 1)
                         val = (c.value >= 0x61 && c.value <= 0x66) ? (c.value - 0x61 + 10) : c.value - 0x30
                         argb[i] = argb[i] + UInt(val)
                     }
@@ -52,9 +46,7 @@ extension Swifty where Base: UIColor {
             }
 
             return UIColor(red: CGFloat(argb[1]) / 255.0, green: CGFloat(argb[2]) / 255.0, blue: CGFloat(argb[3]) / 255.0, alpha: CGFloat(argb[0]) / 255.0)
-        }
-        else if colorString.hasPrefix("rgba")
-        {
+        } else if colorString.hasPrefix("rgba") {
             var a: Float = 1.0
             var r: Int32 = 0
             var g: Int32 = 0
@@ -75,9 +67,7 @@ extension Swifty where Base: UIColor {
                 blue: CGFloat(b) / 255.0,
                 alpha: CGFloat(a)
             )
-        }
-        else if colorString.hasPrefix("argb")
-        {
+        } else if colorString.hasPrefix("argb") {
             var a: Float = 1.0
             var r: Int32 = 0
             var g: Int32 = 0
@@ -98,9 +88,7 @@ extension Swifty where Base: UIColor {
                 blue: CGFloat(b) / 255.0,
                 alpha: CGFloat(a)
             )
-        }
-        else if colorString.hasPrefix("rgb")
-        {
+        } else if colorString.hasPrefix("rgb") {
             var r: Int32 = 0
             var g: Int32 = 0
             var b: Int32 = 0
@@ -124,13 +112,13 @@ extension Swifty where Base: UIColor {
     }
 
     public func toHexString() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-        self.base.getRed(&r, green: &g, blue: &b, alpha: &a)
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-        return String(format:"#%06x", rgb)
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        base.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb: Int = Int(r * 255) << 16 | Int(g * 255) << 8 | Int(b * 255) << 0
+        return String(format: "#%06x", rgb)
     }
 
     public static func createImage(_ color: UIColor) -> UIImage {
@@ -147,9 +135,9 @@ extension Swifty where Base: UIColor {
 
 extension UIColor {
     public convenience init?(hex: Int, alpha: CGFloat = 1) {
-        let red = CGFloat((hex >> 16) & 0xff)
-        let green = CGFloat((hex >> 8) & 0xff)
-        let blue = CGFloat(hex & 0xff)
-        self.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
+        let red = CGFloat((hex >> 16) & 0xFF)
+        let green = CGFloat((hex >> 8) & 0xFF)
+        let blue = CGFloat(hex & 0xFF)
+        self.init(red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha)
     }
 }

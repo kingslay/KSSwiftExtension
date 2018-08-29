@@ -9,33 +9,23 @@
 import UIKit
 
 class CFCityCell: UITableViewCell {
-
-    var cityModel: CityModel! {didSet{dataFill()}}
-    
+    var cityModel: CityModel! { didSet { dataFill() } }
 }
 
+extension CFCityCell {
+    static var rid: String { return "CFCityCell" }
 
-
-extension CFCityCell{
-    
-    static var rid: String {return "CFCityCell"}
-    
     class func cityCellInTableView(tableView: UITableView) -> CFCityCell {
-    
-        //取出cell
-        var cityCell = tableView.dequeueReusableCellWithIdentifier(rid) as?CFCityCell
-        
-        if cityCell == nil {cityCell = CFCityCell(style: UITableViewCellStyle.Default, reuseIdentifier: rid)}
-        
+        // 取出cell
+        var cityCell = tableView.dequeueReusableCellWithIdentifier(rid) as? CFCityCell
+
+        if cityCell == nil { cityCell = CFCityCell(style: UITableViewCellStyle.Default, reuseIdentifier: rid) }
+
         return cityCell!
     }
-    
-    
+
     /** 数据填充 */
-    func dataFill(){
-        
-        self.textLabel?.text = "\(cityModel.name)"
-        
+    func dataFill() {
+        textLabel?.text = "\(cityModel.name)"
     }
-    
 }

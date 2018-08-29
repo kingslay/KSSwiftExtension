@@ -4,36 +4,38 @@ import UIKit
 
 protocol Formattable {
     /// A string.
-    var content:String { get }
-    
+    var content: String { get }
+
     /// An formatting function.
     func formattedContent() -> String
 }
+
 extension Formattable {
     func formattedContent() -> String {
-        return self.content
+        return content
     }
+
     func debugFormattedContent() -> String {
-        return "Content: \(self.content)"
+        return "Content: \(content)"
     }
 }
-extension Formattable {
-   
-}
-struct Day : Formattable {
-    
-    var content:String
-    
+
+extension Formattable {}
+
+struct Day: Formattable {
+    var content: String
+
     func formattedContent() -> String {
-        return "Today is \(self.content)"
+        return "Today is \(content)"
     }
-    
+
     func debugFormattedContent() -> String {
-        return "Day: \(self.content)"
+        return "Day: \(content)"
     }
 }
-let a = Day(content:"Monday")
-let b:Formattable = Day(content:"Monday")
+
+let a = Day(content: "Monday")
+let b: Formattable = Day(content: "Monday")
 
 a.formattedContent()
 b.formattedContent()

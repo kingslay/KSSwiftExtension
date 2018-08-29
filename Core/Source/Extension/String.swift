@@ -9,21 +9,25 @@
 import Foundation
 extension String {
     static let phoneRegex = NSPredicate(format: "SELF MATCHES %@", "^1[34578]\\d{9}$")
-    static let  emailRegex = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-    
+    static let emailRegex = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+
     public var localized: String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
-    public var length : Int {
-        return self.count
+
+    public var length: Int {
+        return count
     }
-    public init(data: Data){
-        let str =  NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+
+    public init(data: Data) {
+        let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         self.init(stringLiteral: str)
     }
+
     public func checkMobileNumble() -> Bool {
         return String.phoneRegex.evaluate(with: self)
     }
+
     public func checkEmail() -> Bool {
         return String.emailRegex.evaluate(with: self)
     }

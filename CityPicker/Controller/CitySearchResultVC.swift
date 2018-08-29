@@ -8,72 +8,56 @@
 
 import UIKit
 
-class CitySearchResultVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class CitySearchResultVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var touchBeganAction: (() -> Void)!
+    var tableViewScrollAction: (() -> Void)!
+    var tableViewDidSelectedRowAction: ((cityModel: CityModel) -> Void)!
 
-    var touchBeganAction: (()->())!
-    var tableViewScrollAction: (()->())!
-    var tableViewDidSelectedRowAction: ((cityModel: CityModel)->())!
-    
-    var cityModels: [CityModel]!{didSet{dataPrepare()}}
-    
-    
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    
+    var cityModels: [CityModel]! { didSet { dataPrepare() } }
+
+    @IBOutlet var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
     }
-    
 }
 
-extension CitySearchResultVC{
+extension CitySearchResultVC {
+    func tableView(tableView _: UITableView, numberOfRowsInSection _: Int) -> Int {
+        if cityModels == nil { return 0 }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if cityModels == nil {return 0}
-        
         return cityModels.count
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = CFCityCell.cityCellInTableView(tableView)
-        
+
         cell.cityModel = cityModels[indexPath.item]
-        
+
         return cell
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+
+    func tableView(tableView _: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableViewDidSelectedRowAction?(cityModel: cityModels[indexPath.row])
     }
-    
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.cityModels == nil {return nil}
-        return "共检索到\(self.cityModels.count)到记录"
+
+    func tableView(tableView _: UITableView, titleForHeaderInSection _: Int) -> String? {
+        if cityModels == nil { return nil }
+        return "共检索到\(cityModels.count)到记录"
     }
-    
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+    override func touchesBegan(touches _: Set<UITouch>, withEvent _: UIEvent?) {
         touchBeganAction?()
     }
-    
-    func dataPrepare(){
-        
-        self.tableView.hidden = self.cityModels == nil
-        
-        self.tableView.reloadData()
+
+    func dataPrepare() {
+        tableView.hidden = cityModels == nil
+
+        tableView.reloadData()
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+
+    func scrollViewDidScroll(scrollView _: UIScrollView) {
         tableViewScrollAction?()
     }
 }
-
-
-
-

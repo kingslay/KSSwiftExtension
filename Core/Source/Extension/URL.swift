@@ -13,17 +13,18 @@ extension URL {
         return SwiftyURL(self)
     }
 }
+
 public struct SwiftyURL {
     let url: URL
     public init(_ url: URL) {
         self.url = url
     }
-    func getParams()->[String:String]{
-        var dict = [String:String]()
-        URLComponents(url: self.url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+
+    func getParams() -> [String: String] {
+        var dict = [String: String]()
+        URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
             dict[$0.name] = $0.value ?? ""
         }
         return dict
     }
 }
-

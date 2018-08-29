@@ -7,7 +7,7 @@
 //
 import ObjectiveC
 extension KS {
-    static internal func swizzleMethod(_ class_: AnyClass, selector1 sel1: String, selector2 sel2: String) {
+    internal static func swizzleMethod(_ class_: AnyClass, selector1 sel1: String, selector2 sel2: String) {
         let selector1 = Selector(sel1)
         let selector2 = Selector(sel2)
         let method1: Method = class_getInstanceMethod(class_, selector1)!
@@ -19,11 +19,11 @@ extension KS {
         }
     }
 
-    static public func swizzleInstanceMethod(_ class_: AnyClass, sel1: String, sel2: String) {
+    public static func swizzleInstanceMethod(_ class_: AnyClass, sel1: String, sel2: String) {
         swizzleMethod(class_, selector1: sel1, selector2: sel2)
     }
 
-    static public func swizzleClassMethod(_ class_: AnyClass, sel1: String, sel2: String) {
+    public static func swizzleClassMethod(_ class_: AnyClass, sel1: String, sel2: String) {
         swizzleMethod(object_getClass(class_)!, selector1: sel1, selector2: sel2)
     }
 }

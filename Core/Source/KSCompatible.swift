@@ -6,7 +6,7 @@
 //
 //
 
-public struct Swifty<Base>{
+public struct Swifty<Base> {
     public var base: Base
     public init(_ base: Base) {
         self.base = base
@@ -33,14 +33,14 @@ public extension KSCompatible {
  Extend NSObject with `ks` proxy.
  */
 import Foundation
-extension NSObject: KSCompatible { }
+extension NSObject: KSCompatible {}
 
 public struct KS {
     public static let SCREEN_BOUND = UIScreen.main.bounds
     public static let SCREEN_WIDTH = SCREEN_BOUND.width
     public static let SCREEN_HEIGHT = SCREEN_BOUND.height
     public static let SCREEN_SCALE = UIScreen.main.scale
-    public static let SCREEN_RATIO = SCREEN_WIDTH/320.0
+    public static let SCREEN_RATIO = SCREEN_WIDTH / 320.0
     public static var isSimulator: Bool = {
         let device = UIDevice.current
         var simulator = device.model.contains("Simulator")
@@ -49,8 +49,9 @@ public struct KS {
         }
         return simulator
     }()
+
     public static var machineModel: String = {
-        var size : Int = 0 // as Ben Stahl noticed in his answer
+        var size: Int = 0 // as Ben Stahl noticed in his answer
         sysctlbyname("hw.machine", nil, &size, nil, 0)
         var machine = [CChar](repeating: 0, count: Int(size))
         sysctlbyname("hw.machine", &machine, &size, nil, 0)
