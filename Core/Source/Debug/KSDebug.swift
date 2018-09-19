@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIViewController {
-    func ksmotionBegan(_: UIEventSubtype, with _: UIEvent?) {
+    func ksmotionBegan(_: UIEvent.EventSubtype, with _: UIEvent?) {
         let overlayClass = NSClassFromString("UIDebuggingInformationOverlay") as? UIWindow.Type
         _ = overlayClass?.perform(NSSelectorFromString("prepareDebuggingOverlay"))
         let overlay = overlayClass?.perform(NSSelectorFromString("overlay")).takeUnretainedValue() as? UIWindow

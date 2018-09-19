@@ -66,7 +66,7 @@ extension UICollectionView: UIGestureRecognizerDelegate {
             if gestureRecognizer.isKind(of: UILongPressGestureRecognizer.self) {
                 let button = UIButton()
                 bundle!.deleteButton = button
-                button.setImage(UIImage(named: "tata_close"), for: UIControlState())
+                button.setImage(UIImage(named: "tata_close"), for: UIControl.State())
                 button.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: 18, height: 18)
                 button.addTarget(self, action: #selector(touchUpInside(_:)), for: .touchUpInside)
                 let tapGestureRecogniser = UITapGestureRecognizer()
@@ -81,7 +81,7 @@ extension UICollectionView: UIGestureRecognizerDelegate {
         if let bundle = self.bundle {
             let dragPointOnCollectionView = gesture.location(in: self)
 
-            if gesture.state == UIGestureRecognizerState.began {
+            if gesture.state == UIGestureRecognizer.State.began {
                 bundle.sourceCell.isHidden = true
                 addSubview(bundle.representationImageView)
                 if let deleteButton = bundle.deleteButton {
@@ -91,7 +91,7 @@ extension UICollectionView: UIGestureRecognizerDelegate {
                     bundle.representationImageView.alpha = 0.8
                 })
             }
-            if gesture.state == UIGestureRecognizerState.changed {
+            if gesture.state == UIGestureRecognizer.State.changed {
                 // Update the representation image
                 var imageViewFrame = bundle.representationImageView.frame
                 var point = CGPoint.zero
@@ -114,7 +114,7 @@ extension UICollectionView: UIGestureRecognizerDelegate {
                 }
             }
 
-            if gesture.state == UIGestureRecognizerState.ended {
+            if gesture.state == UIGestureRecognizer.State.ended {
                 bundle.sourceCell.isHidden = false
                 bundle.representationImageView.removeFromSuperview()
 

@@ -9,7 +9,7 @@
 import UIKit
 extension Swifty where Base: UIImage {
     public func transformtoScale(_ scale: CGFloat) -> UIImage {
-        return UIImage(cgImage: base.cgImage!, scale: scale, orientation: UIImageOrientation.up)
+        return UIImage(cgImage: base.cgImage!, scale: scale, orientation: UIImage.Orientation.up)
 
 //        // 创建一个bitmap的context
 //        UIGraphicsBeginImageContext(size)

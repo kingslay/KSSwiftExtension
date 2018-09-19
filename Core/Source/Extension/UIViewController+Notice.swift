@@ -91,7 +91,7 @@ class SwiftNotice: NSObject {
         window.frame = frame
         view.frame = frame
 
-        window.windowLevel = UIWindowLevelStatusBar
+        window.windowLevel = UIWindow.Level.statusBar
         window.isHidden = false
         // change orientation
         window.center = center
@@ -117,7 +117,7 @@ class SwiftNotice: NSObject {
             if imageNames.count > timerTimes {
                 let iv = UIImageView(frame: frame)
                 iv.image = imageNames.first!
-                iv.contentMode = UIViewContentMode.scaleAspectFit
+                iv.contentMode = UIView.ContentMode.scaleAspectFit
                 mainView.addSubview(iv)
                 timer = DispatchSource.makeTimerSource(queue: .main) as! DispatchSource
                 timer.schedule(deadline: .now(), repeating: timeInterval)
@@ -129,7 +129,7 @@ class SwiftNotice: NSObject {
                 timer.resume()
             }
         } else {
-            let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+            let ai = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
             ai.frame = CGRect(x: 21, y: 21, width: 36, height: 36)
             ai.startAnimating()
             mainView.addSubview(ai)
@@ -154,7 +154,7 @@ class SwiftNotice: NSObject {
         window.frame = frame
         mainView.frame = frame
 
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = UIWindow.Level.alert
         window.center = getRealCenter()
         // change orientation
         window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
@@ -185,7 +185,7 @@ class SwiftNotice: NSObject {
 
         label.center = mainView.center
 
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = UIWindow.Level.alert
         window.center = getRealCenter()
         // change orientation
         window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
@@ -231,7 +231,7 @@ class SwiftNotice: NSObject {
         label.ks.centerX(mainView.ks.centerX)
         checkmarkView.ks.centerX(mainView.ks.centerX)
 
-        window.windowLevel = UIWindowLevelAlert
+        window.windowLevel = UIWindow.Level.alert
         window.center = getRealCenter()
         // change orientation
         window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))

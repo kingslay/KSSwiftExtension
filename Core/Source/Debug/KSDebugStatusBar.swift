@@ -20,7 +20,7 @@ open class KSDebugStatusBar: UIWindow {
         let statusBarFrame = CGRect(x: 0, y: 0, width: KS.SCREEN_WIDTH, height: 20)
         messageLabel = UILabel(frame: statusBarFrame)
         super.init(frame: statusBarFrame)
-        windowLevel = UIWindowLevelStatusBar + 1
+        windowLevel = UIWindow.Level.statusBar + 1
         backgroundColor = UIColor.clear
         isUserInteractionEnabled = false
         messageLabel.font = UIFont.systemFont(ofSize: 13)
@@ -54,7 +54,7 @@ open class KSDebugStatusBar: UIWindow {
         isHidden = false
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = kCATransitionFade
+        transition.type = CATransitionType.fade
         messageLabel.layer.add(transition, forKey: nil)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.messageQueue.removeFirst()

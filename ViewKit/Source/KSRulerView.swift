@@ -53,8 +53,8 @@ open class KSRulerView: UIView, UIScrollViewDelegate {
         shapeLayerLine.strokeColor = strokeColor.cgColor
         shapeLayerLine.lineWidth = lineWidth
 //        shapeLayerLine.lineDashPattern = [8,12]
-        shapeLayerLine.lineCap = kCALineCapRound
-        shapeLayerLine.lineJoin = kCALineJoinRound
+        shapeLayerLine.lineCap = CAShapeLayerLineCap.round
+        shapeLayerLine.lineJoin = CAShapeLayerLineJoin.round
         let path = UIBezierPath(rect: CGRect(x: 0, y: frame.size.height / 2, width: frame.width, height: 0))
         shapeLayerLine.path = path.cgPath
         layer.addSublayer(shapeLayerLine)

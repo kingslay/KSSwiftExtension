@@ -25,13 +25,13 @@ open class KSRulerScrollView: UIScrollView {
         shapeLayer1.strokeColor = stroke1Color.cgColor
         shapeLayer1.fillColor = UIColor.clear.cgColor
         shapeLayer1.lineWidth = 1
-        shapeLayer1.lineCap = kCALineCapButt
+        shapeLayer1.lineCap = CAShapeLayerLineCap.butt
 
         let shapeLayer2 = CAShapeLayer()
         shapeLayer2.strokeColor = stroke2Color.cgColor
         shapeLayer2.fillColor = UIColor.clear.cgColor
         shapeLayer2.lineWidth = 1
-        shapeLayer2.lineCap = kCALineCapButt
+        shapeLayer2.lineCap = CAShapeLayerLineCap.butt
         rulerAverage = (endValue - beginValue) / CGFloat(rulerCount)
         for index in 0 ... rulerCount {
             let y = distance * CGFloat(index)

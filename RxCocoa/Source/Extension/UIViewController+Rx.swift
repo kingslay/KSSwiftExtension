@@ -23,7 +23,7 @@ public extension UIViewController {
 
 extension Swifty where Base: UIViewController {
     public func autoAdjustKeyBoard() {
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillShow).subscribe(onNext: {
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification).subscribe(onNext: {
             [weak controller = self.base] notification in
             // 进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
@@ -31,13 +31,13 @@ extension Swifty where Base: UIViewController {
             }
             if let controller = controller, let inputView = controller.ks.findFirstResponder() {
                 let userInfo = notification.userInfo! as NSDictionary
-                let keyboardRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+                let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
                 let window = UIApplication.shared.keyWindow
                 let relatedView = controller.relatedViewFor(inputView)
                 if let convertRect = relatedView.superview?.convert(relatedView.frame, to: window) {
                     let diff = convertRect.maxY - keyboardRect.minY + 10
                     if diff > 0 {
-                        let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
+                        let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
                         UIView.animate(withDuration: duration, animations: {
                             var bounds = controller.view.bounds
                             bounds.origin.y += diff
@@ -47,7 +47,7 @@ extension Swifty where Base: UIViewController {
                 }
             }
         }).disposed(by: disposableBag)
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillHide).subscribe(onNext: {
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification).subscribe(onNext: {
             [weak controller = self.base] notification in
             // 进入后台触发某些通知,不响应
             if UIApplication.shared.applicationState == .background {
@@ -55,7 +55,7 @@ extension Swifty where Base: UIViewController {
             }
             if let controller = controller {
                 let userInfo = notification.userInfo! as NSDictionary
-                let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
+                let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
                 UIView.animate(withDuration: duration, animations: {
                     let frame = controller.view.frame
                     controller.view.bounds = frame
