@@ -49,7 +49,20 @@ class SwiftNotice: NSObject {
     static var timer: DispatchSource!
     static var timerTimes = 0
     static var degree: Double {
-        return [0, 0, 180, 270, 90][UIApplication.shared.statusBarOrientation.hashValue] as Double
+        get {
+            switch UIApplication.shared.statusBarOrientation {
+            case .portrait:
+                return 0
+            case .portraitUpsideDown:
+                return 180
+            case .landscapeLeft:
+                return 270
+            case .landscapeRight:
+                return 90
+            case .unknown:
+                return 0
+            }
+        }
     }
 
     static var center: CGPoint {
