@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 extension UIApplication {
     private static let runOnce: Void = {
         if _isDebugAssertConfiguration() {

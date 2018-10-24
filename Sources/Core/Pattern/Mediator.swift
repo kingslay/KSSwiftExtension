@@ -8,7 +8,7 @@
 
 import Foundation
 open class Mediator {
-    open static func performAction(_ url: URL, completion: ((NSDictionary?) -> Void)?) -> AnyObject? {
+    public static func performAction(_ url: URL, completion: ((NSDictionary?) -> Void)?) -> AnyObject? {
         if let host = url.host, url.path.hasPrefix("native") {
             let result = perform(host, actionName: url.path, params: url.ks.getParams() as NSDictionary)
             if let completion = completion {
@@ -22,7 +22,7 @@ open class Mediator {
         return nil
     }
 
-    open static func perform(_ targetName: String, actionName: String, params: NSDictionary) -> AnyObject? {
+    public static func perform(_ targetName: String, actionName: String, params: NSDictionary) -> AnyObject? {
         if let targetClass = NSClassFromString("Target_" + targetName) as? NSObject.Type {
             var action = NSSelectorFromString("Action_\(actionName):")
             let target = targetClass.init()

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 private var backBarButtonItemAssociationKey: UInt8 = 0
 public extension UINavigationItem {
 //    open override static func initialize() {

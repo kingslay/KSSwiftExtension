@@ -10,7 +10,7 @@ import UIKit
 
 open class KSDebugStatusBar: UIWindow {
     static let shareInstance = KSDebugStatusBar()
-    open static func post(_ message: String) {
+    public static func post(_ message: String) {
         shareInstance.post(message)
     }
 

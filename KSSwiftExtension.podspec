@@ -16,21 +16,21 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
   s.static_framework = true
   s.subspec "Core" do |ss|
-    ss.source_files  = 'Core/Source/**/*.swift'
+    ss.source_files  = 'Sources/Core/**/*.swift'
   end
   s.subspec "RxSwift" do |ss|
-    ss.source_files  = "RxSwift/Source/**/*.swift"
+    ss.source_files  = "Sources/RxSwift/**/*.swift"
     ss.dependency "KSSwiftExtension/Core"
     ss.dependency 'RxSwift'
   end
   s.subspec "RxCocoa" do |ss|
-    ss.source_files  = "RxCocoa/Source/**/*.swift"
+    ss.source_files  = "Sources/RxCocoa/**/*.swift"
     ss.dependency "KSSwiftExtension/RxSwift"
     ss.dependency "RxCocoa"
   end
   s.subspec "ViewKit" do |ss|
-    ss.source_files  = "ViewKit/Source/**/*.swift"
-    ss.resources = 'ViewKit/Resource/*.{json,png,jpg,gif,js}'
+    ss.source_files  = "Sources/ViewKit/**/*.swift"
+    ss.resources = 'Sources/ViewKit/Resource/*.{json,png,jpg,gif,js}'
     ss.dependency "KSSwiftExtension/Core"
   end
 end

@@ -44,8 +44,8 @@ enum NoticeType {
 }
 
 class SwiftNotice: NSObject {
-    static var windows = Array<UIWindow!>()
-    static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView!
+    static var windows = Array<UIWindow?>()
+    static let rv = UIApplication.shared.keyWindow?.subviews.first
     static var timer: DispatchSource!
     static var timerTimes = 0
     static var degree: Double {
@@ -132,7 +132,7 @@ class SwiftNotice: NSObject {
                 iv.image = imageNames.first!
                 iv.contentMode = UIView.ContentMode.scaleAspectFit
                 mainView.addSubview(iv)
-                timer = DispatchSource.makeTimerSource(queue: .main) as! DispatchSource
+                timer = DispatchSource.makeTimerSource(queue: .main) as? DispatchSource
                 timer.schedule(deadline: .now(), repeating: timeInterval)
                 timer.setEventHandler {
                     let name = imageNames[timerTimes % imageNames.count]

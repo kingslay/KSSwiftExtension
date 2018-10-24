@@ -37,7 +37,7 @@ public extension UIView {
 
     @IBInspectable public var onePx: Bool {
         get {
-            return onePx
+            return self.onePx
         }
         set {
             if onePx == true {
@@ -273,7 +273,7 @@ extension Swifty where Base: UIView {
 
     var rightConstraint: NSLayoutConstraint? {
         if let constraints = base.superview?.constraints {
-            for constraint in base.constraints {
+            for constraint in constraints {
                 if constraint.firstItem === base && constraint.firstAttribute == .right {
                     return constraint
                 }
@@ -284,7 +284,7 @@ extension Swifty where Base: UIView {
 
     var leftConstraint: NSLayoutConstraint? {
         if let constraints = base.superview?.constraints {
-            for constraint in base.constraints {
+            for constraint in constraints {
                 if constraint.firstItem === base && constraint.firstAttribute == .left {
                     return constraint
                 }

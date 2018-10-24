@@ -33,6 +33,7 @@ public extension KSCompatible {
  Extend NSObject with `ks` proxy.
  */
 import Foundation
+import UIKit
 extension NSObject: KSCompatible {}
 
 public struct KS {
