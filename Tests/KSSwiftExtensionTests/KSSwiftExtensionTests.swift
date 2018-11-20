@@ -1,5 +1,5 @@
-import XCTest
 @testable import KSSwiftExtension
+import XCTest
 
 final class KSSwiftExtensionTests: XCTestCase {
     func testExample() {

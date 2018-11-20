@@ -49,19 +49,17 @@ class SwiftNotice: NSObject {
     static var timer: DispatchSource!
     static var timerTimes = 0
     static var degree: Double {
-        get {
-            switch UIApplication.shared.statusBarOrientation {
-            case .portrait:
-                return 0
-            case .portraitUpsideDown:
-                return 180
-            case .landscapeLeft:
-                return 270
-            case .landscapeRight:
-                return 90
-            case .unknown:
-                return 0
-            }
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            return 0
+        case .portraitUpsideDown:
+            return 180
+        case .landscapeLeft:
+            return 270
+        case .landscapeRight:
+            return 90
+        case .unknown:
+            return 0
         }
     }
 
