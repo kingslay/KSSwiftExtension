@@ -38,11 +38,11 @@ extension Swifty where Base: UIViewController {
                     let diff = convertRect.maxY - keyboardRect.minY + 10
                     if diff > 0 {
                         let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
-                        UIView.animate(withDuration: duration, animations: {
+                        UIView.animate(withDuration: duration) {
                             var bounds = controller.view.bounds
                             bounds.origin.y += diff
                             controller.view.bounds = bounds
-                        })
+                        }
                     }
                 }
             }
@@ -56,10 +56,10 @@ extension Swifty where Base: UIViewController {
             if let controller = controller {
                 let userInfo = notification.userInfo! as NSDictionary
                 let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
-                UIView.animate(withDuration: duration, animations: {
+                UIView.animate(withDuration: duration) {
                     let frame = controller.view.frame
                     controller.view.bounds = frame
-                })
+                }
             }
         }).disposed(by: disposableBag)
     }

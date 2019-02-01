@@ -54,7 +54,7 @@ open class KSDebugStatusBar: UIWindow {
         isHidden = false
         let transition = CATransition()
         transition.duration = 0.3
-        transition.type = CATransitionType.fade
+        transition.type = .fade
         messageLabel.layer.add(transition, forKey: nil)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.messageQueue.removeFirst()

@@ -25,7 +25,7 @@ public prefix func - (dateComponents: DateComponents) -> DateComponents {
 
     DateComponents.allComponents.forEach { component in
         let value = dateComponents.value(for: component)
-        if value != nil && value != Int(NSDateComponentUndefined) {
+        if value != nil, value != Int(NSDateComponentUndefined) {
             invertedCmps.setValue(-value!, for: component)
         }
     }
@@ -66,7 +66,7 @@ extension Date {
         cmps.calendar = NSCalendar.current
         cmps.timeZone = TimeZone.current
         fromValues.forEach { key, value in
-            if key != .timeZone && key != .calendar {
+            if key != .timeZone, key != .calendar {
                 cmps.setValue(multipler * value, for: key)
             }
         }
@@ -114,7 +114,7 @@ public struct SwiftyDate {
     public func date(fromValues: [Calendar.Component: Int]) -> Date {
         var dateComponents = self.dateComponents
         fromValues.forEach { key, value in
-            if key != .timeZone && key != .calendar {
+            if key != .timeZone, key != .calendar {
                 dateComponents.setValue(value, for: key)
             }
         }

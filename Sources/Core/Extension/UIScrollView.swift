@@ -21,7 +21,7 @@ extension Swifty where Base: UIScrollView {
         // Divide
         let page = floorf(Float(base.contentSize.height / base.bounds.height))
         UIGraphicsBeginImageContextWithOptions(base.contentSize, false, UIScreen.main.scale)
-        contentScrollPageDraw(0, maxIndex: Int(page), drawCallback: { () -> Void in
+        contentScrollPageDraw(0, maxIndex: Int(page)) { () -> Void in
             let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             // Recover
@@ -30,7 +30,7 @@ extension Swifty where Base: UIScrollView {
             self.base.clipsToBounds = clipsToBounds
             snapShotView?.removeFromSuperview()
             completionHandler(capturedImage)
-        })
+        }
     }
 
     fileprivate func contentScrollPageDraw(_ index: Int, maxIndex: Int, drawCallback: @escaping () -> Void) {

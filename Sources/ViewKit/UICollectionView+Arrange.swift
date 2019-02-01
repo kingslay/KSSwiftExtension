@@ -87,9 +87,9 @@ extension UICollectionView: UIGestureRecognizerDelegate {
                 if let deleteButton = bundle.deleteButton {
                     addSubview(deleteButton)
                 }
-                UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                UIView.animate(withDuration: 0.5) { () -> Void in
                     bundle.representationImageView.alpha = 0.8
-                })
+                }
             }
             if gesture.state == UIGestureRecognizer.State.changed {
                 // Update the representation image

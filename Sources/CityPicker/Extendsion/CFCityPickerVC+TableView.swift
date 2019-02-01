@@ -27,9 +27,9 @@ extension CFCityPickerVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     private var sortedCityModles: [CityModel] {
-        return cityModels.sort({ (m1, m2) -> Bool in
+        return cityModels.sort { (m1, m2) -> Bool in
             m1.getFirstUpperLetter < m2.getFirstUpperLetter
-        })
+        }
     }
 
     /** 计算高度 */
@@ -77,13 +77,12 @@ extension CFCityPickerVC: UITableViewDataSource, UITableViewDelegate {
 
             location.stopUpdatingLocation()
 
-            location.reverseGeocodeLocationWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (_, placemark, error) -> Void in
+            location.reverseGeocodeLocationWithLatLon(latitude: latitude, longitude: longitude) { (_, placemark, error) -> Void in
 
                 guard error == nil else { return }
                 guard let placemark = placemark, let locality = placemark.locality else { return }
                 self.currentCity = (locality as NSString).stringByReplacingOccurrencesOfString("市", withString: "")
-
-            })
+            }
         }
     }
 
@@ -113,9 +112,9 @@ extension CFCityPickerVC: UITableViewDataSource, UITableViewDelegate {
 
             self.searchRVC.cityModels = nil
 
-            UIView.animateWithDuration(0.15, animations: { [unowned self] () -> Void in
+            UIView.animateWithDuration(0.15) { [unowned self] () -> Void in
                 self.searchRVC.view.alpha = 1
-            })
+            }
         }
 
         searchBar.searchBarDidEndditing = { [unowned self] in
@@ -127,9 +126,9 @@ extension CFCityPickerVC: UITableViewDataSource, UITableViewDelegate {
 
             self.navigationController?.setNavigationBarHidden(false, animated: true)
 
-            UIView.animateWithDuration(0.14, animations: { [unowned self] () -> Void in
+            UIView.animateWithDuration(0.14) { [unowned self] () -> Void in
                 self.searchRVC.view.alpha = 0
-            })
+            }
         }
 
         searchBar.searchTextDidChangedAction = { [unowned self] (text: String) in
@@ -266,40 +265,38 @@ extension CFCityPickerVC: UITableViewDataSource, UITableViewDelegate {
 
         showTime = 1
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { [unowned self] () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [unowned self] () -> Void in
 
             self.showTime = 0.8
+        }
 
-        })
-
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.4 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { [unowned self] () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.4 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [unowned self] () -> Void in
 
             if self.showTime == 0.8 {
                 self.showTime = 0.6
             }
-        })
+        }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.6 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { [unowned self] () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.6 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [unowned self] () -> Void in
 
             if self.showTime == 0.6 {
                 self.showTime = 0.4
             }
-        })
+        }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.8 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { [unowned self] () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.8 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [unowned self] () -> Void in
 
             if self.showTime == 0.4 {
                 self.showTime = 0.2
             }
-        })
+        }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { [unowned self] () -> Void in
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { [unowned self] () -> Void in
 
             if self.showTime == 0.2 {
                 self.dismissIndexTitle()
             }
-
-        })
+        }
 
         return indexTitleIndexArray[index]
     }

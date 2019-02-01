@@ -254,7 +254,7 @@ extension Swifty where Base: UIView {
     var widthConstraint: NSLayoutConstraint? {
         for constraint in base.constraints {
             // 防止返回NSContentSizeLayoutConstraint
-            if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .width {
+            if constraint.isMember(of: NSLayoutConstraint.self), constraint.firstAttribute == .width {
                 return constraint
             }
         }
@@ -264,7 +264,7 @@ extension Swifty where Base: UIView {
     var heightConstraint: NSLayoutConstraint? {
         for constraint in base.constraints {
             // 防止返回NSContentSizeLayoutConstraint
-            if constraint.isMember(of: NSLayoutConstraint.self) && constraint.firstAttribute == .height {
+            if constraint.isMember(of: NSLayoutConstraint.self), constraint.firstAttribute == .height {
                 return constraint
             }
         }
@@ -274,7 +274,7 @@ extension Swifty where Base: UIView {
     var rightConstraint: NSLayoutConstraint? {
         if let constraints = base.superview?.constraints {
             for constraint in constraints {
-                if constraint.firstItem === base && constraint.firstAttribute == .right {
+                if constraint.firstItem === base, constraint.firstAttribute == .right {
                     return constraint
                 }
             }
@@ -285,7 +285,7 @@ extension Swifty where Base: UIView {
     var leftConstraint: NSLayoutConstraint? {
         if let constraints = base.superview?.constraints {
             for constraint in constraints {
-                if constraint.firstItem === base && constraint.firstAttribute == .left {
+                if constraint.firstItem === base, constraint.firstAttribute == .left {
                     return constraint
                 }
             }

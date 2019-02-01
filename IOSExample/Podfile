@@ -5,6 +5,7 @@ def default_pods
     pod 'KSSwiftExtension', :path => "../"
     pod 'KSSwiftExtension/RxCocoa', :path => "../"
     pod 'KSSwiftExtension/ViewKit', :path => "../"
+    pod 'SwiftLint'
 end
 target 'IOSExample' do
     default_pods

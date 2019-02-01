@@ -176,7 +176,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if showVerboseMessage { verbose = verboseMessage }
         completionHandler?(latitude: 0.0, longitude: 0.0, status: locationStatus, verboseMessage: verbose, error: error.localizedDescription)
 
-        if (delegate != nil) && (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerReceivedError(_:))))! {
+        if delegate != nil, (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerReceivedError(_:))))! {
             delegate?.locationManagerReceivedError!(error.localizedDescription)
         }
     }
@@ -245,7 +245,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 if showVerboseMessage {
                     verbose = verboseMessage
 
-                    if (delegate != nil) && (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerVerboseMessage(_:))))! {
+                    if delegate != nil, (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerVerboseMessage(_:))))! {
                         delegate?.locationManagerVerboseMessage!(verbose)
                     }
                 }
@@ -254,7 +254,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                     completionHandler?(latitude: latitude, longitude: longitude, status: locationStatus, verboseMessage: verbose, error: nil)
                 }
             }
-            if (delegate != nil) && (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerStatus(_:))))! {
+            if delegate != nil, (delegate?.respondsToSelector(#selector(LocationManagerDelegate.locationManagerStatus(_:))))! {
                 delegate?.locationManagerStatus!(locationStatus)
             }
         }
@@ -275,7 +275,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private func reverseGocode(location: CLLocation) {
         let geocoder: CLGeocoder = CLGeocoder()
 
-        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
 
             if error != nil {
                 self.reverseGeocodingCompletionHandler!(reverseGecodeInfo: nil, placemark: nil, error: error!.localizedDescription)
@@ -290,7 +290,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                     return
                 }
             }
-        })
+        }
     }
 
     func geocodeAddressString(address address: NSString, onGeocodingCompletionHandler: LMGeocodeCompletionHandler) {
@@ -302,7 +302,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private func geoCodeAddress(address: NSString) {
         let geocoder = CLGeocoder()
 
-        geocoder.geocodeAddressString(address as String, completionHandler: { (placemarks, error) -> Void in
+        geocoder.geocodeAddressString(address as String) { (placemarks, error) -> Void in
 
             if error != nil {
                 self.geocodingCompletionHandler!(gecodeInfo: nil, placemark: nil, error: error!.localizedDescription)
@@ -316,7 +316,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                     self.geocodingCompletionHandler!(gecodeInfo: nil, placemark: nil, error: NSLocalizedString("invalid address: \(address)", comment: ""))
                 }
             }
-        })
+        }
     }
 
     func geocodeUsingGoogleAddressString(address address: NSString, onGeocodingCompletionHandler: LMGeocodeCompletionHandler) {
@@ -358,7 +358,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
         let queue: NSOperationQueue = NSOperationQueue()
 
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: { _, data, error in
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { _, data, error in
 
             if error != nil {
                 self.setCompletionHandler(responseInfo: nil, placemark: nil, error: error!.localizedDescription, type: type)
@@ -386,14 +386,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
                     self.setCompletionHandler(responseInfo: addressDict, placemark: placemark, error: nil, type: type)
 
-                } else if !status.isEqualToString(kZeroResults) && !status.isEqualToString(kAPILimit) && !status.isEqualToString(kRequestDenied) && !status.isEqualToString(kInvalidRequest) {
+                } else if !status.isEqualToString(kZeroResults), !status.isEqualToString(kAPILimit), !status.isEqualToString(kRequestDenied), !status.isEqualToString(kInvalidRequest) {
                     self.setCompletionHandler(responseInfo: nil, placemark: nil, error: kInvalidInput, type: type)
                 } else {
                     // status = (status.componentsSeparatedByString("_") as NSArray).componentsJoinedByString(" ").capitalizedString
                     self.setCompletionHandler(responseInfo: nil, placemark: nil, error: status as String, type: type)
                 }
             }
-        })
+        }
     }
 
     private func setCompletionHandler(responseInfo responseInfo: NSDictionary?, placemark: CLPlacemark?, error: String?, type: GeoCodingType) {

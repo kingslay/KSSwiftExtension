@@ -10,19 +10,25 @@ PODS:
     - RxSwift
   - KSSwiftExtension/ViewKit (4.0.0):
     - KSSwiftExtension/Core
-  - RxCocoa (4.3.1):
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxSwift (4.3.1)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - SwiftLint (0.30.1)
 
 DEPENDENCIES:
   - KSSwiftExtension (from `../`)
   - KSSwiftExtension/RxCocoa (from `../`)
   - KSSwiftExtension/ViewKit (from `../`)
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - RxAtomic
     - RxCocoa
     - RxSwift
+    - SwiftLint
 
 EXTERNAL SOURCES:
   KSSwiftExtension:
@@ -30,9 +36,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   KSSwiftExtension: 51b7e999c794e477a97acdef78035b0b6f685836
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
 
-PODFILE CHECKSUM: 9fcebde157fdad7988a0ab1e97c055b838fa74dc
+PODFILE CHECKSUM: 3042fd13c3a0969766e7f8223b8521997d3babf6
 
 COCOAPODS: 1.5.3
