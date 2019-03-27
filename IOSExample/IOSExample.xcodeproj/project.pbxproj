@@ -190,23 +190,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = king;
 				TargetAttributes = {
 					3C43EEB41CAAD3B7007F35C8 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					3C43EEC91CAAD3B8007F35C8 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = 3C43EEB41CAAD3B7007F35C8;
 					};
 				};
 			};
 			buildConfigurationList = 3C11828E1BBD43B000D96BB9 /* Build configuration list for PBXProject "IOSExample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -250,7 +250,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IOSExample/Pods-IOSExample-resources.sh",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close.png",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close@2x.png",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close@3x.png",
@@ -263,7 +263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSExample/Pods-IOSExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		41922DFBC415F6CF59D87BD6 /* [CP] Check Pods Manifest.lock */ = {
@@ -290,7 +290,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-resources.sh",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close.png",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close@2x.png",
 				"${PODS_ROOT}/../../Sources/ViewKit/Resource/tata_close@3x.png",
@@ -303,7 +303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		57ADC0AFC41B713F6DF168B7 /* [CP] Embed Pods Frameworks */ = {
@@ -312,7 +312,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IOSExample/Pods-IOSExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -325,7 +325,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IOSExample/Pods-IOSExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSExample/Pods-IOSExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A44E5F2F805390B4BBBFC765 /* [CP] Embed Pods Frameworks */ = {
@@ -334,7 +334,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -347,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSExampleTests/Pods-IOSExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B23E8DABE5031D914D07A541 /* [CP] Check Pods Manifest.lock */ = {
@@ -425,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -479,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -537,7 +539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = king.IOSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -553,7 +555,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = king.IOSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -570,7 +572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = king.IOSExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSExample.app/IOSExample";
 			};
 			name = Debug;
@@ -587,7 +589,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = king.IOSExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSExample.app/IOSExample";
 			};
 			name = Release;

@@ -13,7 +13,7 @@ import UIKit
 private var prepareForReusedisposableBagAssociationKey: UInt8 = 0
 
 public extension Swifty where Base: UITableViewCell {
-    public var prepareForReusedisposableBag: DisposeBag {
+    var prepareForReusedisposableBag: DisposeBag {
         return synchronized {
             if let disposableBag = objc_getAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey) as? DisposeBag {
                 return disposableBag
@@ -37,7 +37,7 @@ public extension Swifty where Base: UITableViewCell {
 }
 
 public extension Swifty where Base: UICollectionReusableView {
-    public var prepareForReusedisposableBag: DisposeBag {
+    var prepareForReusedisposableBag: DisposeBag {
         return synchronized {
             if let disposableBag = objc_getAssociatedObject(self.base, &prepareForReusedisposableBagAssociationKey) as? DisposeBag {
                 return disposableBag

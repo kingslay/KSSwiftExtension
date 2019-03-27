@@ -60,6 +60,8 @@ class SwiftNotice: NSObject {
             return 90
         case .unknown:
             return 0
+        @unknown default:
+            return 0
         }
     }
 
@@ -259,7 +261,7 @@ class SwiftNotice: NSObject {
     // fix https://github.com/johnlui/SwiftNotice/issues/2
     @objc static func hideNotice(_ sender: AnyObject) {
         if let window = sender as? UIWindow {
-            if let index = windows.index(where: { (item) -> Bool in
+            if let index = windows.firstIndex(where: { (item) -> Bool in
                 item == window
             }) {
                 windows.remove(at: index)

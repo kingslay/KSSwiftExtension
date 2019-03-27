@@ -9,7 +9,7 @@
 import RxCocoa
 import UIKit
 public extension UIViewController {
-    public func ksviewDidLoad() {
+    func ksviewDidLoad() {
         ksviewDidLoad()
         let message = "[标题:\(String(describing: title))],[类:\(ks.className()))]"
         rx.deallocating.subscribe(onNext: {

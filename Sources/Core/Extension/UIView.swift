@@ -7,7 +7,7 @@
 //
 import UIKit
 public extension UIView {
-    @IBInspectable public var cornerRadius: CGFloat {
+    @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -17,7 +17,7 @@ public extension UIView {
         }
     }
 
-    @IBInspectable public var borderWidth: CGFloat {
+    @IBInspectable var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -26,7 +26,7 @@ public extension UIView {
         }
     }
 
-    @IBInspectable public var borderColor: UIColor {
+    @IBInspectable var borderColor: UIColor {
         get {
             return UIColor(cgColor: layer.borderColor!)
         }
@@ -35,7 +35,7 @@ public extension UIView {
         }
     }
 
-    @IBInspectable public var onePx: Bool {
+    @IBInspectable var onePx: Bool {
         get {
             return self.onePx
         }

@@ -20,11 +20,11 @@ public protocol KSCompatible {
 }
 
 public extension KSCompatible {
-    public static var ks: Swifty<Self>.Type {
+    static var ks: Swifty<Self>.Type {
         return Swifty<Self>.self
     }
 
-    public var ks: Swifty<Self> {
+    var ks: Swifty<Self> {
         return Swifty(self)
     }
 }

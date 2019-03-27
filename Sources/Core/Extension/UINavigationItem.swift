@@ -19,7 +19,7 @@ public extension UINavigationItem {
 //            KS.swizzleInstanceMethod(self, sel1: "backBarButtonItem", sel2: "ksbackBarbuttonItem")
 //        }
 //    }
-    public func ksbackBarbuttonItem() -> UIBarButtonItem? {
+    func ksbackBarbuttonItem() -> UIBarButtonItem? {
         var item = ksbackBarbuttonItem()
         if item == nil {
             item = objc_getAssociatedObject(self, &backBarButtonItemAssociationKey) as? UIBarButtonItem
